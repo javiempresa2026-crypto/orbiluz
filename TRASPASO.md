@@ -1,5 +1,35 @@
 # Orbiluz: traspaso para el chat nuevo
 
+## ⚡ Estado a 26-09-2026 (última sesión)
+
+**Tienda:**
+- Tienda Shopify creada: **atzezc-eb.myshopify.com** (Orbiluz).
+- **DSers conectado** ✅ (dsers_store_id 2103839554244116480).
+- El conector de Shopify de Claude se está cambiando a atzezc-eb. Comprobar con `get-shop-info` que la tienda es atzezc-eb **antes de tocar nada**.
+  - Si sale Jarandana, **no tocarla**: pedir al usuario que reconecte.
+
+**Productos confirmados por el usuario:** ver `productos-candidatos.md`.
+1. Proyector de ondas de agua (1005009888234857).
+2. Reloj LED 3D (1005007090990814, variante 04).
+3. Lámpara bola de cristal 3D (1005008323008233).
+4. Opcional: reloj WiFi (1005006728045097). Preguntar si se incluye.
+
+**Hecho:**
+- `estudio-mercado.md`.
+- `productos-candidatos.md`.
+
+**Fotos:** el usuario pidió PARAR hasta confirmar productos.
+- Lecciones para cuando se retomen:
+  - `rembg` con el modelo **birefnet-general-lite** recorta mucho mejor que isnet (conserva la base de madera y el interior LED del reloj).
+  - Las fotos de la lámpara del proveedor llevan **marca de agua diagonal «M3 Anime Party Store»**. Hay que quitarla, por ejemplo con inpaint en OpenCV, o usar otras fotos.
+  - En la pantalla del reloj WiFi se puede cambiar «Seoul/KR» por «Madrid/ES».
+
+**Pendiente:**
+- Correo de contacto de la tienda (el usuario aún no lo ha dado).
+- Fotos, fichas, políticas, tema, HOLA10 y envío gratis desde 39 €. Subirlo todo y verificar.
+- Márgenes: recalcular con IVA del 21 % (ver `estudio-mercado.md`).
+
+
 ## Encargo del usuario (literal, resumido)
 - Estudio de mercado con datos.
 - Buscar en DSers productos de **decoración del hogar llamativos y originales**: tipo lámpara de Saturno, relojes con alguna novedad, o relacionados del sector.
