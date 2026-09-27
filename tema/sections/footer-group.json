@@ -158,7 +158,7 @@
             "text_links": {
               "type": "text",
               "settings": {
-                "text": "<p><strong>Orbiluz</strong><br>Decoración original que se enciende.<br><a href=\"mailto:orbiluzsupport@gmail.com\">orbiluzsupport@gmail.com</a></p><p><a href=\"/pages/contacto\">Contacto</a> · <a href=\"/pages/preguntas-frecuentes\">Preguntas frecuentes</a> · <a href=\"/policies/shipping-policy\">Envíos</a> · <a href=\"/policies/refund-policy\">Devoluciones</a> · <a href=\"/pages/politica-de-cookies\">Cookies</a></p>",
+                "text": "<p><strong>Orbiluz</strong><br>Decoración original que se enciende.<br><a href=\"mailto:orbiluzsupport@gmail.com\">orbiluzsupport@gmail.com</a></p><p><a href=\"/pages/sobre-orbiluz\">Sobre Orbiluz</a> · <a href=\"/pages/contacto\">Contacto</a> · <a href=\"/pages/preguntas-frecuentes\">Preguntas frecuentes</a> · <a href=\"/pages/envios\">Envíos</a> · <a href=\"/pages/devoluciones\">Devoluciones</a></p><p><a href=\"/pages/condiciones-de-venta\">Condiciones de venta</a> · <a href=\"/pages/aviso-legal\">Aviso legal</a> · <a href=\"/policies/privacy-policy\">Privacidad</a> · <a href=\"/pages/politica-de-cookies\">Cookies</a></p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",

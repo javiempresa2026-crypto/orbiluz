@@ -60,6 +60,13 @@
 - Páginas nuevas: /pages/devoluciones, /pages/envios, /pages/condiciones-de-venta y /pages/aviso-legal (texto de `politicas-para-pegar.html`).
 - Redirecciones: /policies/refund-policy, shipping-policy, terms-of-service, legal-notice y contact-information, y /pages/contact → sus páginas en español. Mientras no se peguen las políticas en Configuración → Políticas, funcionan las redirecciones; al pegarlas, Shopify muestra la política.
 - Página «Contact» en inglés borrada. Menú del pie con Envíos, Devoluciones, Condiciones de venta y Aviso legal. Menú de cuenta: «Pedidos» y «Perfil». Colección frontpage renombrada a «Destacados». Enlace de la página de preguntas frecuentes a /pages/devoluciones.
+- Revisión con la contraseña de la tienda (curl, 120 URL): ninguna da 404. Dominio actual: orbiluz.myshopify.com.
+- Tema **Orbiluz 1.2** (190038966600, sin publicar, lo publica el usuario):
+  - pie con todas las páginas legales;
+  - «Añadir al carrito», «Tu carrito está vacío», «vídeo», «Recogida»…, en español de España;
+  - «También te puede gustar» en la ficha de producto;
+  - botón «Enviar» en el formulario de contacto.
+- Sigue saliendo «My Store 3» (nombre de la tienda) y el precio como «€29,90»: los cambia el usuario en Configuración.
 - **Falta que lo haga el usuario:**
   - sustituir la política de privacidad por defecto (inglés, «My Store 3», dirección de Motril) y pegar el resto;
   - idioma principal español;
