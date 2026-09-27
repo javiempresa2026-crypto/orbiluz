@@ -1,34 +1,48 @@
 # Orbiluz: traspaso para el chat nuevo
 
-## ⚡ Estado a 26-09-2026 (última sesión)
+## ⚡ Estado a 27-09-2026 (última sesión)
 
-**Tienda:**
-- Tienda Shopify creada: **atzezc-eb.myshopify.com** (Orbiluz).
-- **DSers conectado** ✅ (dsers_store_id 2103839554244116480).
-- El conector de Shopify de Claude se está cambiando a atzezc-eb. Comprobar con `get-shop-info` que la tienda es atzezc-eb **antes de tocar nada**.
-  - Si sale Jarandana, **no tocarla**: pedir al usuario que reconecte.
+### Tienda y conexiones
+- **Tienda:** atzezc-eb.myshopify.com (dominio de Shopify: orbiluz.myshopify.com).
+  - Plan de prueba y con contraseña.
+  - El nombre sigue siendo «My Store 3»: lo cambia el usuario en el panel.
+- **Correo de la tienda:** orbiluzsupport@gmail.com. Lo pone el usuario en Configuración → Detalles de la tienda.
+- **DSers:** conectado (dsers_store_id 2103839554244116480). Los 3 productos están vinculados a AliExpress.
 
-**Productos confirmados por el usuario:** ver `productos-candidatos.md`.
-1. Proyector de ondas de agua (1005009888234857).
-2. Reloj LED 3D (1005007090990814, variante 04).
-3. Lámpara bola de cristal 3D (1005008323008233).
-4. Opcional: reloj WiFi (1005006728045097). Preguntar si se incluye.
+### Productos (activos)
+| Producto | Handle | ID | Precio | Proveedor |
+|---|---|---|---|---|
+| Proyector de ondas de agua | `proyector-ondas-de-agua` | 10305883111752 | 29,90 € | 1005009888234857 |
+| Lámpara bola de cristal 3D (4 modelos) | `lampara-bola-cristal-3d` | 10305883078984 | 24,90 € | 1005008323008233 |
+| Reloj LED 3D, solo variante negro y luz blanca | `reloj-led-3d` | 10305883013448 | 29,90 € | 1005007090990814 (variante 04) |
 
-**Hecho:**
-- `estudio-mercado.md`.
-- `productos-candidatos.md`.
+### Hecho en Shopify
+- **Colecciones:** Lámparas, Relojes y Todos los productos (automáticas por tipo o marca).
+- **Páginas:** contacto, preguntas-frecuentes, politica-de-cookies y sobre-orbiluz.
+- **Menús:**
+  - Principal: Inicio, Lámparas, Relojes, Todo, Preguntas frecuentes, Contacto.
+  - Pie: Sobre Orbiluz, Preguntas frecuentes, Contacto, Política de cookies, Buscar.
+- **Descuentos:**
+  - HOLA10: 10 %, un uso por cliente.
+  - Automático: 2 lámparas bola por 39,90 € (−9,90 € a partir de 2 unidades).
+- **Envíos:** solo España peninsular y Baleares. 3,95 € por debajo de 39 € y gratis desde 39 €.
+- **Tema «Orbiluz 1.0»** (Horizon 4.2), ya publicado por el usuario:
+  - Portada propia en `sections/orbiluz-home.liquid`.
+  - CSS de marca y fuente Unbounded como recurso del tema.
+  - Cabecera con 3 anuncios y pie con enlaces.
+  - Los archivos están en `orbiluz/tema/`.
+  - **Para editar un tema publicado** hay que duplicarlo, porque la API bloquea escribir en el tema MAIN.
+  - **Para subir archivos grandes:** `stagedUploadsCreate` (FILE, PUT con curl) y después `themeFilesUpsert` con body type URL.
 
-**Fotos:** el usuario pidió PARAR hasta confirmar productos.
-- Lecciones para cuando se retomen:
-  - `rembg` con el modelo **birefnet-general-lite** recorta mucho mejor que isnet (conserva la base de madera y el interior LED del reloj).
-  - Las fotos de la lámpara del proveedor llevan **marca de agua diagonal «M3 Anime Party Store»**. Hay que quitarla, por ejemplo con inpaint en OpenCV, o usar otras fotos.
-  - En la pantalla del reloj WiFi se puede cambiar «Seoul/KR» por «Madrid/ES».
-
-**Pendiente:**
-- Correo de contacto de la tienda (el usuario aún no lo ha dado).
-- Fotos, fichas, políticas, tema, HOLA10 y envío gratis desde 39 €. Subirlo todo y verificar.
-- Márgenes: recalcular con IVA del 21 % (ver `estudio-mercado.md`).
-
+### Pendiente
+- **Del usuario:**
+  - Pegar las políticas desde `orbiluz/politicas-para-pegar.html`. La API no tiene permiso para escribirlas.
+  - Poner el español como idioma principal (ya está activado como secundario).
+  - Cambiar el nombre de la tienda.
+  - Activar la pasarela de pago y el banner de cookies.
+  - Elegir plan, quitar la contraseña y comprar orbiluz.com.
+- **Revisar la tienda visualmente** cuando el usuario pase la contraseña de la tienda.
+- **Aviso legal:** conviene añadir el nombre y el NIF del titular cuando sea autónomo.
 
 ## Encargo del usuario (literal, resumido)
 - Estudio de mercado con datos.
