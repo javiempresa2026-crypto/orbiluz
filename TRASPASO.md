@@ -34,6 +34,17 @@
   - **Para editar un tema publicado** hay que duplicarlo, porque la API bloquea escribir en el tema MAIN.
   - **Para subir archivos grandes:** `stagedUploadsCreate` (FILE, PUT con curl) y después `themeFilesUpsert` con body type URL.
 
+
+### Globo que levita (añadido el 27-09, catálogo propio de DSers «1688 Dropshipping»)
+- **Shopify:** `globo-terraqueo-que-levita` (ID 10307576201544), 129 €, **en BORRADOR**.
+- **Proveedor en DSers:** 2103081794162133568 (plataforma 2042151428019322880). Variante «English White Light Golden Ball»: 5146310129377, stock 53.584.
+  - https://www.dsers.com/application/product_details/2103081794162133568?supplyId=2042151428019322880
+- **Coste:** 47,43 $ + 27,85 $ de envío «Shipping For Special Goods», 10-15 días con seguimiento. Margen aproximado de 34 € sin IVA.
+- **Pendiente antes de activarlo:** confirmar con el proveedor o el soporte de DSers que el adaptador de 12 V viene con **enchufe europeo**, y si está incluido.
+  - Cuando se active, actualizar la pregunta «¿Incluyen cargador?» de la portada y la página de preguntas frecuentes, y los plazos de la política de envíos.
+- **Tema:** «Orbiluz 1.1» (190038507848), sin publicar. La cuadrícula de la portada sale ahora de la colección `todos-los-productos`.
+- **Duplicados:** el 27-09 el usuario hizo push desde la Import List y se crearon 3 productos duplicados. Se archivaron y después se borraron con su permiso.
+
 ### Pendiente
 - **Del usuario:**
   - Pegar las políticas desde `orbiluz/politicas-para-pegar.html`. La API no tiene permiso para escribirlas.

@@ -46,15 +46,17 @@
   {%- comment -%} PRODUCTOS {%- endcomment -%}
   <section id="orb-productos" class="orb-products page-width" aria-labelledby="orb-productos-title">
     <p class="orb-eyebrow orb-eyebrow--dark">Nuestra colección</p>
-    <h2 id="orb-productos-title" class="orb-h2">Tres piezas que dan que hablar</h2>
+    <h2 id="orb-productos-title" class="orb-h2">Piezas que dan que hablar</h2>
     <div class="orb-grid">
-      {%- for p in (1..3) -%}
-        {%- case p -%}
-          {%- when 1 -%}{%- assign prod = p_ondas -%}{%- assign tag = 'Viral' -%}{%- assign linea = 'Olas de luz en techo y paredes. 16 colores y mando.' -%}
-          {%- when 2 -%}{%- assign prod = p_bola -%}{%- assign tag = '2 por 39,90 €' -%}{%- assign linea = 'Saturno, Luna, Galaxia o Sistema solar grabados en cristal.' -%}
-          {%- when 3 -%}{%- assign prod = p_reloj -%}{%- assign tag = 'De pared o de mesa' -%}{%- assign linea = 'Dígitos LED 3D con hora, fecha, temperatura y alarmas.' -%}
+      {%- assign coleccion = collections['todos-los-productos'] -%}
+      {%- for prod in coleccion.products limit: 8 -%}
+        {%- case prod.handle -%}
+          {%- when 'proyector-ondas-de-agua' -%}{%- assign tag = 'Viral' -%}{%- assign linea = 'Olas de luz en techo y paredes. 16 colores y mando.' -%}
+          {%- when 'lampara-bola-cristal-3d' -%}{%- assign tag = '2 por 39,90 €' -%}{%- assign linea = 'Saturno, Luna, Galaxia o Sistema solar grabados en cristal.' -%}
+          {%- when 'reloj-led-3d' -%}{%- assign tag = 'De pared o de mesa' -%}{%- assign linea = 'Dígitos LED 3D con hora, fecha, temperatura y alarmas.' -%}
+          {%- when 'globo-terraqueo-que-levita' -%}{%- assign tag = 'Levita' -%}{%- assign linea = 'Un globo dorado que flota y gira sobre su base.' -%}
+          {%- else -%}{%- assign tag = '' -%}{%- assign linea = prod.description | strip_html | truncatewords: 12 -%}
         {%- endcase -%}
-        {%- if prod != blank and prod.id -%}
           <article class="orb-card">
             <a class="orb-card__link" href="{{ prod.url }}" aria-label="{{ prod.title | escape }}">
               <div class="orb-card__media">
@@ -64,7 +66,7 @@
                 {%- if prod.media[1] -%}
                   {{ prod.media[1] | image_url: width: 900 | image_tag: loading: 'lazy', widths: '400, 600, 900', sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw', class: 'orb-card__img orb-card__img--alt', alt: '' }}
                 {%- endif -%}
-                <span class="orb-tag">{{ tag }}</span>
+                {%- if tag != blank -%}<span class="orb-tag">{{ tag }}</span>{%- endif -%}
               </div>
               <div class="orb-card__body">
                 <h3 class="orb-card__title">{{ prod.title }}</h3>
@@ -76,7 +78,6 @@
               </div>
             </a>
           </article>
-        {%- endif -%}
       {%- endfor -%}
     </div>
   </section>
@@ -145,7 +146,7 @@
   {%- comment -%} PREGUNTAS FRECUENTES {%- endcomment -%}
   <section class="orb-faq page-width" aria-labelledby="orb-faq-title">
     <h2 id="orb-faq-title" class="orb-h2">Preguntas frecuentes</h2>
-    <details><summary>¿Cuánto tarda en llegar mi pedido?</summary><p>Preparamos el pedido en 1-3 días laborables y el envío con seguimiento tarda normalmente entre 6 y 17 días laborables, según el producto. Te enviamos el número de seguimiento por correo.</p></details>
+    <details><summary>¿Cuánto tarda en llegar mi pedido?</summary><p>Preparamos el pedido en 1-3 días laborables y el envío con seguimiento tarda normalmente entre 6 y 17 días laborables, según el producto (el globo que levita, 10-15). Te enviamos el número de seguimiento por correo.</p></details>
     <details><summary>¿Cuánto cuesta el envío?</summary><p>Es gratis a partir de 39 €. Por debajo de esa cantidad cuesta 3,95 € a toda la península y Baleares.</p></details>
     <details><summary>¿Puedo devolver un producto?</summary><p>Sí. Tienes 14 días naturales desde que lo recibes para desistir de la compra. Consulta los pasos en nuestra <a href="{{ shop.refund_policy.url | default: '/policies/refund-policy' }}">política de devoluciones</a>.</p></details>
     <details><summary>¿Incluyen cargador?</summary><p>Todos funcionan por USB e incluyen su cable, pero no el cargador de pared. Sirve cualquier cargador de móvil con salida USB.</p></details>
@@ -201,7 +202,7 @@
   .orb-products{padding-block:3.5rem 2.5rem}
   .orb-grid{display:grid;gap:1.2rem;grid-template-columns:1fr}
   @media (min-width:750px){.orb-grid{grid-template-columns:repeat(2,1fr)}}
-  @media (min-width:990px){.orb-grid{grid-template-columns:repeat(3,1fr)}}
+  @media (min-width:990px){.orb-grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}}
   .orb-card{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 10px 30px rgba(18,18,58,.08);transition:transform .2s ease,box-shadow .2s ease}
   .orb-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(18,18,58,.14)}
   .orb-card__link{display:block;color:inherit;text-decoration:none}
