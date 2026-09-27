@@ -8,6 +8,7 @@
   assign p_ondas = all_products['proyector-ondas-de-agua']
   assign p_reloj = all_products['reloj-led-3d']
   assign p_bola = all_products['lampara-bola-cristal-3d']
+  assign p_globo = all_products['globo-terraqueo-que-levita']
 -%}
 
 <div class="orb">
@@ -82,6 +83,28 @@
     </div>
   </section>
 
+
+  {%- comment -%} ASÍ QUEDA EN CASA {%- endcomment -%}
+  <section class="orb-home page-width" aria-labelledby="orb-home-title">
+    <p class="orb-eyebrow orb-eyebrow--dark">Inspiración</p>
+    <h2 id="orb-home-title" class="orb-h2">Así queda en casa</h2>
+    <div class="orb-home__grid">
+      {%- assign escenas = 'home-lampara-saturno-mesilla.jpg|lampara-bola-cristal-3d|En la mesilla,home-proyector-ondas-mesilla.jpg|proyector-ondas-de-agua|En el dormitorio,home-globo-levita-escritorio.jpg|globo-terraqueo-que-levita|En el escritorio,home-reloj-3d-estante.jpg|reloj-led-3d|En el salón' | split: ',' -%}
+      {%- for e in escenas -%}
+        {%- assign partes = e | split: '|' -%}
+        {%- assign img = images[partes[0]] -%}
+        {%- assign prod = all_products[partes[1]] -%}
+        {%- if img != blank and prod != blank and prod.id -%}
+          <a class="orb-home__tile{% if forloop.first %} orb-home__tile--big{% endif %}" href="{{ prod.url }}">
+            {{ img | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '500, 800, 1200', sizes: '(min-width: 990px) 40vw, 100vw', alt: img.alt, class: 'orb-home__img' }}
+            <span class="orb-home__cap"><small>{{ partes[2] }}</small>{{ prod.title }}<em>Ver producto →</em></span>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    <p class="orb-small orb-home__note">Montajes ilustrativos con fotos reales del producto.</p>
+  </section>
+
   {%- comment -%} DESTACADO: PROYECTOR {%- endcomment -%}
   {%- if p_ondas != blank and p_ondas.id -%}
     <section class="orb-feature" aria-labelledby="orb-feature-title">
@@ -100,6 +123,30 @@
             <li>Funciona con cualquier cargador USB</li>
           </ul>
           <a class="orb-btn orb-btn--amber" href="{{ p_ondas.url }}">Descubrir el proyector · {{ p_ondas.price | money }}</a>
+        </div>
+      </div>
+    </section>
+  {%- endif -%}
+
+
+  {%- comment -%} DESTACADO: GLOBO {%- endcomment -%}
+  {%- if p_globo != blank and p_globo.id -%}
+    <section class="orb-feature orb-feature--gold" aria-labelledby="orb-globo-title">
+      <div class="orb-feature__inner orb-feature__inner--rev page-width">
+        <div class="orb-feature__media">
+          {%- assign gimg = p_globo.media[1] | default: p_globo.featured_media -%}
+          {{ gimg | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '600, 900, 1200', sizes: '(min-width: 990px) 50vw, 100vw', alt: gimg.alt }}
+        </div>
+        <div class="orb-feature__text">
+          <p class="orb-eyebrow">Novedad</p>
+          <h2 id="orb-globo-title" class="orb-h2 orb-h2--light">El mundo, flotando en tu escritorio.</h2>
+          <p>Un globo dorado de 14 cm que se mantiene en el aire sobre su base gracias a la levitación magnética, gira despacio y se ilumina por dentro.</p>
+          <ul class="orb-checks">
+            <li>Levita de verdad, sin hilos ni soportes</li>
+            <li>Luz blanca y botón táctil en la base</li>
+            <li>Envío gratis con seguimiento</li>
+          </ul>
+          <a class="orb-btn orb-btn--amber" href="{{ p_globo.url }}">Ver el globo · {{ p_globo.price | money }}</a>
         </div>
       </div>
     </section>
@@ -149,7 +196,7 @@
     <details><summary>¿Cuánto tarda en llegar mi pedido?</summary><p>Preparamos el pedido en 1-3 días laborables y el envío con seguimiento tarda normalmente entre 6 y 17 días laborables, según el producto (el globo que levita, 10-15). Te enviamos el número de seguimiento por correo.</p></details>
     <details><summary>¿Cuánto cuesta el envío?</summary><p>Es gratis a partir de 39 €. Por debajo de esa cantidad cuesta 3,95 € a toda la península y Baleares.</p></details>
     <details><summary>¿Puedo devolver un producto?</summary><p>Sí. Tienes 14 días naturales desde que lo recibes para desistir de la compra. Consulta los pasos en nuestra <a href="{{ shop.refund_policy.url | default: '/policies/refund-policy' }}">política de devoluciones</a>.</p></details>
-    <details><summary>¿Incluyen cargador?</summary><p>Todos funcionan por USB e incluyen su cable, pero no el cargador de pared. Sirve cualquier cargador de móvil con salida USB.</p></details>
+    <details><summary>¿Incluyen cargador?</summary><p>La lámpara, el proyector y el reloj funcionan por USB e incluyen su cable, pero no el cargador de pared: sirve cualquier cargador de móvil con salida USB. El globo que levita funciona con su propio adaptador de corriente de 12 V.</p></details>
     <details><summary>¿Cómo uso el código HOLA10?</summary><p>Escríbelo en la casilla de código de descuento al pagar. Te descuenta un 10 % en tu primer pedido.</p></details>
     <details><summary>¿Qué métodos de pago aceptáis?</summary><p>Tarjeta de crédito o débito y los métodos que aparecen en la página de pago. El pago está cifrado y no guardamos los datos de tu tarjeta.</p></details>
   </section>
@@ -225,6 +272,26 @@
   .orb-checks li{padding-left:1.8rem;position:relative}
   .orb-checks li:before{content:"✓";position:absolute;left:0;top:0;color:var(--noche);background:var(--ambar);width:1.25rem;height:1.25rem;border-radius:50%;font-size:.8rem;font-weight:800;display:grid;place-items:center}
   @media (min-width:990px){.orb-feature__inner{grid-template-columns:1.1fr 1fr;gap:3.5rem}}
+  /* Así queda en casa */
+  .orb-home{padding-block:1rem 3rem}
+  .orb-home__grid{display:grid;gap:1rem;grid-template-columns:1fr 1fr}
+  .orb-home__tile{position:relative;display:block;border-radius:22px;overflow:hidden;aspect-ratio:1/1;background:var(--noche);color:var(--luna);text-decoration:none}
+  .orb-home__tile--big{grid-column:1/-1;aspect-ratio:4/3}
+  .orb-home__tile:nth-child(4){grid-column:1/-1;aspect-ratio:16/9}
+  .orb-home__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .orb-home__tile:hover .orb-home__img{transform:scale(1.04)}
+  .orb-home__cap{position:absolute;left:0;right:0;bottom:0;padding:2.2rem .9rem .9rem;background:linear-gradient(0deg,rgba(18,18,58,.9),rgba(18,18,58,0));font-family:"Unbounded",var(--font-heading--family),sans-serif;font-size:.85rem;line-height:1.25;display:grid;gap:.2rem}
+  .orb-home__cap small{font-family:inherit;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ambar)}
+  .orb-home__cap em{font-style:normal;font-family:var(--font-body--family),sans-serif;font-size:.8rem;color:var(--niebla)}
+  .orb-home__note{margin-top:.8rem;color:#6a6a8a}
+  @media (min-width:990px){
+    .orb-home__grid{grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:1fr 1fr}
+    .orb-home__tile--big{grid-column:1;grid-row:1/3;aspect-ratio:auto}
+    .orb-home__tile:nth-child(4){grid-column:2/4;aspect-ratio:auto}
+    .orb-home__cap{font-size:1rem;padding:3rem 1.3rem 1.2rem}
+  }
+  .orb-feature--gold{background:radial-gradient(120% 120% at 20% 0%,#4a3a1a 0%,var(--noche) 60%)}
+  @media (min-width:990px){.orb-feature__inner--rev{grid-template-columns:1fr 1.1fr}.orb-feature__inner--rev .orb-feature__media{order:2}}
   /* Promo */
   .orb-promo{display:grid;gap:1.2rem;padding-block:3rem}
   @media (min-width:750px){.orb-promo{grid-template-columns:1fr 1fr}}

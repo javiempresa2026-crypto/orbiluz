@@ -73,6 +73,19 @@
   - nombre de la tienda «Orbiluz» y correo orbiluzsupport@gmail.com;
   - pasar la contraseña de la tienda para revisarla entera con el navegador.
 
+### Globo activo e imágenes de ambiente (27-09, noche)
+- Globo **activo** y publicado (129 €). El enlace de DSers sigue igual. **El proveedor no indica el tipo de enchufe del adaptador de 12 V**: comprobarlo en el primer pedido.
+- Fondos de habitación vacíos generados con Kling (6 créditos, sin personas ni productos). Sobre ellos se han montado los recortes reales de cada producto (`fotos/scripts/compose_rooms.py`):
+  - lampara-saturno-mesilla, proyector-ondas-mesilla, globo-levita-escritorio, reloj-3d-estante;
+  - van como 2.ª foto de cada ficha, con alt «montaje ilustrativo».
+- Imágenes de características con la marca (`compose_feat.py`), una por producto, como 3.ª foto: *-caracteristicas.jpg.
+- Tema **Orbiluz 1.3** (190039195976, sin publicar):
+  - galería «Así queda en casa» (usa los archivos home-*.jpg);
+  - bloque destacado del globo;
+  - pregunta del cargador actualizada.
+  - Revisado con capturas en móvil (390 px) y ordenador (1440 px).
+- Páginas Envíos y Preguntas frecuentes actualizadas con el globo (10-15 días, adaptador propio).
+
 ## Encargo del usuario (literal, resumido)
 - Estudio de mercado con datos.
 - Buscar en DSers productos de **decoración del hogar llamativos y originales**: tipo lámpara de Saturno, relojes con alguna novedad, o relacionados del sector.
