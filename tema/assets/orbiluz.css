@@ -34,3 +34,47 @@ h1,.h1{font-weight:700!important}
 .menu-drawer__utility-links,.menu-drawer__utility-links a{color:#A7A9C9!important}
 /* barra de anuncios */
 .announcement-bar__text,announcement-bar-component{font-weight:600}
+
+/* ===== Fondo con vida (1.5) ===== */
+body{background-color:#FFF6E9!important;background-image:url("orbiluz-fondo.svg"),radial-gradient(900px 700px at -5% 8%,rgba(124,108,246,.12),transparent 60%),radial-gradient(900px 700px at 105% 38%,rgba(255,181,71,.18),transparent 60%),radial-gradient(900px 700px at -5% 72%,rgba(255,122,89,.09),transparent 60%),radial-gradient(900px 700px at 105% 96%,rgba(124,108,246,.10),transparent 60%)!important;background-repeat:repeat,no-repeat,no-repeat,no-repeat,no-repeat!important;background-size:520px 520px,auto,auto,auto,auto!important}
+main [class*="color-custom-template"],main .section-background{background-color:transparent!important}
+/* Planetas y lunas flotando en los huecos */
+main .shopify-section:has(.main-collection-grid),.orbx-section,.orb-why,.orb-faq,.orb-products,.orbp-body{position:relative}
+main .shopify-section:has(.main-collection-grid):after{content:"";position:absolute;right:max(12px,4vw);bottom:10px;width:clamp(90px,14vw,170px);aspect-ratio:1;background:url("orbiluz-planeta.svg") center/contain no-repeat;pointer-events:none;z-index:0;animation:orbFlota 7s ease-in-out infinite}
+.orbx-section:before{content:"";position:absolute;left:max(8px,3vw);bottom:24px;width:clamp(70px,9vw,120px);aspect-ratio:1;background:url("orbiluz-luna.svg") center/contain no-repeat;pointer-events:none;opacity:.9;animation:orbFlota 8s ease-in-out infinite reverse}
+.orb-products:before{content:"";position:absolute;right:16px;top:28px;width:clamp(80px,11vw,150px);aspect-ratio:1;background:url("orbiluz-planeta.svg") center/contain no-repeat;pointer-events:none;animation:orbFlota 7s ease-in-out infinite}
+.orb-why:before{content:"";position:absolute;left:-10px;top:-20px;width:clamp(70px,9vw,120px);aspect-ratio:1;background:url("orbiluz-luna.svg") center/contain no-repeat;pointer-events:none;animation:orbFlota 9s ease-in-out infinite}
+.orb-faq:after{content:"";position:absolute;right:-30px;bottom:30px;width:clamp(90px,12vw,160px);aspect-ratio:1;background:url("orbiluz-planeta.svg") center/contain no-repeat;pointer-events:none;opacity:.85;animation:orbFlota 8s ease-in-out infinite reverse}
+.orbp-body:before{content:"";position:absolute;left:-6px;bottom:-40px;width:clamp(70px,9vw,120px);aspect-ratio:1;background:url("orbiluz-luna.svg") center/contain no-repeat;pointer-events:none;z-index:-1}
+@keyframes orbFlota{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(4deg)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+.main-collection-grid,.orbx__inner,.orb-grid,.orb-faq details,.orb-why__grid{position:relative;z-index:1}
+/* Antetítulos como insignias */
+.orb-eyebrow,.orbb__eyebrow,.orbp-eyebrow{display:inline-flex!important;align-items:center;gap:.45rem;padding:.4rem .85rem;border-radius:999px;background:rgba(255,181,71,.16);line-height:1}
+.orb-eyebrow--dark{background:rgba(124,108,246,.13)!important}
+.orb-eyebrow:before,.orbb__eyebrow:before,.orbp-eyebrow:before{content:"✦";font-size:.9em}
+.orb-promo__card--amber .orb-eyebrow--dark{background:rgba(18,18,58,.1)!important}
+/* Títulos con trazo */
+.orb-h2:after,.orbp-h2:after{content:"";display:block;width:64px;height:6px;border-radius:6px;margin-top:.7rem;background:linear-gradient(90deg,#FFB547,#FF7A59)}
+.orb-feature .orb-h2:after{background:linear-gradient(90deg,#FFB547,#7C6CF6)}
+/* Frases sueltas convertidas en etiquetas */
+.orbb-section .orbb-trust{gap:.5rem;padding-top:.6rem}
+.orbb-section .orbb-trust li{background:#fff;border-radius:999px;padding:.5rem .95rem;box-shadow:0 6px 18px rgba(18,18,58,.07);color:#12123A}
+.orb-home__note{display:inline-flex!important;align-items:center;gap:.45rem;background:#fff;padding:.5rem 1rem;border-radius:999px;box-shadow:0 6px 18px rgba(18,18,58,.07);opacity:1!important}
+.orb-home__note:before{content:"📷"}
+.orb-small{opacity:.9}
+.orb-trust li{background:rgba(255,246,233,.06);border:1px solid rgba(255,246,233,.12);border-radius:14px;padding:.55rem .7rem}
+/* Barra de filtros en tarjeta */
+.facets-block-wrapper--horizontal{background:#fff;border-radius:18px;box-shadow:0 8px 24px rgba(18,18,58,.07);margin-inline:16px!important;padding-inline:.6rem!important}
+@media (min-width:1232px){.facets-block-wrapper--horizontal{max-width:1168px;margin-inline:auto!important}}
+.facets-mobile-wrapper,.facets-controls-wrapper{background:#fff;border-radius:16px;box-shadow:0 6px 18px rgba(18,18,58,.06);padding:.3rem .6rem;margin-inline:16px}
+/* Llamada final de páginas con estrellas */
+.orbp-cta{background:#12123A url("orbiluz-fondo-noche.svg") repeat!important;background-size:420px 420px!important;position:relative;overflow:hidden}
+.orbp-cta:after{content:"";position:absolute;right:28%;top:-30px;width:120px;aspect-ratio:1;background:url("orbiluz-planeta.svg") center/contain no-repeat;opacity:.5;pointer-events:none}
+.orbp-card--night{background-image:url("orbiluz-fondo-noche.svg"),radial-gradient(120% 120% at 100% 0%,#2a2470 0%,#12123A 60%)!important;background-size:420px 420px,auto!important}
+.orb-promo__card--night{background:#12123A url("orbiluz-fondo-noche.svg") repeat;background-size:420px 420px;position:relative;overflow:hidden}
+.orb-promo__card--night:after{content:"";position:absolute;right:-20px;bottom:-20px;width:140px;aspect-ratio:1;background:url("orbiluz-planeta.svg") center/contain no-repeat;opacity:.9;pointer-events:none}
+.orb-promo__card{position:relative;overflow:hidden}
+.orb-promo__card--amber:after{content:"";position:absolute;right:-24px;top:-24px;width:130px;aspect-ratio:1;background:url("orbiluz-luna.svg") center/contain no-repeat;opacity:.8;pointer-events:none}
+/* Rejilla de colección alineada con el contenido */
+.main-collection-grid{max-width:1200px;margin-inline:auto!important;padding-inline:16px!important;box-sizing:border-box}

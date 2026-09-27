@@ -76,7 +76,7 @@
           <label class="orbp-field"><span>Número de pedido (si tienes)</span><input type="text" name="contact[pedido]" inputmode="numeric" placeholder="Ej.: #1001"></label>
           <label class="orbp-field"><span>Mensaje *</span><textarea name="contact[body]" rows="6" required>{{ form.body }}</textarea></label>
           <button type="submit" class="orbp-btn">Enviar mensaje</button>
-          <p class="orbp-small">Al enviar aceptas que usemos tus datos solo para responderte. Más información en la <a href="/policies/privacy-policy">política de privacidad</a>.</p>
+          <p class="orbp-small">Al enviar aceptas que usemos tus datos solo para responderte. Más información en la <a href="/pages/politica-de-privacidad">política de privacidad</a>.</p>
         {%- endform -%}
       </div>
     {%- endif -%}
@@ -98,12 +98,11 @@
     </nav>
     {%- if grupo == 'legal' -%}
       <nav class="orbp-card orbp-links" aria-label="Información legal">
-        {%- assign legal = 'condiciones-de-venta|Condiciones de venta,aviso-legal|Aviso legal,politica-de-cookies|Política de cookies' | split: ',' -%}
+        {%- assign legal = 'condiciones-de-venta|Condiciones de venta,aviso-legal|Aviso legal,politica-de-privacidad|Política de privacidad,politica-de-cookies|Política de cookies' | split: ',' -%}
         {%- for l in legal -%}
           {%- assign p = l | split: '|' -%}
           <a href="/pages/{{ p[0] }}"{% if h == p[0] %} class="is-active" aria-current="page"{% endif %}>{{ p[1] }}<em aria-hidden="true">→</em></a>
         {%- endfor -%}
-        <a href="/policies/privacy-policy">Política de privacidad<em aria-hidden="true">→</em></a>
       </nav>
     {%- endif -%}
   </aside>

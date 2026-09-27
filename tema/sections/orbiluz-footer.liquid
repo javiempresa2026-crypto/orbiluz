@@ -1,0 +1,138 @@
+{%- comment -%} Pie de página de Orbiluz: boletín, columnas de enlaces, información legal y métodos de pago. {%- endcomment -%}
+{%- assign logo = images['orbiluz-logo-noche-transparente.png'] -%}
+{%- assign globo = all_products['globo-terraqueo-que-levita'] -%}
+<style>
+  .orbf{background-image:url("{{ 'orbiluz-fondo-noche.svg' | asset_url }}");background-repeat:repeat;background-size:520px 520px}
+  .orbf__news:after{background-image:url("{{ 'orbiluz-planeta.svg' | asset_url }}")}
+</style>
+<footer class="orbf" aria-label="Pie de página">
+  <div class="orbf__news">
+    <div class="orbf__wrap orbf__news-inner">
+      <div class="orbf__news-text">
+        <p class="orbf__eyebrow">✦ Boletín</p>
+        <h2 class="orbf__news-title">Únete a la órbita</h2>
+        <p>Novedades y ofertas antes que nadie. Sin spam: te das de baja cuando quieras.</p>
+      </div>
+      {%- form 'customer', id: 'OrbFooterNews', class: 'orbf__form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        {%- if form.posted_successfully? -%}
+          <p class="orbf__ok" role="status">✓ ¡Ya estás en la órbita! Gracias por suscribirte.</p>
+        {%- else -%}
+          <label class="orbf__visually-hidden" for="OrbFooterEmail">Correo electrónico</label>
+          <input id="OrbFooterEmail" type="email" name="contact[email]" required autocomplete="email" placeholder="Tu correo electrónico">
+          <button type="submit">Suscribirme</button>
+          {%- if form.errors -%}<p class="orbf__err">Revisa el correo: {{ form.errors | default_errors }}</p>{%- endif -%}
+          <p class="orbf__legal-note">Al suscribirte aceptas la <a href="/pages/politica-de-privacidad">política de privacidad</a>.</p>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+
+  <div class="orbf__wrap orbf__cols">
+    <div class="orbf__brand">
+      <a href="{{ routes.root_url }}" class="orbf__logo" aria-label="Orbiluz, inicio">
+        {%- if logo != blank -%}{{ logo | image_url: width: 360 | image_tag: alt: 'Orbiluz', width: 180, loading: 'lazy' }}{%- else -%}Orbiluz{%- endif -%}
+      </a>
+      <p class="orbf__tagline">Decoración que se enciende de noche y da de qué hablar.</p>
+      <ul class="orbf__contact">
+        <li><span aria-hidden="true">✉</span><a href="mailto:orbiluzsupport@gmail.com">orbiluzsupport@gmail.com</a></li>
+        <li><span aria-hidden="true">⌚</span>Respuesta en 24-48 h laborables</li>
+        <li><span aria-hidden="true">📍</span>Granada, España</li>
+      </ul>
+    </div>
+    <nav class="orbf__col" aria-label="Tienda">
+      <p class="orbf__h">Tienda</p>
+      <a href="/collections/lamparas">Lámparas</a>
+      <a href="/collections/relojes">Relojes</a>
+      {%- if globo != blank and globo.id -%}<a href="{{ globo.url }}">Globo que levita <em>Nuevo</em></a>{%- endif -%}
+      <a href="/collections/todos-los-productos">Todos los productos</a>
+    </nav>
+    <nav class="orbf__col" aria-label="Ayuda">
+      <p class="orbf__h">Ayuda</p>
+      <a href="/pages/preguntas-frecuentes">Preguntas frecuentes</a>
+      <a href="/pages/envios">Envíos</a>
+      <a href="/pages/devoluciones">Devoluciones y desistimiento</a>
+      <a href="/pages/contacto">Contacto</a>
+      <a href="/pages/sobre-orbiluz">Sobre Orbiluz</a>
+    </nav>
+    <nav class="orbf__col" aria-label="Información legal">
+      <p class="orbf__h">Legal</p>
+      <a href="/pages/condiciones-de-venta">Condiciones de venta</a>
+      <a href="/pages/aviso-legal">Aviso legal</a>
+      <a href="/pages/politica-de-privacidad">Política de privacidad</a>
+      <a href="/pages/politica-de-cookies">Política de cookies</a>
+    </nav>
+  </div>
+
+  <div class="orbf__wrap orbf__perks">
+    <span>🚚 Envío gratis desde 39 €</span><span>📦 Seguimiento en todos los pedidos</span><span>↺ 14 días para devolver</span><span>🔒 Pago seguro y cifrado</span>
+  </div>
+
+  <div class="orbf__bottom">
+    <div class="orbf__wrap orbf__bottom-inner">
+      <p>© {{ 'now' | date: '%Y' }} Orbiluz · Precios con IVA incluido</p>
+      {%- if shop.enabled_payment_types.size > 0 -%}
+        <ul class="orbf__pay" aria-label="Métodos de pago aceptados">
+          {%- for type in shop.enabled_payment_types -%}<li>{{ type | payment_type_svg_tag: class: 'orbf__pay-icon' }}</li>{%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% stylesheet %}
+  .orbf{position:relative;overflow:hidden;background-color:#0d0d2e;color:#FFF6E9;margin-top:2rem;border-top:4px solid transparent;border-image:linear-gradient(90deg,#FFB547,#FF7A59,#7C6CF6) 1}
+  .orbf *{box-sizing:border-box}
+  .orbf__wrap{max-width:1200px;margin-inline:auto;padding-inline:16px}
+  .orbf__visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .orbf a{color:#FFF6E9;text-decoration:none}
+  .orbf a:hover{color:#FFB547}
+  .orbf__news{position:relative;background:radial-gradient(120% 140% at 100% 0%,#2e2780 0%,rgba(18,18,58,.2) 60%)}
+  .orbf__news:after{content:"";position:absolute;right:max(10px,6vw);top:18px;width:clamp(80px,11vw,150px);aspect-ratio:1;background-position:center;background-size:contain;background-repeat:no-repeat;pointer-events:none;opacity:.95}
+  .orbf__news-inner{display:grid;gap:1.4rem;padding-block:2.6rem 2.2rem;position:relative;z-index:1}
+  @media (min-width:990px){.orbf__news-inner{grid-template-columns:1fr 1fr;align-items:center;padding-right:180px}}
+  .orbf__eyebrow{display:inline-block;margin:0 0 .6rem;padding:.35rem .8rem;border-radius:999px;background:rgba(255,181,71,.16);color:#FFB547;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+  .orbf__news-title{font-family:"Unbounded",var(--font-heading--family),sans-serif;font-size:clamp(1.6rem,5vw,2.3rem);line-height:1.1;margin:0 0 .5rem;color:#FFF6E9}
+  .orbf__news-text p{margin:0;color:#d9d6f5;max-width:40ch}
+  .orbf__form{display:grid;grid-template-columns:1fr auto;gap:.5rem;background:rgba(255,246,233,.08);border:1px solid rgba(255,246,233,.2);border-radius:999px;padding:.35rem;max-width:520px}
+  .orbf__form input[type=email]{font:inherit;min-width:0;background:transparent;border:0;color:#FFF6E9;padding:.7rem 1rem;font-size:1rem}
+  .orbf__form input::placeholder{color:rgba(255,246,233,.6)}
+  .orbf__form input:focus{outline:none}
+  .orbf__form button{font:inherit;font-weight:800;border:0;border-radius:999px;background:#FFB547;color:#12123A;padding:.7rem 1.2rem;cursor:pointer;min-height:46px}
+  .orbf__form button:hover{background:#ffc56e}
+  .orbf__legal-note,.orbf__err,.orbf__ok{grid-column:1/-1;margin:.3rem .8rem .2rem;font-size:.78rem;color:#A7A9C9}
+  .orbf__legal-note a{text-decoration:underline}
+  .orbf__ok{color:#9ff0c0;font-size:.95rem;font-weight:700}
+  .orbf__cols{display:grid;gap:2rem 1.2rem;grid-template-columns:1fr 1fr;padding-block:2.6rem 1.6rem}
+  .orbf__brand{grid-column:1/-1}
+  @media (min-width:990px){.orbf__cols{grid-template-columns:1.5fr 1fr 1fr 1fr}.orbf__brand{grid-column:auto}}
+  .orbf__logo img{height:auto;width:170px;display:block}
+  .orbf__logo{display:inline-block;font-family:"Unbounded",sans-serif;font-size:1.6rem}
+  .orbf__tagline{color:#d9d6f5;margin:.9rem 0 1rem;max-width:32ch}
+  .orbf__contact{list-style:none;margin:0;padding:0;display:grid;gap:.55rem;font-size:.92rem;color:#d9d6f5}
+  .orbf__contact li{display:flex;gap:.6rem;align-items:center}
+  .orbf__contact span{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:rgba(255,246,233,.08);flex:none;font-size:.85rem}
+  .orbf__col{display:grid;align-content:start;gap:.15rem}
+  .orbf__h{font-family:"Unbounded",var(--font-heading--family),sans-serif;font-size:.95rem;color:#FFB547;margin:0 0 .6rem}
+  .orbf__col a{padding:.4rem 0;font-size:.95rem;color:#e9e6ff;transition:color .2s,transform .2s;display:inline-flex;align-items:center;gap:.4rem}
+  .orbf__col a:hover{transform:translateX(3px)}
+  .orbf__col em{font-style:normal;font-size:.68rem;font-weight:800;background:#FFB547;color:#12123A;border-radius:999px;padding:.12rem .5rem}
+  .orbf__perks{display:flex;flex-wrap:wrap;gap:.6rem;padding-block:0 2rem}
+  .orbf__perks span{background:rgba(255,246,233,.07);border:1px solid rgba(255,246,233,.14);border-radius:999px;padding:.5rem .9rem;font-size:.85rem;color:#e9e6ff}
+  .orbf__bottom{border-top:1px solid rgba(167,169,201,.2);background:rgba(8,8,30,.45)}
+  .orbf__bottom-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.8rem;padding-block:1.1rem}
+  .orbf__bottom p{margin:0;font-size:.82rem;color:#A7A9C9}
+  .orbf__pay{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
+  .orbf__pay-icon{height:24px;width:auto;display:block;border-radius:4px}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Pie Orbiluz",
+  "tag": "div",
+  "class": "orbf-section",
+  "enabled_on": { "groups": ["footer"] },
+  "settings": [],
+  "presets": [{ "name": "Pie Orbiluz" }]
+}
+{% endschema %}

@@ -97,6 +97,16 @@
   - Llamada final a la colección.
 - Revisado con capturas en móvil y ordenador.
 
+### Decoración, pie nuevo y privacidad (28-09): tema **Orbiluz 1.6** (190039621960, sin publicar)
+- **Fondo decorado:** `assets/orbiluz-fondo.svg` (destellos y órbitas) y manchas de color. Planetas y lunas flotan en los huecos (`orbiluz-planeta.svg`, `orbiluz-luna.svg`).
+- **Textos:** antetítulos en pastilla con ✦, títulos con trazo ámbar, ventajas y avisos como etiquetas, barra de filtros en tarjeta.
+- **`sections/orbiluz-footer.liquid`** (sustituye al pie de Horizon):
+  - boletín, columnas Tienda, Ayuda y Legal, contacto y ventajas;
+  - iconos de pago automáticos (`shop.enabled_payment_types`) e «IVA incluido».
+- **Página nueva `/pages/politica-de-privacidad`** en español. La política oficial de Shopify sigue en inglés, porque no tenemos permiso `write_legal_policies`; la tiene que pegar el usuario.
+- **Pagos:** Shopify Payments **no está activado** (`supportedDigitalWallets` vacío). Lo tiene que activar el usuario.
+- **Aviso legal:** falta el NIF y la dirección completa del titular (lo exige el art. 10 de la LSSI). Hay que pedírselos al usuario; no inventarlos.
+
 ## Encargo del usuario (literal, resumido)
 - Estudio de mercado con datos.
 - Buscar en DSers productos de **decoración del hogar llamativos y originales**: tipo lámpara de Saturno, relojes con alguna novedad, o relacionados del sector.
