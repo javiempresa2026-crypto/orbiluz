@@ -55,6 +55,17 @@
 - **Revisar la tienda visualmente** cuando el usuario pase la contraseña de la tienda.
 - **Aviso legal:** conviene añadir el nombre y el NIF del titular cuando sea autónomo.
 
+### Revisión de errores y 404 (27-09, tarde)
+- Colecciones lamparas, relojes y todos-los-productos publicadas en Tienda online (daban 404 y la portada salía vacía).
+- Páginas nuevas: /pages/devoluciones, /pages/envios, /pages/condiciones-de-venta y /pages/aviso-legal (texto de `politicas-para-pegar.html`).
+- Redirecciones: /policies/refund-policy, shipping-policy, terms-of-service, legal-notice y contact-information, y /pages/contact → sus páginas en español. Mientras no se peguen las políticas en Configuración → Políticas, funcionan las redirecciones; al pegarlas, Shopify muestra la política.
+- Página «Contact» en inglés borrada. Menú del pie con Envíos, Devoluciones, Condiciones de venta y Aviso legal. Menú de cuenta: «Pedidos» y «Perfil». Colección frontpage renombrada a «Destacados». Enlace de la página de preguntas frecuentes a /pages/devoluciones.
+- **Falta que lo haga el usuario:**
+  - sustituir la política de privacidad por defecto (inglés, «My Store 3», dirección de Motril) y pegar el resto;
+  - idioma principal español;
+  - nombre de la tienda «Orbiluz» y correo orbiluzsupport@gmail.com;
+  - pasar la contraseña de la tienda para revisarla entera con el navegador.
+
 ## Encargo del usuario (literal, resumido)
 - Estudio de mercado con datos.
 - Buscar en DSers productos de **decoración del hogar llamativos y originales**: tipo lámpara de Saturno, relojes con alguna novedad, o relacionados del sector.
