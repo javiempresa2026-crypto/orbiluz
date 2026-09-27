@@ -11,7 +11,7 @@
     "main": {
       "type": "orbiluz-page",
       "settings": {
-        "show_form": true
+        "show_form": false
       }
     }
   },

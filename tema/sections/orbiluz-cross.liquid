@@ -1,0 +1,57 @@
+{%- comment -%} Productos de otras colecciones, debajo de la rejilla de una colección. {%- endcomment -%}
+{%- assign todos = collections['todos-los-productos'].products -%}
+{%- assign actuales = collection.products | map: 'id' -%}
+{%- capture tarjetas -%}
+  {%- for prod in todos -%}
+    {%- unless actuales contains prod.id -%}
+      <article class="orb-card">
+        <a class="orb-card__link" href="{{ prod.url }}" aria-label="{{ prod.title | escape }}">
+          <div class="orb-card__media">
+            {%- if prod.featured_media -%}{{ prod.featured_media | image_url: width: 700 | image_tag: loading: 'lazy', widths: '400, 700', sizes: '(min-width: 990px) 25vw, 50vw', class: 'orb-card__img', alt: prod.featured_media.alt }}{%- endif -%}
+            {%- if prod.media[1] -%}{{ prod.media[1] | image_url: width: 700 | image_tag: loading: 'lazy', widths: '400, 700', sizes: '(min-width: 990px) 25vw, 50vw', class: 'orb-card__img orb-card__img--alt', alt: '' }}{%- endif -%}
+          </div>
+          <div class="orb-card__body">
+            <h3 class="orb-card__title">{{ prod.title }}</h3>
+            <div class="orb-card__foot"><span class="orb-card__price">{{ prod.price | money }}</span><span class="orb-btn orb-btn--small">Ver</span></div>
+          </div>
+        </a>
+      </article>
+    {%- endunless -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- if tarjetas != blank -%}
+  <section class="orb orbx" aria-labelledby="orbx-title">
+    <div class="orbx__inner">
+      <p class="orb-eyebrow orb-eyebrow--dark">Completa tu rincón</p>
+      <h2 id="orbx-title" class="orb-h2">También te puede gustar</h2>
+      <div class="orbx__grid">{{ tarjetas }}</div>
+    </div>
+  </section>
+{%- endif -%}
+{% stylesheet %}
+  .orbx{--noche:#12123A;--ambar:#FFB547;--nebulosa:#7C6CF6;--luna:#FFF6E9;color:#12123A}
+  .orbx *{box-sizing:border-box}
+  .orbx .orb-eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#7C6CF6;margin:0 0 .6rem}
+  .orbx .orb-h2{font-family:"Unbounded",var(--font-heading--family),sans-serif;font-size:clamp(1.4rem,3.6vw,2rem);line-height:1.15;margin:0 0 1.4rem;color:#12123A}
+  .orbx .orb-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 10px 28px rgba(18,18,58,.08);transition:transform .2s ease,box-shadow .2s ease}
+  .orbx .orb-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(18,18,58,.14)}
+  .orbx .orb-card__link{display:block;color:inherit;text-decoration:none}
+  .orbx .orb-card__media{position:relative;aspect-ratio:1/1;background:#12123A}
+  .orbx .orb-card__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .35s ease}
+  .orbx .orb-card__img--alt{opacity:0}
+  @media (hover:hover){.orbx .orb-card:hover .orb-card__img--alt{opacity:1}}
+  .orbx .orb-card__title{font-family:"Unbounded",var(--font-heading--family),sans-serif;margin:0 0 .6rem;line-height:1.3}
+  .orbx .orb-card__foot{display:flex;align-items:center;justify-content:space-between;gap:.6rem}
+  .orbx .orb-card__price{font-weight:800}
+  .orbx .orb-btn--small{display:inline-flex;align-items:center;min-height:36px;padding:.4rem 1rem;border-radius:999px;background:#12123A;color:#FFF6E9;font-weight:700;font-size:.85rem}
+  .orbx{padding-block:2.5rem 3.5rem}
+  .orbx__inner{max-width:1200px;margin-inline:auto;padding-inline:16px}
+  .orbx__grid{display:grid;gap:1rem;grid-template-columns:repeat(2,1fr)}
+  @media (min-width:990px){.orbx__grid{grid-template-columns:repeat(4,1fr);gap:1.2rem}}
+  .orbx .orb-card__title{font-size:.9rem}
+  .orbx .orb-card__body{padding:.9rem 1rem 1rem}
+  .orbx .orb-card__price{font-size:1rem}
+{% endstylesheet %}
+{% schema %}
+{ "name": "Otros productos", "tag": "div", "class": "orbx-section", "settings": [], "presets": [{ "name": "Otros productos" }] }
+{% endschema %}

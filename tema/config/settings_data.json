@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "logo_height": 44,
@@ -99,7 +108,7 @@
       "color1": "#4A4A6A",
       "color2": "#E8DDCB"
     },
-    "logo": "shopify://shop_images/orbiluz-logo-luna.png",
+    "logo": "shopify://shop_images/orbiluz-logo-noche-transparente.png",
     "favicon": "shopify://shop_images/orbiluz-icono.png"
   },
   "presets": {

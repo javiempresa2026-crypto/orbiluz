@@ -86,6 +86,17 @@
   - Revisado con capturas en móvil (390 px) y ordenador (1440 px).
 - Páginas Envíos y Preguntas frecuentes actualizadas con el globo (10-15 días, adaptador propio).
 
+### Rediseño de cabecera y páginas (27-09, noche): tema **Orbiluz 1.4** (190039392584, sin publicar)
+- **Cabecera:** color noche (#12123A), logo `orbiluz-logo-noche-transparente.png` y enlaces en pastilla ámbar. El menú móvil también es oscuro.
+- **Menú principal:** Inicio · Lámparas · Relojes · Globo que levita ✦ · Todo · Ayuda ▾ (Preguntas frecuentes, Envíos, Devoluciones, Contacto).
+- **`sections/orbiluz-banner.liquid`:** cabecera de colección con imagen (`banner-lamparas`, `banner-relojes`, `banner-todo`), migas de pan, accesos a otras colecciones y una línea de ventajas.
+- **`sections/orbiluz-cross.liquid`:** bloque «También te puede gustar» debajo de cada colección.
+- **`sections/orbiluz-page.liquid`:** banner por página (`banner-contacto`, `banner-ayuda`, `banner-legal`), contenido en tarjeta y lateral de ayuda.
+  - Las preguntas frecuentes se muestran desplegables.
+  - Formulario de contacto propio, con campo de número de pedido.
+  - Llamada final a la colección.
+- Revisado con capturas en móvil y ordenador.
+
 ## Encargo del usuario (literal, resumido)
 - Estudio de mercado con datos.
 - Buscar en DSers productos de **decoración del hogar llamativos y originales**: tipo lámpara de Saturno, relojes con alguna novedad, o relacionados del sector.

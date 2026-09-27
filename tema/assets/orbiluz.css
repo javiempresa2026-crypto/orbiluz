@@ -10,3 +10,27 @@ h1,.h1{font-weight:700!important}
 .rte tr td:first-child{font-weight:600;width:42%;color:var(--orb-noche)}
 .rte h3{font-family:var(--orb-display);font-size:1.05rem;margin-top:1.4rem}
 .rte ul{padding-left:1.1rem}
+
+/* ===== Cabecera noche (1.4) ===== */
+.header{--orb-h-fg:#FFF6E9}
+.header,.header__row,.header__row--top{background:#12123A!important;color:var(--orb-h-fg)}
+.header__row--top{border-bottom:1px solid rgba(124,108,246,.28);box-shadow:0 10px 30px rgba(8,8,30,.25)}
+.header .menu-list__link,.header .header-actions__action,.header .header__icon,.header search-button,.header .header-actions svg,.header .header__icon svg{color:var(--orb-h-fg)!important}
+.header .menu-list__link{border-radius:999px;padding:.55rem .95rem!important;transition:background .2s,color .2s;font-weight:600}
+.header .menu-list__link:hover,.header .menu-list__link:focus-visible,.header .menu-list__link--active{background:rgba(255,181,71,.14);color:#FFB547!important}
+.header .menu-list__link-title{color:inherit!important}
+.header .header-actions__action:hover{color:#FFB547!important}
+.header-actions__cart-icon .cart-bubble,.header .cart-bubble{background:#FFB547!important;color:#12123A!important}
+.header .header-logo__image{filter:drop-shadow(0 0 14px rgba(255,181,71,.18))}
+/* submenús */
+.header .menu-list__submenu,.header .mega-menu,.header .menu-list__submenu-inner{background:#12123A!important;color:#FFF6E9}
+.header .mega-menu a,.header .menu-list__submenu a{color:#FFF6E9!important}
+.header .mega-menu a:hover,.header .menu-list__submenu a:hover{color:#FFB547!important}
+/* menú móvil */
+.menu-drawer{background:#12123A!important;color:#FFF6E9!important}
+.menu-drawer a,.menu-drawer .menu-drawer__menu-item,.menu-drawer button,.menu-drawer summary,.menu-drawer svg{color:#FFF6E9!important}
+.menu-drawer .menu-drawer__menu-item{font-family:var(--orb-display);font-size:1.15rem!important;padding-block:.9rem!important;border-bottom:1px solid rgba(167,169,201,.15)}
+.menu-drawer a:hover,.menu-drawer .menu-drawer__menu-item:hover{color:#FFB547!important}
+.menu-drawer__utility-links,.menu-drawer__utility-links a{color:#A7A9C9!important}
+/* barra de anuncios */
+.announcement-bar__text,announcement-bar-component{font-weight:600}

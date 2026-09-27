@@ -1,0 +1,223 @@
+{%- comment -%}
+  Páginas de Orbiluz (contacto, ayuda, legales): banner con imagen, contenido en tarjeta y lateral de ayuda.
+{%- endcomment -%}
+{%- liquid
+  assign h = page.handle
+  assign grupo = 'legal'
+  case h
+    when 'contacto'
+      assign bg = images['banner-contacto.jpg']
+      assign eyebrow = 'Hablemos'
+      assign lead = 'Resolvemos tus dudas sobre productos, pedidos y devoluciones en 24-48 horas laborables.'
+      assign grupo = 'ayuda'
+    when 'preguntas-frecuentes'
+      assign bg = images['banner-ayuda.jpg']
+      assign eyebrow = 'Centro de ayuda'
+      assign lead = 'Todo lo que necesitas saber antes y después de comprar.'
+      assign grupo = 'ayuda'
+    when 'envios'
+      assign bg = images['banner-ayuda.jpg']
+      assign eyebrow = 'Centro de ayuda'
+      assign lead = 'Gratis desde 39 €, con seguimiento en todos los pedidos.'
+      assign grupo = 'ayuda'
+    when 'devoluciones'
+      assign bg = images['banner-ayuda.jpg']
+      assign eyebrow = 'Centro de ayuda'
+      assign lead = 'Tienes 14 días para cambiar de opinión. Te explicamos cómo.'
+      assign grupo = 'ayuda'
+    when 'sobre-orbiluz'
+      assign bg = images['banner-todo.jpg']
+      assign eyebrow = 'Nuestra historia'
+      assign lead = 'Decoración que se enciende de noche y da de qué hablar.'
+      assign grupo = 'marca'
+    else
+      assign bg = images['banner-legal.jpg']
+      assign eyebrow = 'Información legal'
+      assign lead = 'Transparencia ante todo: aquí tienes las condiciones claras y en español.'
+  endcase
+  assign es_form = section.settings.show_form
+-%}
+
+<section class="orbp-hero" aria-labelledby="orbp-title">
+  {%- if bg != blank -%}
+    {{ bg | image_url: width: 2400 | image_tag: widths: '750, 1200, 1800, 2400', sizes: '100vw', alt: '', fetchpriority: 'high', class: 'orbp-hero__img' }}
+  {%- endif -%}
+  <div class="orbp-hero__shade"></div>
+  <div class="orbp-hero__inner page-width">
+    <nav class="orbp-crumbs" aria-label="Migas de pan"><a href="{{ routes.root_url }}">Inicio</a><span aria-hidden="true">/</span><span>{{ page.title }}</span></nav>
+    <p class="orbp-eyebrow">{{ eyebrow }}</p>
+    <h1 id="orbp-title" class="orbp-title">{{ page.title }}</h1>
+    <p class="orbp-lead">{{ lead }}</p>
+  </div>
+</section>
+
+<div class="orbp-body page-width{% if es_form %} orbp-body--form{% endif %}">
+  <div class="orbp-main">
+    {%- if page.content != blank -%}
+      <article class="orbp-card orbp-rte rte{% if h == 'preguntas-frecuentes' %} orbp-faq{% endif %}" data-orbp-content>
+        {{ page.content }}
+      </article>
+    {%- endif -%}
+
+    {%- if es_form -%}
+      <div class="orbp-card orbp-formcard">
+        <h2 class="orbp-h2">Escríbenos</h2>
+        {%- form 'contact', id: 'OrbContactForm', class: 'orbp-form' -%}
+          {%- if form.posted_successfully? -%}
+            <p class="orbp-ok" role="status">✓ ¡Gracias! Hemos recibido tu mensaje y te responderemos lo antes posible.</p>
+          {%- endif -%}
+          {%- if form.errors -%}
+            <div class="orbp-err" role="alert">Revisa los campos marcados: {{ form.errors | default_errors }}</div>
+          {%- endif -%}
+          <div class="orbp-row">
+            <label class="orbp-field"><span>Nombre</span><input type="text" name="contact[name]" autocomplete="name" value="{{ form.name }}"></label>
+            <label class="orbp-field"><span>Correo electrónico *</span><input type="email" name="contact[email]" autocomplete="email" required value="{{ form.email }}"></label>
+          </div>
+          <label class="orbp-field"><span>Número de pedido (si tienes)</span><input type="text" name="contact[pedido]" inputmode="numeric" placeholder="Ej.: #1001"></label>
+          <label class="orbp-field"><span>Mensaje *</span><textarea name="contact[body]" rows="6" required>{{ form.body }}</textarea></label>
+          <button type="submit" class="orbp-btn">Enviar mensaje</button>
+          <p class="orbp-small">Al enviar aceptas que usemos tus datos solo para responderte. Más información en la <a href="/policies/privacy-policy">política de privacidad</a>.</p>
+        {%- endform -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <aside class="orbp-aside" aria-label="Ayuda">
+    <div class="orbp-card orbp-card--night">
+      <p class="orbp-eyebrow">¿Necesitas ayuda?</p>
+      <p class="orbp-aside__big">Te respondemos en 24-48 h</p>
+      <a class="orbp-mail" href="mailto:orbiluzsupport@gmail.com">orbiluzsupport@gmail.com</a>
+      {%- unless es_form -%}<a class="orbp-btn orbp-btn--small" href="/pages/contacto">Ir al formulario</a>{%- endunless -%}
+    </div>
+    <nav class="orbp-card orbp-links" aria-label="Páginas de ayuda">
+      {%- assign links = 'preguntas-frecuentes|Preguntas frecuentes|✦,envios|Envíos|🚚,devoluciones|Devoluciones|↺,contacto|Contacto|✉' | split: ',' -%}
+      {%- for l in links -%}
+        {%- assign p = l | split: '|' -%}
+        <a href="/pages/{{ p[0] }}"{% if h == p[0] %} class="is-active" aria-current="page"{% endif %}><span aria-hidden="true">{{ p[2] }}</span>{{ p[1] }}<em aria-hidden="true">→</em></a>
+      {%- endfor -%}
+    </nav>
+    {%- if grupo == 'legal' -%}
+      <nav class="orbp-card orbp-links" aria-label="Información legal">
+        {%- assign legal = 'condiciones-de-venta|Condiciones de venta,aviso-legal|Aviso legal,politica-de-cookies|Política de cookies' | split: ',' -%}
+        {%- for l in legal -%}
+          {%- assign p = l | split: '|' -%}
+          <a href="/pages/{{ p[0] }}"{% if h == p[0] %} class="is-active" aria-current="page"{% endif %}>{{ p[1] }}<em aria-hidden="true">→</em></a>
+        {%- endfor -%}
+        <a href="/policies/privacy-policy">Política de privacidad<em aria-hidden="true">→</em></a>
+      </nav>
+    {%- endif -%}
+  </aside>
+</div>
+
+<section class="orbp-cta" aria-label="Seguir comprando">
+  <div>
+    <p class="orbp-eyebrow">Decoración que se enciende</p>
+    <p class="orbp-cta__title">¿Vemos la colección?</p>
+  </div>
+  <a class="orbp-btn" href="/collections/todos-los-productos">Ver todos los productos</a>
+</section>
+
+{%- if h == 'preguntas-frecuentes' -%}
+<script>
+  (function () {
+    var box = document.querySelector('.orbp-faq');
+    if (!box) return;
+    var hs = box.querySelectorAll('h3');
+    hs.forEach(function (h3, i) {
+      var d = document.createElement('details');
+      if (i === 0) d.open = true;
+      var s = document.createElement('summary');
+      s.textContent = h3.textContent;
+      d.appendChild(s);
+      var n = h3.nextElementSibling;
+      while (n && n.tagName !== 'H3') { var nx = n.nextElementSibling; d.appendChild(n); n = nx; }
+      h3.replaceWith(d);
+    });
+  })();
+</script>
+{%- endif -%}
+
+{% stylesheet %}
+  .orbp-section .page-width{max-width:1200px;margin-inline:auto;padding-inline:16px;box-sizing:border-box}
+  .orbp-section *{box-sizing:border-box}
+  .orbp-hero{position:relative;min-height:clamp(300px,44vw,440px);display:flex;align-items:flex-end;background:#12123A;overflow:hidden;color:#FFF6E9}
+  .orbp-hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center}
+  .orbp-hero__shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(18,18,58,.95) 0%,rgba(18,18,58,.55) 55%,rgba(18,18,58,.15) 100%)}
+  .orbp-hero__inner{position:relative;z-index:1;width:100%;padding-block:2rem}
+  @media (min-width:750px){.orbp-hero{align-items:center}.orbp-hero__shade{background:linear-gradient(90deg,rgba(18,18,58,.96) 0%,rgba(18,18,58,.7) 38%,rgba(18,18,58,0) 68%)}}
+  @media (max-width:749px){
+    .orbp-hero{display:block;min-height:0}
+    .orbp-hero__img{position:relative;inset:auto;display:block;aspect-ratio:16/9;height:auto;object-position:72% center}
+    .orbp-hero__shade{inset:0 0 auto 0;height:calc(100vw * 9 / 16);background:linear-gradient(0deg,#12123A 0%,rgba(18,18,58,0) 45%)}
+    .orbp-hero__inner{padding-block:.2rem 2.4rem}
+  }
+  .orbp-crumbs{display:flex;gap:.5rem;font-size:.8rem;color:#A7A9C9;margin-bottom:1rem}
+  .orbp-crumbs a{color:#A7A9C9;text-decoration:none}
+  .orbp-crumbs a:hover{color:#FFB547}
+  .orbp-eyebrow{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#FFB547;margin:0 0 .5rem}
+  .orbp-title{font-family:"Unbounded",var(--font-heading--family),sans-serif;font-size:clamp(1.9rem,6.5vw,3.3rem);line-height:1.08;margin:0 0 .8rem;color:#FFF6E9}
+  .orbp-lead{max-width:42ch;margin:0;color:#e9e6ff;font-size:clamp(.98rem,2.4vw,1.1rem);line-height:1.55}
+  .orbp-body{display:grid;gap:1.2rem;padding-block:2rem 1rem;margin-top:-1.2rem;position:relative;z-index:2}
+  @media (min-width:990px){.orbp-body{grid-template-columns:minmax(0,1fr) 340px;gap:1.6rem;align-items:start}}
+  .orbp-main{display:grid;gap:1.2rem;min-width:0}
+  .orbp-card{background:#fff;border-radius:22px;padding:1.5rem 1.3rem;box-shadow:0 12px 34px rgba(18,18,58,.08)}
+  @media (min-width:750px){.orbp-card{padding:2rem 2.2rem}}
+  .orbp-rte{color:#2e2e4e;line-height:1.7}
+  .orbp-rte h2,.orbp-rte h3{font-family:"Unbounded",var(--font-heading--family),sans-serif;color:#12123A;font-size:1.08rem;margin:1.8rem 0 .6rem}
+  .orbp-rte > :first-child{margin-top:0}
+  .orbp-rte a{color:#5a4bd6;text-decoration-thickness:1px;text-underline-offset:3px}
+  .orbp-rte ul,.orbp-rte ol{padding-left:1.2rem}
+  .orbp-rte li{margin:.3rem 0}
+  .orbp-rte li::marker{color:#FFB547}
+  .orbp-faq details{border-bottom:1px solid #eee4d4}
+  .orbp-faq details:last-child{border-bottom:0}
+  .orbp-faq summary{cursor:pointer;list-style:none;font-weight:700;color:#12123A;padding:1.05rem 2.4rem 1.05rem 0;position:relative;font-size:1.02rem}
+  .orbp-faq summary::-webkit-details-marker{display:none}
+  .orbp-faq summary:after{content:"+";position:absolute;right:.2rem;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;background:#12123A;color:#FFB547;display:grid;place-items:center;font-size:1.1rem;line-height:1}
+  .orbp-faq details[open] summary:after{content:"−"}
+  .orbp-faq details > :not(summary){margin:0 0 1.1rem}
+  .orbp-aside{display:grid;gap:1.2rem}
+  @media (min-width:990px){.orbp-aside{position:sticky;top:110px}}
+  .orbp-card--night{background:radial-gradient(120% 120% at 100% 0%,#2a2470 0%,#12123A 60%);color:#FFF6E9}
+  .orbp-aside__big{font-family:"Unbounded",var(--font-heading--family),sans-serif;font-size:1.25rem;line-height:1.25;margin:0 0 .8rem}
+  .orbp-mail{display:block;color:#FFB547;font-weight:700;margin-bottom:1rem;word-break:break-all}
+  .orbp-links{display:grid;padding:.6rem}
+  .orbp-links a{display:flex;align-items:center;gap:.7rem;padding:.85rem .9rem;border-radius:14px;color:#12123A;text-decoration:none;font-weight:600;min-height:48px}
+  .orbp-links a span{width:30px;height:30px;border-radius:50%;background:#FFF6E9;display:grid;place-items:center;font-size:.9rem;flex:none}
+  .orbp-links a em{margin-left:auto;font-style:normal;color:#7C6CF6;transition:transform .2s}
+  .orbp-links a:hover{background:#FFF6E9}
+  .orbp-links a:hover em{transform:translateX(3px)}
+  .orbp-links a.is-active{background:#12123A;color:#FFF6E9}
+  .orbp-links a.is-active span{background:#FFB547}
+  .orbp-links a.is-active em{color:#FFB547}
+  .orbp-h2{font-family:"Unbounded",var(--font-heading--family),sans-serif;font-size:1.3rem;margin:0 0 1.2rem;color:#12123A}
+  .orbp-form{display:grid;gap:1rem}
+  .orbp-row{display:grid;gap:1rem}
+  @media (min-width:750px){.orbp-row{grid-template-columns:1fr 1fr}}
+  .orbp-field{display:grid;gap:.4rem;font-weight:600;font-size:.9rem;color:#12123A}
+  .orbp-field input,.orbp-field textarea{font:inherit;font-weight:400;font-size:1rem;width:100%;padding:.85rem 1rem;border-radius:14px;border:1.5px solid #e2d8c6;background:#FFFBF5;color:#12123A;transition:border-color .2s,box-shadow .2s}
+  .orbp-field input:focus,.orbp-field textarea:focus{outline:none;border-color:#7C6CF6;box-shadow:0 0 0 4px rgba(124,108,246,.15)}
+  .orbp-btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:.8rem 1.7rem;border-radius:999px;background:#FFB547;color:#12123A;font-weight:800;font-size:1rem;border:0;cursor:pointer;text-decoration:none;box-shadow:0 8px 24px rgba(255,181,71,.35);transition:transform .15s}
+  .orbp-btn:hover{transform:translateY(-2px)}
+  .orbp-btn--small{min-height:42px;padding:.5rem 1.2rem;font-size:.9rem}
+  .orbp-form .orbp-btn{justify-self:start}
+  .orbp-small{font-size:.8rem;color:#6a6a8a;margin:0}
+  .orbp-ok{background:#e9f8ef;color:#145c32;border-radius:14px;padding:1rem;margin:0;font-weight:600}
+  .orbp-err{background:#fdecea;color:#8a1c12;border-radius:14px;padding:1rem}
+  .orbp-cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;margin-block:1.5rem 3.5rem;padding:1.6rem 1.5rem;border-radius:22px;background:#12123A;color:#FFF6E9}
+  .orbp-cta__title{font-family:"Unbounded",var(--font-heading--family),sans-serif;font-size:clamp(1.2rem,3.5vw,1.6rem);margin:0}
+  .orbp-cta{max-width:1168px;margin-inline:auto}
+  @media (max-width:1199px){.orbp-cta{margin-inline:16px}}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Página Orbiluz",
+  "tag": "div",
+  "class": "orbp-section",
+  "settings": [
+    { "type": "checkbox", "id": "show_form", "label": "Mostrar formulario de contacto", "default": false }
+  ],
+  "presets": [{ "name": "Página Orbiluz" }]
+}
+{% endschema %}

@@ -1,0 +1,111 @@
+{%- comment -%}
+  Cabecera de colección de Orbiluz: imagen de fondo, título, descripción y accesos al resto de colecciones.
+{%- endcomment -%}
+{%- liquid
+  assign c = collection
+  case c.handle
+    when 'lamparas'
+      assign bg = images['banner-lamparas.jpg']
+      assign eyebrow = 'Luz que decora'
+      assign lead = 'Bolas de cristal grabadas por láser y un globo que flota. Piezas que convierten cualquier rincón en el favorito de la casa.'
+    when 'relojes'
+      assign bg = images['banner-relojes.jpg']
+      assign eyebrow = 'La hora, en 3D'
+      assign lead = 'Relojes LED con dígitos en relieve que parecen flotar en la pared. Hora, fecha, temperatura y alarmas.'
+    else
+      assign bg = images['banner-todo.jpg']
+      assign eyebrow = 'Toda la colección'
+      assign lead = 'Decoración que se enciende de noche y da de qué hablar. Pocos productos, bien elegidos.'
+  endcase
+  if c.description != blank
+    assign lead = c.description | strip_html
+  endif
+  assign globo = all_products['globo-terraqueo-que-levita']
+-%}
+
+<section class="orbb" aria-labelledby="orbb-title">
+  <div class="orbb__media">
+    {%- if bg != blank -%}
+      {{ bg | image_url: width: 2400 | image_tag: widths: '750, 1200, 1800, 2400', sizes: '100vw', alt: '', fetchpriority: 'high', class: 'orbb__img' }}
+    {%- endif -%}
+  </div>
+  <div class="orbb__shade"></div>
+  <div class="orbb__inner page-width">
+    <nav class="orbb__crumbs" aria-label="Migas de pan"><a href="{{ routes.root_url }}">Inicio</a><span aria-hidden="true">/</span><span>{{ c.title }}</span></nav>
+    <p class="orbb__eyebrow">{{ eyebrow }}</p>
+    <h1 id="orbb-title" class="orbb__title">{{ c.title }}</h1>
+    <p class="orbb__lead">{{ lead }}</p>
+    <p class="orbb__count">{{ c.products_count }} {% if c.products_count == 1 %}producto{% else %}productos{% endif %}</p>
+  </div>
+</section>
+
+<nav class="orbb-chips page-width" aria-label="Colecciones">
+  {%- assign chips = 'todos-los-productos|Todo,lamparas|Lámparas,relojes|Relojes' | split: ',' -%}
+  {%- for ch in chips -%}
+    {%- assign p = ch | split: '|' -%}
+    <a class="orbb-chip{% if c.handle == p[0] %} is-active{% endif %}" href="/collections/{{ p[0] }}"{% if c.handle == p[0] %} aria-current="page"{% endif %}>{{ p[1] }}</a>
+  {%- endfor -%}
+  {%- if globo != blank and globo.id -%}
+    <a class="orbb-chip orbb-chip--new" href="{{ globo.url }}">✦ Globo que levita</a>
+  {%- endif -%}
+</nav>
+
+<ul class="orbb-trust page-width" aria-label="Ventajas">
+  <li><strong>Envío gratis</strong> desde 39 €</li>
+  <li><strong>Seguimiento</strong> en todos los pedidos</li>
+  <li><strong>14 días</strong> para devolver</li>
+</ul>
+
+{% stylesheet %}
+  .orbb-section .page-width{max-width:1200px;margin-inline:auto;padding-inline:16px;box-sizing:border-box}
+  .orbb{position:relative;min-height:clamp(340px,52vw,520px);display:flex;align-items:flex-end;background:#12123A;overflow:hidden;color:#FFF6E9}
+  .orbb__media,.orbb__img{position:absolute;inset:0;width:100%;height:100%}
+  .orbb__img{object-fit:cover;object-position:75% center}
+  .orbb__shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(18,18,58,.95) 0%,rgba(18,18,58,.55) 50%,rgba(18,18,58,.1) 100%)}
+  .orbb__inner{position:relative;z-index:1;width:100%;padding-block:2rem 2.2rem}
+  .orbb__crumbs{display:flex;gap:.5rem;font-size:.8rem;color:#A7A9C9;margin-bottom:1rem}
+  .orbb__crumbs a{color:#A7A9C9;text-decoration:none}
+  .orbb__crumbs a:hover{color:#FFB547}
+  .orbb__eyebrow{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#FFB547;margin:0 0 .5rem}
+  .orbb__title{font-family:"Unbounded",var(--font-heading--family),sans-serif;font-size:clamp(2rem,7vw,3.6rem);line-height:1.05;margin:0 0 .8rem;color:#FFF6E9}
+  .orbb__lead{max-width:44ch;font-size:clamp(.98rem,2.4vw,1.12rem);line-height:1.55;color:#e9e6ff;margin:0 0 .9rem}
+  .orbb__count{display:inline-block;margin:0;padding:.3rem .8rem;border-radius:999px;background:rgba(255,246,233,.12);border:1px solid rgba(255,246,233,.25);font-size:.8rem;font-weight:600}
+  @media (min-width:750px){
+    .orbb{align-items:center}
+    .orbb__shade{background:linear-gradient(90deg,rgba(18,18,58,.96) 0%,rgba(18,18,58,.7) 36%,rgba(18,18,58,0) 65%)}
+    .orbb__inner{padding-block:3rem}
+  }
+  @media (max-width:749px){
+    .orbb{display:block;min-height:0}
+    .orbb__media{position:relative;inset:auto;height:auto;aspect-ratio:16/9}
+    .orbb__img{object-position:78% center}
+    .orbb__shade{top:auto;bottom:0;height:auto;aspect-ratio:auto;inset:0 0 auto 0;height:calc(100vw * 9 / 16);background:linear-gradient(0deg,#12123A 0%,rgba(18,18,58,0) 45%)}
+    .orbb__inner{padding-block:.2rem 1.8rem}
+  }
+  .orbb-chips{display:flex;gap:.6rem;overflow-x:auto;padding-block:1.2rem .4rem;scrollbar-width:none}
+  .orbb-chips::-webkit-scrollbar{display:none}
+  .orbb-chip{flex:none;display:inline-flex;align-items:center;min-height:42px;padding:.5rem 1.1rem;border-radius:999px;border:1.5px solid #12123A;color:#12123A;font-weight:600;font-size:.92rem;text-decoration:none;transition:background .2s,color .2s}
+  .orbb-chip:hover{background:#12123A;color:#FFF6E9}
+  .orbb-chip.is-active{background:#12123A;color:#FFB547}
+  .orbb-chip--new{border-color:#FFB547;background:#FFB547;color:#12123A}
+  .orbb-chip--new:hover{background:#12123A;color:#FFB547;border-color:#12123A}
+  .orbb-trust{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;margin:0 auto;padding-block:.4rem 1.2rem;font-size:.85rem;color:#4a4a6a}
+  .orbb-trust li:before{content:"✦ ";color:#7C6CF6}
+  /* Tarjetas de producto en colecciones */
+  .main-collection-grid .product-grid__card,.product-grid .product-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 10px 28px rgba(18,18,58,.08);transition:transform .2s ease,box-shadow .2s ease}
+  .product-grid .product-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(18,18,58,.14)}
+  .product-grid .product-card__content{padding:0 .8rem .9rem!important}
+  .product-grid .product-card__content > .card-gallery{margin:0 -.8rem .3rem!important}
+  .product-grid .card-gallery{background:#12123A}
+  .product-grid .product-card a{text-decoration:none}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Cabecera de colección",
+  "tag": "div",
+  "class": "orbb-section",
+  "settings": [],
+  "presets": [{ "name": "Cabecera de colección" }]
+}
+{% endschema %}
