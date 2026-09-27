@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "orbiluz_home": {
+      "type": "orbiluz-home",
+      "settings": {
+        "eyebrow": "Decoración que se enciende",
+        "heading": "Tu casa, de otro planeta",
+        "subheading": "Lámparas y relojes originales que convierten cualquier rincón en el favorito de la casa. Envío gratis desde 39 €."
+      }
+    }
+  },
+  "order": ["orbiluz_home"]
+}

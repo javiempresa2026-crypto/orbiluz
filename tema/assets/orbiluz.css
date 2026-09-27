@@ -1,0 +1,12 @@
+/* Orbiluz: capa de marca sobre Horizon */
+@font-face{font-family:"Unbounded";src:url("unbounded-bold.woff2") format("woff2");font-weight:600 800;font-style:normal;font-display:swap}
+:root{--orb-noche:#12123A;--orb-ambar:#FFB547;--orb-nebulosa:#7C6CF6;--orb-luna:#FFF6E9;--orb-coral:#FF7A59;--orb-niebla:#A7A9C9;--orb-display:"Unbounded",var(--font-heading--family),system-ui,sans-serif}
+h1,h2,.h1,.h2,.orb-display{font-family:var(--orb-display)!important;letter-spacing:-.01em}
+h1,.h1{font-weight:700!important}
+.product-details h1,.product-information h1{font-size:clamp(1.6rem,4.5vw,2.4rem)!important;line-height:1.15}
+/* Tablas de ficha técnica en descripción */
+.rte table,.product__description table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.95em}
+.rte td,.product__description td{padding:.55rem .7rem;border-bottom:1px solid #e8ddcb;vertical-align:top}
+.rte tr td:first-child{font-weight:600;width:42%;color:var(--orb-noche)}
+.rte h3{font-family:var(--orb-display);font-size:1.05rem;margin-top:1.4rem}
+.rte ul{padding-left:1.1rem}
