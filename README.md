@@ -30,3 +30,5 @@ Tienda online de decoración que se enciende (Shopify). Aquí están la marca y 
 - Nada de tokens en el repositorio.
 - Español de España y diseño pensado para el móvil.
 - Los anuncios no llevan precios.
+
+- `contenido/virales/`: vídeos verticales para TikTok y Reels (sin precios ni voz), con textos para publicar.
