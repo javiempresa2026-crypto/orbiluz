@@ -6,7 +6,7 @@ Tienda online de decoración que se enciende (Shopify). Aquí están la marca y 
 |---|---|
 | `marca/` | **Kit de logos** en `marca/logo/`, con su guía de uso en `marca/logo/README.md`: horizontal, icono, favicon y redes, en SVG y PNG. También las fuentes (Unbounded y DM Sans) y la hoja de marca |
 | `fotos/` | Fotos de producto, escenas, banners de la web y los scripts que las generan (`fotos/scripts/`) |
-| `anuncios/meta/` | Creatividades estáticas para Meta Ads (4:5 y 9:16), escenas base, textos y plan de test |
+| `anuncios/meta/` | Creatividades estáticas para Meta Ads (4:5 y 9:16), escenas base, textos y **guía de campañas** (`GUIA-CAMPANAS-META.md`) |
 | `contenido/` | Sistema de contenido (hooks, ángulos, guiones), prototipos de vídeo y material reutilizable |
 | `tema/` | Archivos del tema de Shopify (Horizon personalizado): secciones, plantillas, estilos y traducciones |
 | `fichas/` | Descripciones de producto (HTML) |
