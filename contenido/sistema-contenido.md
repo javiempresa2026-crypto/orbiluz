@@ -342,64 +342,70 @@ Añadir antes del cierre:
 
 ---
 
-## 17. Ciclo 2: lámpara bola para Meta Ads («Dentro de esta bola hay un planeta»)
+## 17. Ciclo 2: lámpara bola para Meta Ads (problema → solución, **sin precios**)
 
-**Objetivo:** conversión. Producto de impulso a 24,90 €, con la oferta de 2 × 39,90 € para subir el ticket.
-- ROAS de equilibrio ≈ 2,2.
-- CPA máximo ≈ 11 € para una lámpara y ≈ 14 € para el pack.
+**Norma del usuario (28-09):**
+- En los anuncios **no salen precios ni ofertas**; el enlace a la tienda lo pone el usuario.
+- El anuncio solo presenta el producto, **crea la necesidad** y **resuelve un problema**.
 
-**Estructura:** hook visual → detalle → elección (4 modelos) → **tamaño real (5 cm)** → oferta → CTA.
-- El tamaño va a propósito antes de la oferta: es la objeción que más devoluciones causaría.
+**Problema real:** por la noche, la luz del techo es demasiado fuerte para desconectar y la mesilla no tiene ambiente.
+**Solución:** una luz cálida y pequeña que además decora.
 
-### Planos
+### Planos (16,8 s)
 
-| Shot | Duración | Contenido | Fuente | Coste |
-|---|---|---|---|---|
-| 1 | 0-3 s | La lámpara Saturno en una mesilla de noche, con acercamiento. Texto: «Dentro de esta bola **hay un planeta**» | Kling 3.0 desde foto real. El clip se generó alejándose y se **invirtió** en montaje | 7,5 cr. |
-| 2 | 3-5 s | Punch-in al grabado. Texto: «Grabado láser en 3D» | Mismo clip, recortado | 0 |
-| 3 | 5-8,6 s | «Elige tu planeta»: Saturno, Luna, Galaxia y Sistema solar | lampara-4-modelos.jpg | 0 |
-| 4 | 8,6-11,6 s | «Mini: 5 cm · funciona por USB (cargador no incluido)» | lampara-medidas.jpg | 0 |
-| 5 | 11,6-15 s | «Llévate 2 · **2 × 39,90 €** · combina modelos · envío gratis» | Tarjeta con recortes reales | 0 |
-| 6 | 15-16,8 s | Cierre: logo, «Lámpara bola de cristal», «Desde 24,90 €» | Foto real | 0 |
+| Shot | Duración | Contenido | Objetivo | Fuente | Coste |
+|---|---|---|---|---|---|
+| 1 | 0-2 s | La misma mesilla, vacía, con luz fría y dura. Texto: «La luz del techo por la noche…» | Identificación con el problema | Fondo de dormitorio ya generado, con color frío en edición | 0 |
+| 2 | 2-4 s | Sigue la escena. Texto: «…**demasiado fuerte** para desconectar» | Dolor | Igual | 0 |
+| 3 | 4-7 s | Fundido a negro, como si se apagara la luz, y la lámpara encendida con luz cálida y acercamiento. Texto: «Así se ve con una **lámpara bola de cristal**» | Solución y deseo | Kling 3.0 desde foto real, invertido | 7,5 cr. (ciclo anterior, reutilizado) |
+| 4 | 7-9 s | Punch-in al grabado. Texto: «Un planeta grabado dentro del cristal» | Diferencial | Mismo clip | 0 |
+| 5 | 9-12 s | «Cabe en cualquier mesilla · mini, de 5 cm · luz cálida por USB» | Resolver la objeción del tamaño | lampara-medidas.jpg | 0 |
+| 6 | 12-15 s | «Elige tu planeta»: Saturno, Luna, Galaxia y Sistema solar | Implicación y regalo | lampara-4-modelos.jpg | 0 |
+| 7 | 15-16,8 s | Cierre: logo, «Lámpara bola de cristal» y «Encuéntrala en Orbiluz» | CTA sin precio | Foto real | 0 |
 
-**Archivos:** `lampara-meta-9x16-sin-voz.mp4` (Reels e Historias) y `lampara-meta-4x5-sin-voz.mp4` (feed).
+**Archivos:**
+- `lampara-meta-9x16.mp4`: Reels e Historias.
+- `lampara-meta-4x5.mp4`: feed. Es el mismo montaje recortado; todo el contenido queda dentro del recorte.
+- Ninguna de las dos versiones tiene voz.
+
+**Coste nuevo del ciclo 2:** 0 créditos. Todo se ha reutilizado.
 
 ### Voz
 
-La voz «Elena» (seed_audio) se descartó: **suena extranjera**. El catálogo de Higgsfield no tiene ninguna voz con acento de España, así que no se gastan más créditos probando voces a ciegas. Opciones, por orden:
-1. **Grabarla tú con el móvil** (0 créditos, 100 % natural). Guion de 15 s:
-   > «Dentro de esta bola de cristal… hay un planeta. Grabado con láser, en 3D. Elige: Saturno, la Luna, una galaxia o el sistema solar. Es mini, de cinco centímetros, y va por USB. Y si te llevas dos, 39,90. Está en Orbiluz.»
-2. **Clonar tu voz** con Higgsfield (`create_voice`) a partir de 1 minuto de grabación tuya. Después se generan todas las locuciones con tu voz y tu acento sin volver a grabar.
-3. **Sin voz** (la versión actual), con un sonido de la biblioteca de Meta o TikTok añadido al publicar.
+La voz «Elena» se descartó: **suena extranjera**. El catálogo de Higgsfield no tiene ninguna voz con acento de España. Opciones:
+1. **Grabarla tú con el móvil.** Guion de unos 15 s, sin precios:
+   > «¿La luz del techo por la noche? Demasiado fuerte para desconectar. Mira qué cambio con esto… una bola de cristal con un planeta grabado dentro. Es pequeñita, cabe en cualquier mesilla, y da una luz súper cálida. Hay Saturno, la Luna, una galaxia… Yo la encontré en Orbiluz.»
+2. **Clonar tu voz** (`create_voice`) con 1 minuto de grabación y generar después todas las locuciones.
+3. **Sin voz**, con un sonido de la biblioteca de Meta o TikTok añadido al publicar (versión actual).
 
-### Textos para Meta Ads
+### Textos para Meta Ads (sin precios)
 
 | Campo | Texto |
 |---|---|
-| **Texto principal A (oferta)** | «Una bola de cristal con un planeta grabado dentro que se ilumina con luz cálida. Elige Saturno, la Luna, una galaxia o el sistema solar. Llévate 2 por 39,90 € y combina modelos. Envío gratis con seguimiento.» |
-| **Texto principal B (regalo)** | «¿Buscas un detalle que no sea otra taza? Lámpara bola de cristal con un planeta grabado por láser. Mini (5 cm), por USB, preciosa en una mesilla. 2 por 39,90 €.» |
-| **Titular** | «Un planeta en tu mesilla» / «2 lámparas por 39,90 €» |
-| **Descripción** | «Envío gratis · 14 días para devolver» |
-| **CTA** | Comprar |
-| **Destino** | /products/lampara-bola-cristal-3d |
+| **Texto principal A (problema)** | «¿La luz del techo es demasiado fuerte cuando quieres desconectar? Esta lámpara bola de cristal da una luz cálida y suave, y dentro tiene un planeta grabado por láser. Pequeña, por USB y preciosa en cualquier mesilla.» |
+| **Texto principal B (ambiente)** | «Tu dormitorio de noche, pero con otro ambiente. Una bola de cristal con Saturno, la Luna, una galaxia o el sistema solar grabados dentro, que se ilumina con luz cálida.» |
+| **Titular** | «Una luz cálida para tu mesilla» / «Un planeta en tu mesilla» |
+| **Descripción** | «Lámpara bola de cristal · Orbiluz» |
+| **CTA** | Comprar / Más información |
+| **Destino** | El enlace que pongas tú (ficha de la lámpara) |
 
 ### Configuración del test
 
 - **Campaña:** Ventas (compra).
-- **Estructura:** 1 conjunto de anuncios Advantage+ con España, 18-50 años, sin intereses y ubicaciones Advantage+.
+- **Estructura:** 1 conjunto de anuncios Advantage+ con España, 18-50 años y ubicaciones Advantage+.
 - **Presupuesto:** 10-15 €/día, durante 4-5 días sin tocarlo.
-- **Anuncios:** texto A frente a texto B sobre el mismo vídeo (2 anuncios). El vídeo en 9:16 y 4:5 va dentro del mismo anuncio, con la personalización por ubicación.
+- **Anuncios:** texto A frente a texto B sobre el mismo vídeo, con 9:16 y 4:5 por ubicación.
 
 **Reglas de decisión:**
-- Apagar si el gasto supera 1,5 × CPA (≈ 17 €) sin ninguna compra.
+- Apagar si el gasto supera unos 17 € sin ninguna compra.
 - Escalar un 20 % cada 2 días si el CPA es menor de 11 € y el ROAS mayor de 2,2.
 
-**Antes de lanzar (bloqueante):** pagos activados (Shopify Payments), **píxel de Meta y API de conversiones** conectados desde el canal Facebook e Instagram, y la tienda **sin contraseña**.
+**Bloqueante antes de lanzar:** pagos activados, **píxel de Meta y API de conversiones** conectados, y la tienda sin contraseña.
 
-### Siguiente variación (0 créditos, solo cuando haya datos)
+### Siguientes variaciones (0 créditos, solo con datos)
 
-- **Hook 2:** «Tu mesilla, pero con Saturno dentro», con el mismo material.
-- **Hook 3:** «¿Cuál elegirías? 🪐🌙🌌☀️», pensado para comentarios.
+- **Hook 2 (necesidad de regalo):** «¿Otro regalo que acaba en un cajón?» → lámpara → «este sí se queda en la mesilla».
+- **Hook 3 (comentarios):** «¿Cuál pondrías tú? 🪐🌙🌌☀️».
 
 ### Registro de costes del ciclo 2
 
