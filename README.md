@@ -4,7 +4,7 @@ Tienda online de decoración que se enciende (Shopify). Aquí están la marca y 
 
 | Carpeta o archivo | Qué hay |
 |---|---|
-| `marca/` | **Logos** (`marca/logo/`: SVG y PNG en versiones luna, noche, blanco y negro; icono y avatar), fuentes (Unbounded y DM Sans) y hoja de marca |
+| `marca/` | **Kit de logos** en `marca/logo/`, con su guía de uso en `marca/logo/README.md`: horizontal, icono, favicon y redes, en SVG y PNG. También las fuentes (Unbounded y DM Sans) y la hoja de marca |
 | `fotos/` | Fotos de producto, escenas, banners de la web y los scripts que las generan (`fotos/scripts/`) |
 | `anuncios/meta/` | Creatividades estáticas para Meta Ads (4:5 y 9:16), escenas base, textos y plan de test |
 | `contenido/` | Sistema de contenido (hooks, ángulos, guiones), prototipos de vídeo y material reutilizable |
