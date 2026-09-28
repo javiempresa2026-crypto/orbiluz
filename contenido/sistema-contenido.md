@@ -339,3 +339,73 @@ Añadir antes del cierre:
 1. **Tú:** escucha el prototipo, sobre todo el acento de la voz, y súbelo como borrador a TikTok e Instagram para ver las métricas orgánicas (retención a 3 s y reproducción media).
 2. **Tú, cuando llegue la muestra:** graba 3 planos con el móvil (mano pasando por debajo, colocar el globo, tocar el botón). Con eso monto la versión de 18 s y C2/C3 **sin generar nada nuevo**.
 3. **Solo si C1 retiene bien:** 1 variación (el hook #2, «No hay truco», con el mismo material) y, después, el test en Meta según el apartado 13.
+
+---
+
+## 17. Ciclo 2: lámpara bola para Meta Ads («Dentro de esta bola hay un planeta»)
+
+**Objetivo:** conversión. Producto de impulso a 24,90 €, con la oferta de 2 × 39,90 € para subir el ticket.
+- ROAS de equilibrio ≈ 2,2.
+- CPA máximo ≈ 11 € para una lámpara y ≈ 14 € para el pack.
+
+**Estructura:** hook visual → detalle → elección (4 modelos) → **tamaño real (5 cm)** → oferta → CTA.
+- El tamaño va a propósito antes de la oferta: es la objeción que más devoluciones causaría.
+
+### Planos
+
+| Shot | Duración | Contenido | Fuente | Coste |
+|---|---|---|---|---|
+| 1 | 0-3 s | La lámpara Saturno en una mesilla de noche, con acercamiento. Texto: «Dentro de esta bola **hay un planeta**» | Kling 3.0 desde foto real. El clip se generó alejándose y se **invirtió** en montaje | 7,5 cr. |
+| 2 | 3-5 s | Punch-in al grabado. Texto: «Grabado láser en 3D» | Mismo clip, recortado | 0 |
+| 3 | 5-8,6 s | «Elige tu planeta»: Saturno, Luna, Galaxia y Sistema solar | lampara-4-modelos.jpg | 0 |
+| 4 | 8,6-11,6 s | «Mini: 5 cm · funciona por USB (cargador no incluido)» | lampara-medidas.jpg | 0 |
+| 5 | 11,6-15 s | «Llévate 2 · **2 × 39,90 €** · combina modelos · envío gratis» | Tarjeta con recortes reales | 0 |
+| 6 | 15-16,8 s | Cierre: logo, «Lámpara bola de cristal», «Desde 24,90 €» | Foto real | 0 |
+
+**Archivos:** `lampara-meta-9x16-sin-voz.mp4` (Reels e Historias) y `lampara-meta-4x5-sin-voz.mp4` (feed).
+
+### Voz
+
+La voz «Elena» (seed_audio) se descartó: **suena extranjera**. El catálogo de Higgsfield no tiene ninguna voz con acento de España, así que no se gastan más créditos probando voces a ciegas. Opciones, por orden:
+1. **Grabarla tú con el móvil** (0 créditos, 100 % natural). Guion de 15 s:
+   > «Dentro de esta bola de cristal… hay un planeta. Grabado con láser, en 3D. Elige: Saturno, la Luna, una galaxia o el sistema solar. Es mini, de cinco centímetros, y va por USB. Y si te llevas dos, 39,90. Está en Orbiluz.»
+2. **Clonar tu voz** con Higgsfield (`create_voice`) a partir de 1 minuto de grabación tuya. Después se generan todas las locuciones con tu voz y tu acento sin volver a grabar.
+3. **Sin voz** (la versión actual), con un sonido de la biblioteca de Meta o TikTok añadido al publicar.
+
+### Textos para Meta Ads
+
+| Campo | Texto |
+|---|---|
+| **Texto principal A (oferta)** | «Una bola de cristal con un planeta grabado dentro que se ilumina con luz cálida. Elige Saturno, la Luna, una galaxia o el sistema solar. Llévate 2 por 39,90 € y combina modelos. Envío gratis con seguimiento.» |
+| **Texto principal B (regalo)** | «¿Buscas un detalle que no sea otra taza? Lámpara bola de cristal con un planeta grabado por láser. Mini (5 cm), por USB, preciosa en una mesilla. 2 por 39,90 €.» |
+| **Titular** | «Un planeta en tu mesilla» / «2 lámparas por 39,90 €» |
+| **Descripción** | «Envío gratis · 14 días para devolver» |
+| **CTA** | Comprar |
+| **Destino** | /products/lampara-bola-cristal-3d |
+
+### Configuración del test
+
+- **Campaña:** Ventas (compra).
+- **Estructura:** 1 conjunto de anuncios Advantage+ con España, 18-50 años, sin intereses y ubicaciones Advantage+.
+- **Presupuesto:** 10-15 €/día, durante 4-5 días sin tocarlo.
+- **Anuncios:** texto A frente a texto B sobre el mismo vídeo (2 anuncios). El vídeo en 9:16 y 4:5 va dentro del mismo anuncio, con la personalización por ubicación.
+
+**Reglas de decisión:**
+- Apagar si el gasto supera 1,5 × CPA (≈ 17 €) sin ninguna compra.
+- Escalar un 20 % cada 2 días si el CPA es menor de 11 € y el ROAS mayor de 2,2.
+
+**Antes de lanzar (bloqueante):** pagos activados (Shopify Payments), **píxel de Meta y API de conversiones** conectados desde el canal Facebook e Instagram, y la tienda **sin contraseña**.
+
+### Siguiente variación (0 créditos, solo cuando haya datos)
+
+- **Hook 2:** «Tu mesilla, pero con Saturno dentro», con el mismo material.
+- **Hook 3:** «¿Cuál elegirías? 🪐🌙🌌☀️», pensado para comentarios.
+
+### Registro de costes del ciclo 2
+
+| Generación | Modelo | Coste | Resultado |
+|---|---|---|---|
+| Lámpara en la mesilla, 5 s, 9:16 | kling3_0 std | 7,5 cr. | ✅ Producto fiel. Se generó alejándose y se invirtió en montaje |
+| Voz Elena | seed_audio | ~1,5 cr. | ❌ Suena extranjera. Descartada |
+
+**Total acumulado:** unos 17 créditos de 278.
