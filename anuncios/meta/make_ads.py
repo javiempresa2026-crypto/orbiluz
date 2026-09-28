@@ -1,7 +1,9 @@
+import os
+ROOT=os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),'..','..'))+'/'
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 import numpy as np
-F='/home/user/jaranga/orbiluz/marca/fuentes/'
-LOGO=Image.open('/home/user/jaranga/orbiluz/marca/logo/orbiluz-logo-noche-transparente.png').convert('RGBA')
+F=ROOT+'marca/fuentes/'
+LOGO=Image.open(ROOT+'marca/logo/orbiluz-logo-noche-transparente.png').convert('RGBA')
 AMB=(255,181,71); LUNA=(255,246,233); NOCHE=(18,18,58)
 def font(n,s): return ImageFont.truetype(F+n,s)
 def fit(img,W,H):

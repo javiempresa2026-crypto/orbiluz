@@ -1,7 +1,9 @@
+import os
+ROOT=os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),'..','..'))+'/'
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageChops
 import numpy as np, random
-F='/home/user/jaranga/orbiluz/marca/fuentes/'
-OUT='/home/user/jaranga/orbiluz/fotos/'
+F=ROOT+'marca/fuentes/'
+OUT=ROOT+'fotos/'
 NOCHE=(18,18,58); AMBAR=(255,181,71); NEB=(124,108,246); LUNA=(255,246,233); CORAL=(255,122,89); NIEBLA=(167,169,201)
 S=2000
 def font(n,s): return ImageFont.truetype(F+n,s)
@@ -78,7 +80,7 @@ def save(bg,name,q=88):
 
 def logo_small(bg,x,y,w):
     try:
-        lg=Image.open('/home/user/jaranga/orbiluz/marca/logo/orbiluz-logo-luna.png').convert('RGBA')
+        lg=Image.open(ROOT+'marca/logo/orbiluz-logo-luna.png').convert('RGBA')
         r=w/lg.width; lg=lg.resize((int(lg.width*r),int(lg.height*r)),Image.LANCZOS); bg.alpha_composite(lg,(x,y))
     except Exception as e: print(e)
 

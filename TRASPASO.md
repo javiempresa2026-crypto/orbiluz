@@ -111,7 +111,7 @@
 - Estudio de mercado con datos.
 - Buscar en DSers productos de **decoración del hogar llamativos y originales**: tipo lámpara de Saturno, relojes con alguna novedad, o relacionados del sector.
 - Público: **18-50 años, hombres y mujeres**.
-- Crear **otra tienda Shopify aparte** con **2-3 productos**, todo listo:
+- Crear la tienda Shopify **Orbiluz** con **2-3 productos**, todo listo:
   - bases legales, política de privacidad, etc.;
   - **nombre en español, corto, con .com libre**;
   - logotipo, paleta y tipografía;
@@ -183,12 +183,11 @@
 3. Fotos de producto propias (3-5 por producto + banner principal).
 4. Políticas: privacidad, devoluciones (14 días), envíos, términos, aviso legal y cookies.
    - Titular: particular (aún no es autónomo) · Granada, España · sin NIF.
-   - Correo: el usuario tiene que dar uno. jarandanainfo@gmail.com es de la otra tienda.
-   - Reutilizar como base `shopify/legal/politicas.json` del repo jarangana.
+   - Correo de la tienda: orbiluzsupport@gmail.com.
 5. Descuento HOLA10, envío gratis desde 39 €, colecciones, menú, portada con hero, reseñas ocultas hasta tener reales, y ficha técnica.
 6. Enviar al usuario los enlaces de proveedor para mapear en DSers.
 
-## Reglas que el usuario ya pidió en la otra tienda (aplican aquí)
+## Normas de la marca
 - No inventar datos, ni reseñas falsas, ni personas generadas por IA presentadas como clientes.
 - Nunca guardar tokens en el repositorio.
 - Todo en español de España, pensado para móvil y atractivo.

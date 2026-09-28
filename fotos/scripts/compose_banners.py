@@ -1,3 +1,5 @@
+import os
+ROOT=os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),'..','..'))+'/'
 from lib import *
 exec(open('compose_rooms.py').read().split('WARM=')[0].split('from lib import *')[1])
 WARM=(255,190,110); TEAL=(90,220,235); GOLD=(255,196,90); WHITE=(235,240,255)
@@ -48,4 +50,4 @@ m=Image.new('L',(BW,BH),0); dm=ImageDraw.Draw(m); dm.ellipse((1600,320,1960,680)
 rr=ring.copy(); a=np.array(rr); a[:,:,3]=np.where(np.array(m)>0,0,a[:,:,3]); bg.alpha_composite(Image.fromarray(a))
 out['banner-legal']=bg
 for k,v in out.items():
-    v.convert('RGB').save('/home/user/jaranga/orbiluz/fotos/'+k+'.jpg',quality=86,optimize=True,progressive=True); print(k)
+    v.convert('RGB').save(ROOT+'fotos/'+k+'.jpg',quality=86,optimize=True,progressive=True); print(k)
