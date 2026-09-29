@@ -14,13 +14,31 @@ Objetivo: posicionar Orbiluz como la forma de cambiar el ambiente de una habitac
 
 ## Pie de publicación
 
-> La luz del techo es para buscar las llaves, no para vivir tu habitación. 🌙
+### Opción A · Confesión (recomendada)
+> Llevo años decorando mi cuarto para que se vea bien… de día. 🙃
 >
-> Si tu cuarto está bonito de día y «raro» de noche, no es la decoración: es la luz.
+> Cojines, láminas, la manta perfecta. Y llegaba la noche, encendía la luz del techo y todo se iba al garete.
 >
-> ¿Cuál pondrías en tu mesilla: luna, Saturno o galaxia? Te leo 👇
+> No era la decoración. Era la luz.
 >
-> #decoracionhabitacion #habitacionaesthetic #ideasdecoracion #hogaracogedor #lamparadenoche #cozyhome #decoracionnordica #roominspo
+> Ahora la de arriba solo se enciende para buscar las llaves. El resto de la noche manda un planeta en la mesilla. 🪐
+>
+> Desliza hasta el final 👉 y dime: ¿luna, Saturno o galaxia?
+
+### Opción B · Directa
+> Tu habitación no está fea. Está mal iluminada. 💡❌
+>
+> La luz del techo es para ver. Una luz baja y cálida es para quedarse.
+>
+> Guárdalo para la próxima vez que pienses «me falta algo en el cuarto». Spoiler: no te falta nada, te sobra luz. 🌙
+
+### Opción C · Reto
+> Reto para esta noche: apaga la luz del techo a las 22:00 y no la vuelvas a encender. 🌙
+>
+> Si tu habitación se queda a oscuras, ya sabes lo que le falta. Si se queda bonita… cuéntame tu truco 👇
+
+Hashtags (al final o en el primer comentario):
+#decoracionhabitacion #habitacionaesthetic #ideasdecoracion #hogaracogedor #lamparadenoche #cozyhome #roominspo #decoracionnordica
 
 Primer comentario (fijado): «¿Equipo luz del techo o equipo lámpara? 👀»
 
