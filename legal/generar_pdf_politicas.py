@@ -19,12 +19,7 @@ COOKIES = """<h2>Política de cookies</h2><p>Esta web usa cookies propias y de t
 orden = [("pl", "Aviso legal"), ("pt", "Condiciones generales de venta"), ("pr", "Política de devoluciones y desistimiento"),
          ("ps", "Política de envíos"), ("pp", "Política de privacidad"), ("ck", "Política de cookies"), ("pc", "Información de contacto")]
 bloques["ck"] = COOKIES
-# Datos que exige la LSSI y aún faltan: se marcan en amarillo para completarlos
-FALTA = '<mark>[pendiente: {}]</mark>'
 def completar(h):
-    h = h.replace("<strong>Titular:</strong> Orbiluz", "<strong>Titular:</strong> " + FALTA.format("nombre y apellidos o razón social") + " (marca comercial Orbiluz)<br><strong>NIF:</strong> " + FALTA.format("NIF"))
-    h = h.replace("<strong>Domicilio:</strong> Granada, España", "<strong>Domicilio:</strong> " + FALTA.format("dirección completa") + ", Granada, España")
-    h = h.replace("<strong>Dirección:</strong> Granada, España", "<strong>Dirección:</strong> " + FALTA.format("dirección completa") + ", Granada, España")
     return re.sub(r'href="/', 'href="https://orbiluz.myshopify.com/', h)
 
 hoy = datetime.date.today().strftime("%d/%m/%Y")
@@ -47,8 +42,7 @@ h3{{font-size:12pt;margin:6mm 0 2mm;color:#2A2370}}
 a{{color:#2A2370}} li{{margin:1mm 0}} mark{{background:#FFE9A8;padding:0 2px}}
 </style></head><body>
 <div class="cover"><img src="{LOGO}"><h1>Textos legales</h1>
-<p>Tienda online Orbiluz · orbiluz.myshopify.com</p><p>Versión del {hoy}</p><ol>{indice}</ol>
-<div class="nota"><b>Antes de publicar:</b> completa lo marcado en amarillo (titular, NIF y dirección completa). Lo exige el artículo 10 de la LSSI.</div></div>
+<p>Tienda online Orbiluz · orbiluz.myshopify.com</p><p>Versión del {hoy}</p><ol>{indice}</ol></div>
 {cuerpo}</body></html>"""
 tmp = f"{ROOT}/legal/.tmp.html"; open(tmp, "w", encoding="utf-8").write(html)
 with sync_playwright() as p:
