@@ -1,7 +1,7 @@
 """Vídeo viral problema → solución (Reels / Shorts / TikTok), ~18 s, sin voz ni precios.
 1) Cuarto con luz de techo (el problema) · 2) se enciende la lámpara (la solución)
 3) una mano la coge y la enciende · 4) cierre con la marca.
-Versión con locución (voz Ainsley, Higgsfield seed_audio).
+Versión con locución (voz Marisol, Higgsfield seed_audio).
 Uso: python3 contenido/virales/montar_problema_solucion_voz.py"""
 import os, subprocess, tempfile
 from PIL import Image, ImageDraw, ImageFont
@@ -9,14 +9,14 @@ from montar_virales import ROOT, CLIPS, OUT, FF, W, H, texto_png, marca_png, FON
 
 ESCENA = f"{ROOT}/anuncios/meta/escenas/escena-3.jpg"   # cuarto con luz de techo
 SALIDA = f"{OUT}/v7-problema-luz-del-techo-voz.mp4"
-VOZ = f"{CLIPS}/voz-v7-ainsley.wav"
+VOZ = f"{CLIPS}/voz-v7-marisol2-editada.wav"
 
 # (texto, inicio, fin) sobre el vídeo final
-TEXTOS = [  # subtítulos sincronizados con la locución
-    ("¿Tu cuarto de noche parece la sala de espera del médico?", 0.0, 3.5),
-    ("No es la decoración… es la luz del techo.", 3.7, 6.6),
-    ("Apágala. Y enciende esto.", 6.7, 9.6),
-    ("Un solo punto de luz cálida y tu cuarto cambia por completo", 9.7, 14.4),
+TEXTOS = [  # subtítulos sincronizados con la locución (tiempos medidos con Whisper)
+    ("¿Tu cuarto de noche parece la sala de espera del médico?", 0.0, 3.3),
+    ("No es la decoración. Es la luz del techo.", 3.4, 6.6),
+    ("Apágala. Y enciende esto.", 6.7, 9.8),
+    ("Un solo punto de luz cálida y tu cuarto cambia por completo", 9.9, 14.3),
 ]
 
 def cierre_png(path):
@@ -36,7 +36,7 @@ def main():
         for i, (t, a, b) in enumerate(TEXTOS):
             p = f"{tmp}/t{i}.png"; texto_png(t, p); pngs.append((p, a, b))
         cierre = f"{tmp}/cierre.png"; cierre_png(cierre)
-        total = 18.0
+        total = 17.5
         ins = ["-i", ESCENA,
                "-i", f"{CLIPS}/viral-lampara-se-enciende-9x16.mp4",
                "-i", f"{CLIPS}/viral-mano-coge-y-enciende-9x16.mp4",
@@ -47,14 +47,13 @@ def main():
         ins += ["-i", VOZ]; ia = len(pngs) + 6
         ch = [
             # problema: foto con zoom lento y tono frío
-            f"[0:v]scale=-2:2400,crop=1350:2400,zoompan=z='1+0.0009*on':d=195:s={W}x{H}:fps=30,eq=saturation=0.8,{norm}[s0]",
+            f"[0:v]scale=-2:2400,crop=1350:2400,zoompan=z='1+0.0009*on':d=204:s={W}x{H}:fps=30,eq=saturation=0.8,{norm}[s0]",
             f"[1:v]trim=0:5,setpts=PTS-STARTPTS,{norm}[s1]",
-            f"[2:v]trim=0.8:4.3,setpts=PTS-STARTPTS,{norm}[s2]",
-            f"[3:v]trim=0:3.5,setpts=PTS-STARTPTS,{norm}[s3]",
-            "[s0][s1][s2][s3]concat=n=4:v=1[base]",
-            "[base][4:v]overlay=0:0:enable='lt(t,14.5)'[b0]",
-            "[5:v]format=rgba,fade=in:st=14.5:d=0.4:alpha=1[cz]",
-            "[b0][cz]overlay=0:0:enable='gte(t,14.5)'[b1]",
+                        f"[3:v]trim=0:5,setpts=PTS-STARTPTS,{norm},tpad=stop_mode=clone:stop_duration=1[s3]",
+            "[s0][s1][s3]concat=n=3:v=1[base]",
+            "[base][4:v]overlay=0:0:enable='lt(t,14.4)'[b0]",
+            "[5:v]format=rgba,fade=in:st=14.4:d=0.4:alpha=1[cz]",
+            "[b0][cz]overlay=0:0:enable='gte(t,14.4)'[b1]",
         ]
         last = "b1"
         for i, (_, a, b) in enumerate(pngs):

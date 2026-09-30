@@ -74,3 +74,15 @@ V5 y V6 reutilizan clips que ya estaban generados.
 **Descripción:** La luz del techo es para buscar las llaves, no para vivir tu habitación 🌙 ¿Equipo techo o equipo lámpara? #decoracionhabitacion #habitacionaesthetic #lamparadenoche #hogaracogedor #roominspo #fyp
 
 **Sonido:** una canción tranquila en tendencia que cambie de ritmo hacia el segundo 5, cuando se enciende la lámpara.
+
+### V7 con voz
+
+`v7-problema-luz-del-techo-voz.mp4` (17,5 s) se monta con `python3 contenido/virales/montar_problema_solucion_voz.py`. La voz es **Marisol** (Higgsfield seed_audio, voz de mujer: 213 Hz de tono medio). La marca va escrita «Orbilúz» en el guion para que la lea en español. Se ha quitado una pausa de 2,2 s.
+
+Comparativa de voces (reconocimiento con Whisper y tono medio):
+
+| Voz | Español detectado | Tono | Problema |
+|---|---|---|---|
+| Marisol | 86 % | 213 Hz (mujer) | Ninguno con «Orbilúz» |
+| Inés | 93-97 % | 86-118 Hz (hombre, aunque el catálogo dice mujer) | Se saltó una frase en la primera toma |
+| Ainsley | 90 % | 235 Hz (mujer) | Lee «Orbiluz» en inglés y dice «apágalo» |
