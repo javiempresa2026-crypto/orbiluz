@@ -58,3 +58,19 @@ Generación de esta tanda en Higgsfield:
 | **Total** | **40** |
 
 V5 y V6 reutilizan clips que ya estaban generados.
+
+## V7 · Problema → solución (18 s)
+
+`v7-problema-luz-del-techo.mp4` se monta con `python3 contenido/virales/montar_problema_solucion.py`. Reutiliza material ya generado, así que no gasta créditos.
+
+| Segundos | Imagen | Texto |
+|---|---|---|
+| 0-2,8 | Cuarto frío con luz de techo | «Si tu cuarto de noche parece una sala de espera…» |
+| 2,8-5 | Mismo cuarto | «…no es la decoración. Es la luz del techo.» |
+| 5-10 | Se apaga y se enciende la lámpara | «Apágala. Y enciende esto.» |
+| 10-15 | Una mano la coge y la enciende | «Un solo punto de luz y tu cuarto cambia por completo» |
+| 15-18 | Cierre | orbiluz · Decoración que se enciende |
+
+**Descripción:** La luz del techo es para buscar las llaves, no para vivir tu habitación 🌙 ¿Equipo techo o equipo lámpara? #decoracionhabitacion #habitacionaesthetic #lamparadenoche #hogaracogedor #roominspo #fyp
+
+**Sonido:** una canción tranquila en tendencia que cambie de ritmo hacia el segundo 5, cuando se enciende la lámpara.
