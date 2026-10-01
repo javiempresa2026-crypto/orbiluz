@@ -20,7 +20,7 @@ orden = [("pl", "Aviso legal"), ("pt", "Condiciones generales de venta"), ("pr",
          ("ps", "Política de envíos"), ("pp", "Política de privacidad"), ("ck", "Política de cookies"), ("pc", "Información de contacto")]
 bloques["ck"] = COOKIES
 def completar(h):
-    return re.sub(r'href="/', 'href="https://orbiluz.myshopify.com/', h)
+    return re.sub(r'href="/', 'href="https://orbiluz.com/', h)
 
 hoy = datetime.date.today().strftime("%d/%m/%Y")
 indice = "".join(f'<li><a href="#{k}">{t}</a></li>' for k, t in orden)
@@ -42,7 +42,7 @@ h3{{font-size:12pt;margin:6mm 0 2mm;color:#2A2370}}
 a{{color:#2A2370}} li{{margin:1mm 0}} mark{{background:#FFE9A8;padding:0 2px}}
 </style></head><body>
 <div class="cover"><img src="{LOGO}"><h1>Textos legales</h1>
-<p>Tienda online Orbiluz · orbiluz.myshopify.com</p><p>Versión del {hoy}</p><ol>{indice}</ol></div>
+<p>Tienda online Orbiluz · orbiluz.com</p><p>Versión del {hoy}</p><ol>{indice}</ol></div>
 {cuerpo}</body></html>"""
 tmp = f"{ROOT}/legal/.tmp.html"; open(tmp, "w", encoding="utf-8").write(html)
 with sync_playwright() as p:

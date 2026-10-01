@@ -29,7 +29,7 @@ He recorrido orbiluz.myshopify.com como cliente, en móvil: portada, colecciones
 | 5 | Aviso legal completo: nombre y apellidos (o razón social), NIF y dirección completa | Pásamelos y lo actualizo | Lo exige el art. 10 de la LSSI. Ahora solo pone «Orbiluz, Granada» |
 | 6 | Banner de cookies activado para España/UE | Configuración › Privacidad del cliente › Banner de cookies | No lo puedo comprobar desde aquí: no tengo permiso y el servidor no está en la UE |
 | 7 | Pedido de prueba real | Compra una lámpara con HOLA10 y luego reembolsa | La pantalla de pago bloquea las pruebas automáticas, así que conviene comprobarla con un pago de verdad |
-| 8 | Dominio propio | Ver abajo | Quitar «myshopify» |
+| 8 | ~~Dominio propio~~ ✅ orbiluz.com conectado (01/10/2026) | — | Hecho |
 
 ## Mejoras recomendadas
 - **Reloj:** la ficha dice «8-17 días laborables», pero el proveedor tarda ahora 5-9 días (AliExpress Selection Premium). Pon «6-12 días laborables» como en las lámparas: prometer menos días vende más.
