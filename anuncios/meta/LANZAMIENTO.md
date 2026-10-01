@@ -25,7 +25,7 @@
 | 4 | **Catálogo:** sincronizar los 4 productos | App › Catálogo | ✅ los 4 productos publicados en el canal |
 | 5 | **Dominio verificado** | Business Manager › Seguridad de la marca › Dominios | ✅ (etiqueta publicada en el tema 1.9) |
 | 6 | **Probar eventos:** abre orbiluz.com, mira una ficha, añade al carrito y ve al pago. Deben aparecer `ViewContent`, `AddToCart` e `InitiateCheckout` | Administrador de eventos › Probar eventos | ☐ |
-| 7 | **Método de pago** en la cuenta publicitaria y **límite de gasto** (por ejemplo, 300 €) | Configuración de pagos de la cuenta publicitaria | ☐ |
+| 7 | **Método de pago** en la cuenta publicitaria y **límite de gasto** | Configuración de pagos de la cuenta publicitaria | ✅ límite de 100 € |
 
 ## C. Primera campaña: «PRUEBA · Lámpara · Ventas»
 
@@ -33,7 +33,7 @@
 |---|---|
 | Objetivo | Ventas |
 | Evento | Compra (píxel de Orbiluz) |
-| Presupuesto | 25 €/día, de la campaña (CBO) |
+| Presupuesto | **20 €/día** de la campaña (CBO), durante 5 días (prueba de 100 €) |
 | Público | España, 18-55 años, todos los sexos, sin intereses (amplio) |
 | Ubicaciones | Advantage+ (automáticas) |
 | Destino | `https://orbiluz.com/products/lampara-bola-cristal-3d` |
@@ -58,3 +58,26 @@
 Los textos del resto de anuncios están en el apartado 7 de `GUIA-CAMPANAS-META.md`.
 
 **Regla:** no se lanza la campaña hasta que el paso B6 funcione. Después, **72 horas sin tocar nada**. Luego se aplican las reglas de decisión de la guía (apartado 5).
+
+
+## D. Prueba con 100 € (plan ajustado)
+
+Con 100 € no se busca todavía rentabilidad. La prueba sirve para averiguar **qué anuncio para el scroll y lleva gente a la ficha**.
+
+- **Presupuesto:** 20 €/día durante 5 días. Lleva **3 anuncios**, no 4, para que cada uno reciba gasto suficiente:
+  - V7 «Luz del techo» con voz;
+  - A2 «Apaga la luz»;
+  - A1 «Regalo».
+- **Punto de equilibrio de la lámpara:** CPA de unos 11 €. Si salen 5 o más compras con los 100 €, ya hay un ganador claro.
+
+| Cuándo | Qué mirar | Qué hacer |
+|---|---|---|
+| Días 1-2 (unos 40 €) | Nada | No tocar |
+| Día 3 (unos 60 €) | Por anuncio: **CTR del enlace**, **CPC** y si hay añadidos al carrito | Pausar el anuncio con CTR < 0,8 % **y** CPC > 1 € sin ningún añadido al carrito |
+| Día 5 (100 €) | Compras, CPA y anuncio con más añadidos al carrito | El mejor se queda; se hacen 2-3 variantes de ese concepto (otro gancho, otra voz o música) para la siguiente ronda |
+
+**Señales buenas:**
+- CTR del enlace > 1,5 %
+- CPC < 0,60 €
+- Coste por añadido al carrito < 4 €
+- Alguna compra
