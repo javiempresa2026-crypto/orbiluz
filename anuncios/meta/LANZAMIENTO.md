@@ -19,10 +19,10 @@
 
 | # | Paso | Dónde | Estado |
 |---|---|---|---|
-| 1 | Instalar el canal **Facebook & Instagram** (de Meta) | Shopify › Aplicaciones › Shopify App Store | ☐ (todavía no está instalado) |
-| 2 | Conectar: Business Manager, página de Facebook, Instagram y cuenta publicitaria | Dentro de la app | ☐ |
-| 3 | **Píxel:** crear o elegir uno. **Uso compartido de datos: «Máximo»** (activa la API de conversiones) | App › Configuración › Uso compartido de datos | ☐ |
-| 4 | **Catálogo:** sincronizar los 4 productos | App › Catálogo | ☐ |
+| 1 | Instalar el canal **Facebook & Instagram** (de Meta) | Shopify › Aplicaciones › Shopify App Store | ✅ instalado (01/10/2026) |
+| 2 | Conectar: Business Manager, página de Facebook, Instagram y cuenta publicitaria | Dentro de la app | ✅ |
+| 3 | **Píxel:** crear o elegir uno. **Uso compartido de datos: «Máximo»** (activa la API de conversiones) | App › Configuración › Uso compartido de datos | ✅ píxel 1077745358373666 cargando en la web · falta confirmar «Máximo» |
+| 4 | **Catálogo:** sincronizar los 4 productos | App › Catálogo | ✅ los 4 productos publicados en el canal |
 | 5 | **Dominio verificado** | Business Manager › Seguridad de la marca › Dominios | ✅ (etiqueta publicada en el tema 1.9) |
 | 6 | **Probar eventos:** abre orbiluz.com, mira una ficha, añade al carrito y ve al pago. Deben aparecer `ViewContent`, `AddToCart` e `InitiateCheckout` | Administrador de eventos › Probar eventos | ☐ |
 | 7 | **Método de pago** en la cuenta publicitaria y **límite de gasto** (por ejemplo, 300 €) | Configuración de pagos de la cuenta publicitaria | ☐ |
