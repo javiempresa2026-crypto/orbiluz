@@ -181,10 +181,11 @@ def al_compas(dur_planos, tempo, drop_idx=1):
 
 
 def montar(nombre, segmentos, salida_dir, voz=None, textos=(), correcciones=None, desfase_voz=0.0,
-           transiciones=("corte",), musica="lofi", drop=None, tempo=None, compas=None, vol_musica=None):
+           transiciones=("corte",), musica="lofi", drop=None, tempo=None, compas=None, vol_musica=None, silencio=None):
     """transiciones: lista que se repite entre plano y plano (ver TRANSICIONES).
     musica: estilo de musica.py o None. drop: segundo en que entra el ritmo (por defecto, el primer corte).
-    compas: True para que los cortes caigan al ritmo (por defecto en los vídeos sin voz)."""
+    compas: True para que los cortes caigan al ritmo (por defecto en los vídeos sin voz).
+    silencio: (inicio, fin) en que la música se corta en seco, para un momento dramático."""
     import numpy as np, musica as mus
     tempo = tempo or (mus.bpm(musica) if musica else 120)
     compas = (voz is None and musica is not None) if compas is None else compas
@@ -224,7 +225,8 @@ def montar(nombre, segmentos, salida_dir, voz=None, textos=(), correcciones=None
         if musica:
             mw = f"{tmp}/musica.wav"; mus.crear(musica, total + 0.5, drop, mw, tempo=tempo)
             ins += ["-i", mw]; vm = vol_musica or (0.30 if voz else 0.85)
-            fc.append(f"[{k}:a]aresample=48000,aformat=channel_layouts=stereo,volume={vm}[mus]"); k += 1
+            corte = f",volume='if(between(t,{silencio[0]},{silencio[1]}),0.03,1)':eval=frame" if silencio else ""
+            fc.append(f"[{k}:a]aresample=48000,aformat=channel_layouts=stereo,volume={vm}{corte}[mus]"); k += 1
         if voz:
             ins += ["-i", voz]; ms = int(desfase_voz * 1000)
             fc.append(f"[{k}:a]aresample=48000,aformat=channel_layouts=stereo,adelay={ms}|{ms},asplit=2[voz][vsc]"); k += 1
