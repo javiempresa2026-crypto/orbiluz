@@ -1,11 +1,13 @@
 # TikTok orgánico · Orbiluz
 
 10 vídeos verticales (1080×1920, 30 fps, de 10 a 18 s): 2 de cada producto y 2 con los 4 juntos.
-Sin precios. La voz en off es la **narradora de la marca** (no se hace pasar por una clienta) y no se inventan reseñas ni datos.
+Sin precios. Las voces en off (Ainsley, Marisol e Inés) son **narradoras de la marca** (no se hacen pasar por clientas) y no se inventan reseñas ni datos.
 
 Montaje: `python3 tiktok/videos.py` (o `python3 tiktok/videos.py t1-lampara-apaga-el-techo` para uno solo).
 - `motor.py`: el motor de edición (cortes, zoom, flash, subtítulos, sonidos, barra de progreso).
 - `videos.py`: el guion de cada vídeo (planos, voz y textos).
+- `musica.py`: la música original (sintetizada aquí, sin derechos de terceros).
+- `preparar_voz.py`: acorta las pausas de las voces en off y las acelera un poco.
 - `material/`: los clips y las voces de esta tanda.
 - `videos/`: los mp4 listos para subir.
 
@@ -14,33 +16,36 @@ Montaje: `python3 tiktok/videos.py` (o `python3 tiktok/videos.py t1-lampara-apag
 | Técnica | Para qué sirve |
 |---|---|
 | Gancho en texto grande en el primer segundo | Para el dedo antes de que pase al siguiente vídeo |
-| Corte cada 1,5-3 s con zoom de entrada y un destello blanco | Mantiene el ritmo y no deja que el ojo se aburra |
-| «Whoosh» en cada corte y un «pop» al final | El cambio de plano también se oye |
-| Subtítulos de 3 palabras con la palabra que suena en ámbar | Funcionan sin sonido (la mayoría ve TikTok en silencio) y se leen al ritmo de la voz |
-| Barra de progreso ámbar arriba | Hace que se vea hasta el final |
-| Pregunta o «comenta el número» al final | Genera comentarios, que es lo que más alcance da |
-| Final que enlaza con el principio | El vídeo se repite solo y cuenta como volver a verlo |
+| Transiciones distintas en cada vídeo (desenfoque, deslizar, píxeles, círculo, aplastar, fundido a negro, destello…) | Que no parezcan todos de plantilla |
+| Movimientos de cámara variados en las fotos (acercar, alejar, barrer a izquierda o derecha, subir) | Ninguna foto se queda quieta |
+| Música propia con «drop»: intro suave, subida y entrada del ritmo justo cuando aparece el producto | El cambio de música marca el momento clave |
+| En los vídeos sin voz, los cortes caen al ritmo de la música | Es lo que hace que un montaje «enganche» |
+| La música baja sola cuando habla la voz | La voz se entiende siempre |
+| Efectos de sonido muy bajos, y solo en algunas transiciones | Acompañan sin molestar |
+| Subtítulos de 3 palabras con la palabra que suena en ámbar | Funcionan sin sonido y se leen al ritmo de la voz |
+| Barra de progreso ámbar arriba y pregunta al final | Hace que se vea hasta el final y genera comentarios |
 
 ## Los 10 vídeos
 
-| Vídeo | Producto | Voz | Gancho | Duración |
-|---|---|---|---|---|
-| `t1-lampara-apaga-el-techo` | Lámpara | Sí | HAZ ESTO ESTA NOCHE | 16 s |
-| `t2-lampara-cual-eliges` | Lámpara | No | ELIGE TU PLANETA (1-4, comenta tu número) | 11 s |
-| `t3-globo-explicame-esto` | Globo | Sí | ¿CÓMO FLOTA ESTO? | 18 s |
-| `t4-globo-escritorio` | Globo | No | Lo que todo el mundo pregunta al entrar a mi despacho | 13 s |
-| `t5-proyector-fondo-del-mar` | Proyector | Sí | TU CUARTO, BAJO EL MAR | 12 s |
-| `t6-proyector-colores` | Proyector | No | POV: pones esto antes de dormir | 15 s |
-| `t7-reloj-las-tres-de-la-manana` | Reloj | Sí | ¿TE PASA ESTO A LAS 3:00? | 16 s |
-| `t8-reloj-setup` | Reloj | No | El detalle que cambia una estantería | 10 s |
-| `t9-cuatro-cosas-que-cambian-tu-cuarto` | Los 4 | Sí | 4 COSAS QUE CAMBIAN TU CUARTO | 16 s |
-| `t10-cual-te-llevas` | Los 4 | No | Solo puedes quedarte con UNO (1-4) | 10 s |
+| Vídeo | Producto | Voz | Música | Transiciones | Duración |
+|---|---|---|---|---|---|
+| `t1-lampara-apaga-el-techo` | Lámpara | Ainsley | Lofi (entra al encenderse la lámpara) | Desenfoque, destello, fundido, barrido, cortes, círculo | 15 s |
+| `t2-lampara-cual-eliges` | Lámpara | — | House | Destello, deslizar, zoom | 11 s |
+| `t3-globo-explicame-esto` | Globo | Marisol | Ambiental | Radial, desenfoque, círculo, fundido | 18 s |
+| `t4-globo-escritorio` | Globo | — | Lofi | Corte, barrido, cortina, negro | 13 s |
+| `t5-proyector-fondo-del-mar` | Proyector | Ainsley | Ambiental (entra con «y de repente») | Corte, círculo, desenfoque, radial | 11 s |
+| `t6-proyector-colores` | Proyector | — | Trap | Destello, píxeles, corte, aplastar, subir | 15 s |
+| `t7-reloj-las-tres-de-la-manana` | Reloj | Inés (voz grave) | Trap (entra con «o pones esto») | Desenfoque, negro, destello, corte, deslizar, zoom | 12 s |
+| `t8-reloj-setup` | Reloj | — | House | Corte, aplastar, cortina | 10 s |
+| `t9-cuatro-cosas-que-cambian-tu-cuarto` | Los 4 | Ainsley | House (cada producto entra con su número) | Destello, deslizar, subir, barrido | 15 s |
+| `t10-cual-te-llevas` | Los 4 | — | Trap a 133 bpm (cada producto dura 4 tiempos) | Destello y cortes secos | 10 s |
 
 ## Sonido
 
-- **Vídeos con voz (t1, t3, t5, t7, t9):** añade en TikTok un sonido en tendencia tranquilo y **bájalo al 10-15 %** para que la voz se oiga bien.
-- **Vídeos sin voz (t2, t4, t6, t8, t10):** ya llevan los «whoosh». Ponles un sonido en tendencia al volumen normal. En t2 y t10 va mejor uno con golpes marcados, para que cada número caiga en un golpe.
-- La música no va dentro del archivo: la de la biblioteca de TikTok es la que ayuda al alcance y no da problemas de derechos.
+- La música está compuesta en `musica.py` (lofi, house, trap y ambiental) y es nuestra, así que no hay problemas de derechos ni de silenciado.
+- **Para el alcance**, añade además un sonido en tendencia desde TikTok **al 5-10 %**, casi sin que se oiga: TikTok también tiene en cuenta el sonido elegido para recomendar vídeos.
+- Si conectas tu cuenta de TikTok a Higgsfield, puedo sacar la lista de canciones en tendencia con licencia comercial y publicar directamente con ellas.
+- Las voces de Ainsley tenían pausas de hasta 1,3 s: `preparar_voz.py` las acorta a 0,25 s y acelera un 8-10 %, al ritmo de TikTok.
 
 ## Descripción, hashtags y comentario fijado
 
@@ -78,5 +83,9 @@ Pon tú el primer comentario y fíjalo. El enlace va en la bio.
 
 ## Coste
 
-Créditos de Higgsfield gastados en esta tanda: **24,5** (2 escenas del proyector, 2 clips de Kling 3.0 y 5 voces de Marisol). Saldo después: 168,9.
-El resto del material se reutiliza de `contenido/material/` y `fotos/`.
+Créditos de Higgsfield gastados: **29,1** en total, con un saldo final de 164,3.
+
+- Primera tanda (24,5): 2 escenas del proyector, 2 clips de Kling 3.0 y 5 voces de Marisol.
+- Segunda tanda (4,6): 3 voces nuevas de Ainsley y 1 de Inés.
+
+La música, las transiciones y los efectos no gastan créditos. El resto del material se reutiliza de `contenido/material/` y `fotos/`.
