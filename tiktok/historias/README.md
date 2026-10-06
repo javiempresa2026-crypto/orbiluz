@@ -10,6 +10,7 @@ Montaje: `python3 tiktok/historias/historias.py` (usa el mismo motor que `tiktok
 | `h1-lo-que-te-quita-el-sueno` | Problema → análisis → solución | Inés (grave, tono de explicación) | Lofi; el ritmo entra al apagar la luz | 24 s |
 | `h2-el-regalo-que-se-graba` | Historia con giro | Marisol | House; la música se corta en «Silencio» y vuelve cuando todos sacan el móvil | 18 s |
 | `h3-mismo-cuarto-otra-vida` | Transformación antes/después | Ainsley | Trap; el ritmo entra cuando aparece la primera luz | 20 s |
+| `h4-se-encienden-uno-a-uno` | Animación de producto | — | Ambiental; el ritmo entra al apagarse el techo | 10 s |
 
 ## 1 · Lo que te quita el sueño (y no es el móvil)
 
@@ -38,6 +39,15 @@ Montaje: `python3 tiktok/historias/historias.py` (usa el mismo motor que `tiktok
 - **Descripción:** De sala de espera a esto, con 4 cosas ✨ #roommakeover #antesydespues #decoracionhabitacion #habitacionaesthetic #fyp
 - **Comentario fijado:** «¿Cuál pondrías tú primero? 1 lámpara, 2 reloj, 3 olas, 4 globo»
 
+## 4 · Apaga el techo y mira (animación)
+
+**Por qué engancha:** es corto (10 s), muy visual y se repite solo. En un mismo plano, sin cortes, los 4 productos se encienden uno a uno: lámpara, reloj, olas que se extienden por el techo y el globo que se levanta con destellos dorados.
+
+Se ha hecho con un clip de Kling 3.0 que va de la foto «solo la lámpara» a la foto final (`animacion.py`). Kling deformaba los minutos del reloj (salía «97»), así que en `d1-se-encienden-corregido.mp4` se pegan encima, fotograma a fotograma, los minutos reales de la foto final.
+
+- **Descripción:** Apaga el techo y deja que se enciendan solos ✨ #roommakeover #habitacionaesthetic #luzambiente #decoracion #fyp
+- **Comentario fijado:** «¿Cuál encenderías primero? 1, 2, 3 o 4»
+
 ## Cómo publicarlos
 
 - Uno cada dos días, entre las 20:00 y las 22:30. Empieza por el 3 (el más visual), luego el 1 y deja el 2 para noviembre (regalos de Navidad).
@@ -52,7 +62,7 @@ Montaje: `python3 tiktok/historias/historias.py` (usa el mismo motor que `tiktok
 
 ## Coste
 
-**75,9 créditos** de Higgsfield. Saldo después: 88,4.
+**83,4 créditos** de Higgsfield: 75,9 de los tres primeros vídeos y 7,5 de la animación. Saldo después: 80,9.
 
 | Concepto | Créditos |
 |---|---|
