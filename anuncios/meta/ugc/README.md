@@ -1,6 +1,15 @@
 # Campaña de Meta · 3 anuncios con personas y formato viral
 
 Son vídeos con aspecto de contenido normal: sin logo ni barra mientras se ven, y la marca solo en la tarjeta final. Cada uno tiene versión **9:16** (Reels e Historias) y **4:5** (`-4x5`, feed).
+
+**Acabado nativo** (`tiktok/textos_ugc.py`):
+- **Tipografía:** TikTok Sans (licencia OFL, en `marca/fuentes/ugc`).
+- **Gancho:** cajas blancas redondeadas, como el texto de la app.
+- **Notas:** caja amarilla.
+- **Subtítulos:** palabras blancas con borde negro; la palabra que suena va sobre un recuadro amarillo que «salta».
+- **Imagen:** grano de móvil, un ligero movimiento de cámara en mano y cortes secos, sin transiciones de edición.
+
+**Medidas:** todos los textos están entre y = 300 e y = 1250 del 9:16. Así no los tapa la interfaz de Reels e Historias (unos 270 px arriba y 670 px abajo) y entran enteros en el recorte 4:5 (y = 220 a 1570).
 Montaje: `python3 anuncios/meta/ugc/anuncios_ugc.py`.
 
 **Las personas que aparecen son actores generados con IA.** Usan el producto, pero no hablan a cámara, no opinan y no se presentan como clientes. Nunca se debe poner un texto del tipo «lo compré y me encanta» sobre ellos: sería un testimonio falso. Si un día hay reseñas reales, se usan esas.

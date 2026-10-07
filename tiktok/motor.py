@@ -223,11 +223,13 @@ def al_compas(dur_planos, tempo, drop_idx=1):
 
 def montar(nombre, segmentos, salida_dir, voz=None, textos=(), correcciones=None, desfase_voz=0.0,
            transiciones=("corte",), musica="lofi", drop=None, tempo=None, compas=None, vol_musica=None, silencio=None,
-           estilo_texto="marca", logo=True, barra=True, formato_4x5=False):
+           estilo_texto="marca", logo=True, barra=True, formato_4x5=False, real=False):
     """transiciones: lista que se repite entre plano y plano (ver TRANSICIONES).
     musica: estilo de musica.py o None. drop: segundo en que entra el ritmo (por defecto, el primer corte).
     compas: True para que los cortes caigan al ritmo (por defecto en los vídeos sin voz).
-    silencio: (inicio, fin) en que la música se corta en seco, para un momento dramático."""
+    silencio: (inicio, fin) en que la música se corta en seco, para un momento dramático.
+    estilo_texto: «marca», «ig» o «ugc» (textos nativos de TikTok dibujados con textos_ugc.py).
+    real: grano de cámara de móvil y un ligero movimiento de cámara en mano."""
     import numpy as np, musica as mus
     tempo = tempo or (mus.bpm(musica) if musica else 120)
     compas = (voz is None and musica is not None) if compas is None else compas
@@ -245,7 +247,8 @@ def montar(nombre, segmentos, salida_dir, voz=None, textos=(), correcciones=None
             segmento(s, p, ds[i], cola, punch=(i > 0 and tipos[i - 1] == "corte"), mov=MOVIMIENTOS[i % len(MOVIMIENTOS)])
             partes.append(p)
         palabras = palabras_whisper(voz) if voz else []
-        ass = f"{tmp}/s.ass"; crear_ass(ass, palabras, textos, total, desfase_voz, correcciones, estilo_texto)
+        ass = f"{tmp}/s.ass"
+        if estilo_texto != "ugc": crear_ass(ass, palabras, textos, total, desfase_voz, correcciones, estilo_texto)
         sfx(tmp)
         from PIL import Image
         lg = Image.open(LOGO).convert("RGBA"); lg = lg.resize((200, round(200 * lg.height / lg.width)))
@@ -254,6 +257,10 @@ def montar(nombre, segmentos, salida_dir, voz=None, textos=(), correcciones=None
         for p in partes: ins += ["-i", p]
         n = len(partes)
         ins += ["-loop", "1", "-framerate", str(FPS), "-t", f"{total:.3f}", "-i", f"{tmp}/logo.png"]
+        ugc = estilo_texto == "ugc"
+        if ugc:
+            import textos_ugc
+            ins += ["-i", textos_ugc.crear(f"{tmp}/textos.mov", total, palabras, textos, correcciones, desfase_voz)]
         # vídeo: cadena de transiciones + logo + barra de progreso + subtítulos
         fc, ult = [], "0:v"
         for i, tp in enumerate(tipos):
@@ -261,9 +268,14 @@ def montar(nombre, segmentos, salida_dir, voz=None, textos=(), correcciones=None
             fc.append(f"[{ult}][{i+1}:v]xfade=transition={efecto}:duration={td}:offset={cortes[i+1]:.3f}[x{i+1}]"); ult = f"x{i+1}"
         fc.append(f"[{ult}][{n}:v]overlay=(W-w)/2:150[v1]" if logo else f"[{ult}]null[v1]")
         fc.append(f"[v1]drawbox=x=0:y=0:w='iw*t/{total:.3f}':h=12:color=0xFFB547@0.95:t=fill[v2]" if barra else "[v1]null[v2]")
-        fc.append(f"[v2]ass={ass}:fontsdir={FONTS}[v]")
+        if real:  # cámara en mano (desplazamiento suave de pocos píxeles) y grano de móvil
+            fc.append("[v2]scale=1112:1978,crop=1080:1920:x='16+8*sin(t*1.9)+4*sin(t*4.3)':y='29+10*sin(t*1.4)+5*sin(t*3.7)',"
+                      "noise=alls=7:allf=t+u,eq=contrast=1.03:saturation=0.96[v3]")
+        else:
+            fc.append("[v2]null[v3]")
+        fc.append(f"[v3][{n+1}:v]overlay=0:0:format=auto,format=yuv420p[v]" if ugc else f"[v3]ass={ass}:fontsdir={FONTS}[v]")
         # audio: voz + música (que baja sola cuando habla la voz) + efectos suaves
-        k = n + 1; mezcla = []
+        k = n + (2 if ugc else 1); mezcla = []
         if musica:
             mw = f"{tmp}/musica.wav"; mus.crear(musica, total + 0.5, drop, mw, tempo=tempo)
             ins += ["-i", mw]; vm = vol_musica or (0.30 if voz else 0.85)

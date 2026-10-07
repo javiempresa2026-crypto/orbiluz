@@ -1,5 +1,6 @@
-"""3 anuncios para Meta con formato de vídeo nativo (sin logo ni barra durante el vídeo; la marca va en la tarjeta final).
-U1 · POV unboxing de la lámpara (sin voz, texto estilo Instagram).
+"""3 anuncios para Meta con formato de vídeo nativo: textos de TikTok (textos_ugc.py), grano de móvil, cámara en mano,
+cortes secos y sin logo ni barra durante el vídeo (la marca va en la tarjeta final).
+U1 · POV unboxing de la lámpara (sin voz).
 U2 · «Haz esto esta noche»: una chica pasa de la luz del techo a las olas del proyector (voz de Marisol).
 U3 · «Es imposible no tocarlo»: el globo que levita (voz de Inés).
 Las personas que aparecen son actores generados con IA: usan el producto, pero no opinan ni se presentan como clientes.
@@ -19,11 +20,11 @@ def anuncios(tmp):
     fin_lampara = tarjeta_final(f"{tmp}/fin-lampara.jpg", frase="Elige el suyo", fondo=f"{F}/lampara-saturno-noche.jpg")
     fin_proyector = tarjeta_final(f"{tmp}/fin-proyector.jpg", frase="Tu cuarto, bajo el mar", fondo=f"{F}/proyector-ondas-noche.jpg")
     fin_globo = tarjeta_final(f"{tmp}/fin-globo.jpg", frase="El mundo, flotando en tu escritorio", fondo=f"{F}/globo-levita-noche.jpg")
-    nativo = dict(logo=False, barra=False)
+    nativo = dict(logo=False, barra=False, estilo_texto="ugc", real=True)
     return {
         # U1 · POV UNBOXING · gancho de regalo · sin voz
-        "U1-pov-amigo-invisible": dict(**nativo, voz=None, musica="house", drop=5.0, compas=False, estilo_texto="ig",
-            transiciones=["corte", "corte", "deslizar", "negro"], segmentos=[
+        "U1-pov-amigo-invisible": dict(**nativo, voz=None, musica="house", drop=5.0, compas=False,
+            transiciones=["corte", "corte", "corte", "negro"], segmentos=[
                 dict(src=f"{U}/u1-unboxing.mp4", t0=0, t1=5.0),
                 dict(src=f"{M}/viral-mano-coge-y-enciende-9x16.mp4", t0=2.2, t1=4.3),
                 dict(src=f"{F}/lampara-4-modelos.jpg", dur=1.8, mov="in", ajustar=True),
@@ -39,7 +40,7 @@ def anuncios(tmp):
 
         # U2 · «HAZ ESTO ESTA NOCHE» · problema → solución con persona en escena
         "U2-haz-esto-esta-noche": dict(**nativo, voz=f"{U}/voz-u2-desconectar.wav", musica="sueño", drop=6.7,
-            transiciones=["corte", "corte", "desenfoque", "corte", "negro"], segmentos=[
+            transiciones=["corte", "corte", "corte", "corte", "negro"], segmentos=[
                 dict(src=f"{U}/u2-chica-luz-techo.png", dur=2.7, mov="in"),
                 dict(src=f"{U}/u2-transicion.mp4", t0=0, t1=5.0),
                 dict(src=f"{U}/u2-olas.mp4", t0=0, t1=1.9),
@@ -47,7 +48,7 @@ def anuncios(tmp):
                 dict(src=f"{U}/u2-olas.mp4", t0=2.0, t1=3.4),
                 dict(src=fin_proyector, dur=2.0, mov="in"),
             ],
-            textos=[("HAZ ESTO ESTA NOCHE SI NO CONSIGUES DESCONECTAR", 0, 2.6, "gancho")],
+            textos=[("Haz esto esta noche si no consigues desconectar", 0, 2.6, "gancho")],
             correcciones={}),
 
         # U3 · «ES IMPOSIBLE NO TOCARLO» · curiosidad con el globo
@@ -58,7 +59,7 @@ def anuncios(tmp):
                 dict(src=f"{M}/globo-flotando-escritorio-9x16.mp4", t0=1.0, t1=3.8),
                 dict(src=fin_globo, dur=2.0, mov="in"),
             ],
-            textos=[("ES IMPOSIBLE NO TOCARLO", 0, 1.8, "gancho"),
+            textos=[("Es imposible no tocarlo", 0, 1.8, "gancho"),
                     ("Sin hilos ni soportes", 5.0, 7.5, "nota"),
                     ("Globo de 14 cm · mapa en inglés", 7.5, 10.3, "nota")],
             correcciones={"habitación": "levitación", "tu": "¿Tú"}),
