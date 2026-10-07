@@ -10,7 +10,7 @@ Montaje: `python3 tiktok/historias/historias.py` (usa el mismo motor que `tiktok
 | `h1-lo-que-te-quita-el-sueno` | Problema → análisis → solución | Inés (grave, tono de explicación) | Lofi; el ritmo entra al apagar la luz | 24 s |
 | `h2-el-regalo-que-se-graba` | Historia con giro | Marisol | House; la música se corta en «Silencio» y vuelve cuando todos sacan el móvil | 18 s |
 | `h3-mismo-cuarto-otra-vida` | Transformación antes/después | Ainsley | Trap; el ritmo entra cuando aparece la primera luz | 20 s |
-| `h4-se-encienden-uno-a-uno` | Animación de producto | — | Ambiental; el ritmo entra al apagarse el techo | 10 s |
+| `h4-se-encienden-uno-a-uno-v2` | Animación de producto | — | Ambiental; el ritmo entra al apagarse el techo | 10 s |
 
 ## 1 · Lo que te quita el sueño (y no es el móvil)
 
