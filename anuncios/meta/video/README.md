@@ -61,7 +61,7 @@ Cada anuncio tiene dos versiones: **9:16** (Reels e Historias) y **4:5** (`-4x5`
 
 **Por qué:**
 - Llega en el momento de compra: en noviembre y diciembre mucha gente busca regalos de 20-50 €.
-- La lámpara es el producto más barato para ti y el que antes llega: 5-9 días.
+- La lámpara es el producto más barato para ti y de los que antes llegan: 6-12 días laborables, según la ficha.
 - Tiene 4 modelos, así que hay uno para cada persona.
 - El anuncio parte de un problema real y muy compartido: «¿qué le regalo?».
 - No se dice el precio, pero quien ve el anuncio entiende que entra en el presupuesto.
@@ -70,7 +70,8 @@ Cada anuncio tiene dos versiones: **9:16** (Reels e Historias) y **4:5** (`-4x5`
 - **Titular:** «El regalo que no acaba en un cajón»
 - **Descripción:** «Envío con seguimiento · 14 días para devolver»
 - **Botón:** Comprar
-- **Cuándo:** se puede probar ya, y conviene darle más presupuesto entre el 10 de noviembre y el 10 de diciembre. A partir del 12-14 de diciembre ya no hay garantía de que llegue antes de Navidad.
+- **Cuándo:** se puede probar ya, y conviene darle más presupuesto en noviembre. Con 6-12 días laborables de envío y los festivos del 6 y el 8 de diciembre, para Navidad hay que **parar el ángulo de regalo hacia el 1 de diciembre** o avisar en la ficha de que puede no llegar a tiempo.
+- **Oferta:** la ficha ya tiene «2 por 39,90 €» y el envío es gratis desde 39 €. Encaja con el amigo invisible (uno para regalar y otro para ti). Va en la ficha, no en el anuncio, que se queda sin precios.
 
 ## 3. Cómo testearlos
 
@@ -92,7 +93,7 @@ Cada anuncio tiene dos versiones: **9:16** (Reels e Historias) y **4:5** (`-4x5`
 | Día 3 | Por anuncio: porcentaje que ve los 3 primeros segundos, CTR del enlace y CPC | Pausar el que tenga **menos de un 25 % viendo los 3 primeros segundos** y **CTR menor del 0,8 %** |
 | Día 5 | Añadidos al carrito, compras y CPA | El que tenga **CPA por debajo de su máximo** (lámpara ≈ 11 €) se escala un 20 % cada 2-3 días. Del ganador se hacen 2-3 variantes (otro gancho, otra voz) |
 
-**Para ganar más por cada venta:** un pack (por ejemplo, «2 lámparas» o «lámpara + proyector») sube el valor de cada pedido sin pagar más publicidad. Es lo que más mejora el beneficio en este nicho de productos baratos. Lo preparo si quieres. Los anuncios seguirían sin precio.
+**Para ganar más por cada venta:** la lámpara ya tiene el pack «2 por 39,90 €», con el que el pedido llega al envío gratis. Un segundo pack «lámpara + proyector» subiría también el valor de cada pedido. Lo preparo si quieres. Los anuncios seguirían sin precio.
 
 ## 4. Cosas a tener en cuenta
 
