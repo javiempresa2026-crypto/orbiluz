@@ -195,6 +195,8 @@ def tarjeta_final(path, frase="Decoración que se enciende", web="orbiluz.com", 
     im.paste(lg, ((W - lg.width) // 2, 760), lg)
     d = ImageDraw.Draw(im)
     f1 = ImageFont.truetype(f"{FONTS}/DMSans-Bold.ttf", 60); f2 = ImageFont.truetype(f"{FONTS}/Unbounded-Bold.ttf", 54)
+    while ImageDraw.Draw(im).textlength(frase, font=f1) > W - 140:  # la frase no puede salirse por los lados
+        f1 = ImageFont.truetype(f"{FONTS}/DMSans-Bold.ttf", f1.size - 2)
     d.text((W / 2, 760 + lg.height + 60), frase, font=f1, fill="#FFF6E9", anchor="ma")
     w = d.textlength(web, font=f2) + 110; y = 760 + lg.height + 190
     d.rounded_rectangle(((W - w) / 2, y, (W + w) / 2, y + 112), radius=56, fill="#FFB547")
@@ -228,7 +230,7 @@ def montar(nombre, segmentos, salida_dir, voz=None, textos=(), correcciones=None
     musica: estilo de musica.py o None. drop: segundo en que entra el ritmo (por defecto, el primer corte).
     compas: True para que los cortes caigan al ritmo (por defecto en los vídeos sin voz).
     silencio: (inicio, fin) en que la música se corta en seco, para un momento dramático.
-    estilo_texto: «marca», «ig» o «ugc» (textos nativos de TikTok dibujados con textos_ugc.py).
+    estilo_texto: «marca», «ig», «ugc» (textos nativos de TikTok) o «cine» (títulos de tráiler), los dos últimos con textos_ugc.py.
     real: grano de cámara de móvil y un ligero movimiento de cámara en mano."""
     import numpy as np, musica as mus
     tempo = tempo or (mus.bpm(musica) if musica else 120)
@@ -248,7 +250,7 @@ def montar(nombre, segmentos, salida_dir, voz=None, textos=(), correcciones=None
             partes.append(p)
         palabras = palabras_whisper(voz) if voz else []
         ass = f"{tmp}/s.ass"
-        if estilo_texto != "ugc": crear_ass(ass, palabras, textos, total, desfase_voz, correcciones, estilo_texto)
+        if estilo_texto not in ("ugc", "cine"): crear_ass(ass, palabras, textos, total, desfase_voz, correcciones, estilo_texto)
         sfx(tmp)
         from PIL import Image
         lg = Image.open(LOGO).convert("RGBA"); lg = lg.resize((200, round(200 * lg.height / lg.width)))
@@ -257,10 +259,11 @@ def montar(nombre, segmentos, salida_dir, voz=None, textos=(), correcciones=None
         for p in partes: ins += ["-i", p]
         n = len(partes)
         ins += ["-loop", "1", "-framerate", str(FPS), "-t", f"{total:.3f}", "-i", f"{tmp}/logo.png"]
-        ugc = estilo_texto == "ugc"
+        ugc = estilo_texto in ("ugc", "cine")
         if ugc:
             import textos_ugc
-            ins += ["-i", textos_ugc.crear(f"{tmp}/textos.mov", total, palabras, textos, correcciones, desfase_voz)]
+            ins += ["-i", textos_ugc.crear(f"{tmp}/textos.mov", total, palabras, textos, correcciones, desfase_voz,
+                                           modo="cine" if estilo_texto == "cine" else "ugc")]
         # vídeo: cadena de transiciones + logo + barra de progreso + subtítulos
         fc, ult = [], "0:v"
         for i, tp in enumerate(tipos):

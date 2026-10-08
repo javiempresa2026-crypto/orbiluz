@@ -48,6 +48,30 @@ def caja_texto(im, texto, y, estilo):
         d.text((W / 2, yy + (alto - 2 * py) / 2), l, font=f, fill=(0, 0, 0, 255), anchor="mm")
 
 
+def titulo_cine(im, texto, estilo):
+    """Estilo «cine»: título grande en blanco, centrado, sin caja y con sombra suave (tipo tráiler).
+    gancho: grande, en el centro de la zona segura. nota: más pequeño, en el tercio inferior seguro."""
+    from PIL import ImageFilter
+    f = fuente(96 if estilo == "gancho" else 52, 850 if estilo == "gancho" else 750)
+    capa = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(capa)
+    lineas = _lineas(d, texto, f, ANCHO_MAX)
+    alto = 112 if estilo == "gancho" else 62
+    # gancho en el tercio superior (por encima del producto); nota en el tercio inferior, ambos en zona segura
+    y0 = (560 if estilo == "gancho" else 1170) - len(lineas) * alto / 2
+    if estilo != "gancho":  # las notas llevan un fondo oscuro translúcido para leerse sobre zonas con luz
+        for i, l in enumerate(lineas):
+            w = d.textlength(l, font=f)
+            d.rounded_rectangle(((W - w) / 2 - 26, y0 + i * alto - 12, (W + w) / 2 + 26, y0 + i * alto + alto - 4),
+                                radius=22, fill=(8, 8, 26, 150))
+    sombra = Image.new("RGBA", (W, H), (0, 0, 0, 0)); ds = ImageDraw.Draw(sombra)
+    for i, l in enumerate(lineas):
+        ds.text((W / 2, y0 + i * alto), l, font=f, fill=(0, 0, 0, 200), anchor="ma")
+    capa.alpha_composite(sombra.filter(ImageFilter.GaussianBlur(14)))
+    for i, l in enumerate(lineas):
+        d.text((W / 2, y0 + i * alto), l, font=f, fill=(255, 246, 233, 255), anchor="ma")
+    im.alpha_composite(capa)
+
+
 def subtitulo(im, palabras, actual, escala):
     """palabras: lista de str del grupo. actual: índice de la que suena. escala: «salto» de la palabra actual."""
     d = ImageDraw.Draw(im)
@@ -88,7 +112,7 @@ def grupos_de(palabras, correcciones, desfase):
     return out
 
 
-def crear(salida, total, palabras, textos, correcciones=None, desfase=0.0):
+def crear(salida, total, palabras, textos, correcciones=None, desfase=0.0, modo="ugc"):
     """Genera un .mov con transparencia (códec png) de `total` segundos con todos los textos."""
     correcciones = correcciones or {}
     grupos = grupos_de(palabras, correcciones, desfase)
@@ -116,7 +140,9 @@ def crear(salida, total, palabras, textos, correcciones=None, desfase=0.0):
         clave = (tuple(clave), sub)
         if clave not in estados:
             im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-            for txt, e in clave[0]: caja_texto(im, txt, Y_GANCHO, "gancho" if e == "gancho" else "nota")
+            for txt, e in clave[0]:
+                if modo == "cine": titulo_cine(im, txt, "gancho" if e == "gancho" else "nota")
+                else: caja_texto(im, txt, Y_GANCHO, "gancho" if e == "gancho" else "nota")
             if sub: subtitulo(im, list(sub[0]), sub[1], sub[2])
             ruta = f"{tmp}/e{len(estados)}.png"; im.save(ruta); estados[clave] = ruta
         lista.append((estados[clave], t1 - t0))
