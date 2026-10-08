@@ -26,7 +26,7 @@ VIDEOS = {
         dict(src=f"{F}/lampara-luna-noche.jpg", dur=0.9, mov="out"),
         dict(src=f"{F}/lampara-galaxia-noche.jpg", dur=1.0, mov="in"),
         dict(src=f"{M}/viral-mano-coge-y-enciende-9x16.mp4", t0=1.4, t1=4.0),
-    ], textos=[("HAZ ESTO ESTA NOCHE", 0, 2.4, "gancho")]),
+    ], textos=[("Haz esto esta noche", 0, 2.4, "gancho")]),
 
     # Sin voz · house · cortes al compás
     "t2-lampara-cual-eliges": dict(voz=None, musica="house",
@@ -37,7 +37,7 @@ VIDEOS = {
         dict(src=f"{F}/lampara-galaxia-noche.jpg", dur=1.6),
         dict(src=f"{F}/lampara-sistema-solar-noche.jpg", dur=1.6),
         dict(src=f"{F}/lampara-4-modelos.jpg", dur=2.4, mov="out", ajustar=True),
-    ], textos=[("ELIGE TU PLANETA", 0, 2.1, "gancho"),
+    ], textos=[("Elige tu planeta", 0, 2.1, "gancho"),
                ("1 · Saturno", 2.2, 3.8, "nota"), ("2 · La Luna", 3.8, 5.4, "nota"),
                ("3 · Galaxia", 5.4, 7.0, "nota"), ("4 · Sistema solar", 7.0, 8.6, "nota"),
                ("Comenta tu número", 8.6, 11, "nota")]),
@@ -52,7 +52,7 @@ VIDEOS = {
         dict(src=f"{M}/viral-globo-despacho-9x16.mp4", t0=2.0, t1=5.0, velocidad=0.8),
         dict(src=f"{F}/globo-levita-escritorio.jpg", dur=2.2, mov="out"),
         dict(src=f"{M}/globo-flotando-escritorio-9x16.mp4", t0=2.0, t1=5.0),
-    ], textos=[("¿CÓMO FLOTA ESTO?", 0, 2.6, "gancho")]),
+    ], textos=[("¿Cómo flota esto?", 0, 2.6, "gancho")]),
 
     # Sin voz · lofi · cortes al compás
     "t4-globo-escritorio": dict(voz=None, musica="lofi",
@@ -75,7 +75,7 @@ VIDEOS = {
         dict(src=f"{T}/proyector-cuarto-9x16.mp4", t0=0, t1=3.8),
         dict(src=f"{T}/proyector-cerca-9x16.mp4", t0=1.5, t1=4.0),
         dict(src=f"{T}/proyector-cuarto-9x16.mp4", t0=2.7, t1=5.0),
-    ], textos=[("TU CUARTO, BAJO EL MAR", 0, 2.0, "gancho")]),
+    ], textos=[("Tu cuarto, bajo el mar", 0, 2.0, "gancho")]),
 
     # Sin voz · trap · cortes al compás
     "t6-proyector-colores": dict(voz=None, musica="trap",
@@ -101,7 +101,7 @@ VIDEOS = {
         dict(src=f"{F}/reloj-3d-perfil.jpg", dur=1.1, mov="der", ajustar=True),
         dict(src=f"{F}/reloj-3d-estante.jpg", dur=1.2, mov="sube", ajustar=True),
         dict(src=f"{F}/reloj-3d-noche.jpg", dur=1.4, mov="out", ajustar=True),
-    ], textos=[("¿TE PASA ESTO A LAS 3:00?", 0, 3.0, "gancho")]),
+    ], textos=[("¿Te pasa esto a las 3:00?", 0, 3.0, "gancho")]),
 
     # Sin voz · house · cortes al compás
     "t8-reloj-setup": dict(voz=None, musica="house",
@@ -126,7 +126,7 @@ VIDEOS = {
         dict(src=f"{T}/proyector-cuarto-9x16.mp4", t0=0, t1=2.9),
         dict(src=f"{M}/viral-globo-despacho-9x16.mp4", t0=0, t1=2.4),
         dict(src=f"{M}/globo-flotando-escritorio-9x16.mp4", t0=1.0, t1=3.0),
-    ], textos=[("4 COSAS QUE CAMBIAN TU CUARTO", 0, 2.4, "gancho")]),
+    ], textos=[("4 cosas que cambian tu cuarto", 0, 2.4, "gancho")]),
 
     # Sin voz · trap a 133 bpm: cada producto dura exactamente 4 tiempos
     "t10-cual-te-llevas": dict(voz=None, musica="trap", tempo=133.33,
@@ -146,4 +146,5 @@ if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     for n in (sys.argv[1:] or VIDEOS):
         v = dict(VIDEOS[n]); segs = v.pop("segmentos")
-        montar(n, segs, OUT, correcciones=ORB, **v)
+        # estilo nativo de TikTok: textos de textos_ugc.py, grano de móvil y cámara en mano, sin logo ni barra
+        montar(n, segs, OUT, correcciones=ORB, estilo_texto="ugc", logo=False, barra=False, real=True, **v)

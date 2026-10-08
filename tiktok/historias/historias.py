@@ -24,7 +24,7 @@ VIDEOS = {
         dict(src=f"{M}/viral-mano-coge-y-enciende-9x16.mp4", t0=1.4, t1=4.3),
         dict(src=f"{H}/a3-cuarto-calido.mp4", t0=0, t1=4.4),
         dict(src=f"{M}/lampara-saturno-mesilla-9x16.mp4", t0=0, t1=1.9),
-    ], textos=[("LO QUE TE QUITA EL SUEÑO (Y NO ES EL MÓVIL)", 0, 2.8, "gancho"),
+    ], textos=[("Lo que te quita el sueño (y no es el móvil)", 0, 2.8, "gancho"),
                ("Fuerte", 5.2, 5.8, "nota"), ("Fría", 5.8, 6.3, "nota"), ("Desde arriba", 6.3, 7.9, "nota"),
                ("Para tu cuerpo, sigue siendo de día", 8.0, 11.0, "nota"),
                ("Desde las 22:00", 12.4, 14.4, "nota"),
@@ -42,7 +42,7 @@ VIDEOS = {
         dict(src=f"{H}/b3-moviles-graban.mp4", t0=0, t1=2.4),
         dict(src=f"{H}/b3-moviles-graban.mp4", t0=2.4, t1=5.0),
         dict(src=f"{M}/viral-globo-despacho-9x16.mp4", t0=0, t1=2.5),
-    ], textos=[("EL REGALO QUE DEJÓ A TODOS CALLADOS", 0, 2.6, "gancho")]),
+    ], textos=[("El regalo que dejó a todos callados", 0, 2.6, "gancho")]),
 
     # 3 · TRANSFORMACIÓN · voz Ainsley · el mismo cuarto, un producto en cada paso, con adelanto del final en el segundo 5
     "h3-mismo-cuarto-otra-vida": dict(voz=f"{H}/voz-h3-cuarto-4-cosas.wav", musica="trap", drop=7.6,
@@ -56,7 +56,7 @@ VIDEOS = {
         dict(src=f"{H}/c3-proyector.png", dur=1.2, mov="in"),
         dict(src=f"{H}/c4-globo-final.png", dur=2.9, mov="in"),
         dict(src=f"{H}/c4-globo-final.png", dur=3.6, mov="out"),  # el clip animado deformaba los números del reloj
-    ], textos=[("4 COSAS. MISMO CUARTO.", 0, 2.8, "gancho"), ("Antes", 2.9, 4.9, "nota"),
+    ], textos=[("4 cosas. Mismo cuarto.", 0, 2.8, "gancho"), ("Antes", 2.9, 4.9, "nota"),
                ("Después", 4.9, 5.7, "nota"),
                ("Primero: fuera la luz del techo", 5.7, 7.6, "nota"), ("1/4 · Lámpara cálida", 7.6, 10.1, "nota"),
                ("2/4 · Reloj que se ve desde la cama", 10.1, 11.9, "nota"), ("3/4 · Olas en el techo", 11.9, 13.1, "nota"),
@@ -67,4 +67,5 @@ if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     for n in (sys.argv[1:] or VIDEOS):
         v = dict(VIDEOS[n]); segs = v.pop("segmentos")
-        montar(n, segs, OUT, correcciones=ORB, **v)
+        # estilo nativo de TikTok: textos de textos_ugc.py, grano de móvil y cámara en mano, sin logo ni barra
+        montar(n, segs, OUT, correcciones=ORB, estilo_texto="ugc", logo=False, barra=False, real=True, **v)
