@@ -1,4 +1,6 @@
-"""Textos con aspecto nativo de TikTok / Reels (estilo «ugc»), dibujados con PIL como una capa transparente.
+"""Textos con aspecto nativo de TikTok / Reels, dibujados con PIL como una capa transparente.
+Modos: «ugc» (cajas nativas), «cine» (títulos de tráiler) y «viral» (tipografía cinética: el gancho aparece palabra a palabra,
+en mayúsculas, con borde grueso y la palabra clave *entre asteriscos* sobre un recuadro amarillo inclinado).
 - Gancho: cajas blancas redondeadas por línea con letra negra, como el texto nativo de TikTok.
 - Notas: caja amarilla con letra negra.
 - Subtítulos: palabras blancas con borde negro; la palabra que suena va sobre un recuadro amarillo que «salta».
@@ -72,6 +74,153 @@ def titulo_cine(im, texto, estilo):
     im.alpha_composite(capa)
 
 
+# ---------- estilo «viral»: tipografía cinética ----------
+NEGRO = (0, 0, 0, 255)
+ENTRE_PALABRAS = 0.13  # segundos entre una palabra y la siguiente al aparecer el gancho
+
+
+def _palabras_marcadas(texto):
+    """'Sin hilos. *Sin explicación.*' -> [('SIN', False), ('HILOS.', False), ('SIN', True), ('EXPLICACIÓN.', True)]"""
+    out, marcada = [], False
+    for p in texto.split():
+        if p == "|": out.append(("|", False)); continue  # salto de línea manual
+        empieza, termina = p.startswith("*"), p.endswith("*")
+        if empieza: marcada = True
+        out.append((p.strip("*").upper(), marcada))
+        if termina: marcada = False
+    return out
+
+
+def _escala_pop(dt):
+    return 1.25 if dt < 1 / FPS else (1.1 if dt < 2 / FPS else (1.03 if dt < 3 / FPS else 1.0))
+
+
+def _palabra(im, texto, cx, cy, tam, marcada, escala=1.0, giro=-3):
+    """Dibuja una palabra centrada en (cx, cy): blanca con borde negro grueso, o sobre recuadro amarillo inclinado."""
+    from PIL import ImageFilter
+    f = fuente(round(tam * escala), 900)
+    d = ImageDraw.Draw(im)
+    w = d.textlength(texto, font=f)
+    if marcada:
+        pad, alto = 22 * escala, tam * escala * 1.18
+        ficha = Image.new("RGBA", (int(w + 2 * pad + 8), int(alto + 8)), (0, 0, 0, 0))
+        df = ImageDraw.Draw(ficha)
+        df.rounded_rectangle((4, 4, ficha.width - 4, ficha.height - 4), radius=int(16 * escala), fill=AMARILLO)
+        df.text((ficha.width / 2, ficha.height / 2), texto, font=f, fill=NEGRO, anchor="mm")
+        ficha = ficha.rotate(giro, resample=Image.BICUBIC, expand=True)
+        im.alpha_composite(ficha, (int(cx - ficha.width / 2), int(cy - ficha.height / 2)))
+    else:
+        sombra = Image.new("RGBA", (int(w + 120), int(tam * escala * 1.6)), (0, 0, 0, 0))
+        ImageDraw.Draw(sombra).text((sombra.width / 2, sombra.height / 2 + 8), texto, font=f, fill=(0, 0, 0, 170), anchor="mm",
+                                    stroke_width=12, stroke_fill=(0, 0, 0, 170))
+        sombra = sombra.filter(ImageFilter.GaussianBlur(10))
+        im.alpha_composite(sombra, (int(cx - sombra.width / 2), int(cy - sombra.height / 2)))
+        d.text((cx, cy), texto, font=f, fill=(255, 255, 255, 255), anchor="mm", stroke_width=max(6, round(11 * escala)),
+               stroke_fill=NEGRO)
+
+
+def gancho_viral(im, texto, visibles, escala_ultima, y_centro=560):
+    """Gancho en mayúsculas que aparece palabra a palabra. Se maqueta con todas las palabras para que no salten al aparecer."""
+    d = ImageDraw.Draw(im)
+    pals = _palabras_marcadas(texto)
+    saltos = {i for i, (p, _) in enumerate(pals) if p == "|"}
+    # relleno del recuadro repartido entre las palabras de cada tramo resaltado (no 44 px por palabra)
+    extra, k = [0.0] * len(pals), 0
+    while k < len(pals):
+        if pals[k][1] and k not in saltos:
+            j = k
+            while j + 1 < len(pals) and pals[j + 1][1] and j + 1 not in saltos: j += 1
+            for q in range(k, j + 1): extra[q] = 56 / (j - k + 1)
+            k = j + 1
+        else: k += 1
+    tam = 120
+    while True:
+        f = fuente(tam, 900); esp = d.textlength(" ", font=f) + 10
+        anchos = [0 if p == "|" else d.textlength(p, font=f) + extra[i] for i, (p, m) in enumerate(pals)]
+        # cada línea forzada con «|» tiene que caber entera
+        lineas, acc = [], 0
+        for i, a in enumerate(anchos):
+            if i in saltos: lineas.append(acc); acc = 0
+            else: acc += (esp if acc else 0) + a
+        lineas.append(acc)
+        # ancho real de cada tramo resaltado (palabras seguidas en un mismo recuadro, con relleno y borde)
+        tramos, acc_t = [], 0
+        for (p_, m), a_ in zip(pals, anchos):
+            if m and p_ != "|": acc_t += (esp if acc_t else 0) + a_
+            else:
+                if acc_t: tramos.append(acc_t + 2 * 24 + 40)
+                acc_t = 0
+        if acc_t: tramos.append(acc_t + 2 * 24 + 40)
+        cabe = (max(lineas) <= 960 if saltos else max(anchos) <= 960) and all(t_ <= 1000 for t_ in tramos)
+        if cabe or tam <= 60: break
+        tam -= 4
+    filas, fila, ancho = [], [], 0
+    for i, a in enumerate(anchos):
+        if i in saltos: filas.append(fila); fila, ancho = [], 0; continue
+        if fila and not saltos and ancho + esp + a > 960: filas.append(fila); fila, ancho = [], 0
+        ancho += (esp if fila else 0) + a; fila.append(i)
+    filas.append(fila)
+    filas = [f_ for f_ in filas if f_]
+    alto = tam * 1.3
+    y0 = y_centro - (len(filas) - 1) * alto / 2
+    orden = {i: k for k, i in enumerate(j for j in range(len(pals)) if j not in saltos)}  # posición de cada palabra real
+    for r, fila in enumerate(filas):
+        total = sum(anchos[i] for i in fila) + esp * (len(fila) - 1)
+        x = (W - total) / 2; cy = y0 + r * alto
+        centros = {}
+        for i in fila: centros[i] = x + anchos[i] / 2; x += anchos[i] + esp
+        # tramos: palabras seguidas resaltadas van juntas en un solo recuadro
+        tramos, k = [], 0
+        while k < len(fila):
+            i = fila[k]
+            if pals[i][1]:
+                tramo = [i]
+                while k + 1 < len(fila) and pals[fila[k + 1]][1]: k += 1; tramo.append(fila[k])
+                tramos.append(tramo)
+            else:
+                tramos.append([i])
+            k += 1
+        for tramo in tramos:
+            vis = [i for i in tramo if orden[i] < visibles]
+            if not vis: continue
+            nueva = orden[vis[-1]] == visibles - 1
+            esc = escala_ultima if nueva else 1.0
+            if pals[tramo[0]][1]:
+                centro_tramo = ((centros[tramo[0]] - anchos[tramo[0]] / 2) + (centros[tramo[-1]] + anchos[tramo[-1]] / 2)) / 2
+                _tramo_resaltado(im, [(pals[i][0], centros[i]) for i in vis], cy, tam, esc, centro=centro_tramo)
+            else:
+                _palabra(im, pals[tramo[0]][0], centros[tramo[0]], cy, tam, False, esc)
+
+
+def _tramo_resaltado(im, palabras, cy, tam, escala, centro=None):
+    """Una o varias palabras sobre un único recuadro amarillo con borde negro, inclinado y con «golpe» al aparecer.
+    palabras: [(texto, centro_x)]; se recolocan con espaciado normal alrededor del centro del tramo."""
+    f = fuente(round(tam * escala), 900)
+    d0 = ImageDraw.Draw(im)
+    anchos = [d0.textlength(t, font=f) for t, _ in palabras]
+    esp = d0.textlength(" ", font=f) + 6
+    total = sum(anchos) + esp * (len(palabras) - 1)
+    pad = 24 * escala
+    a = total + 2 * pad; h = tam * 1.2 * escala
+    ficha = Image.new("RGBA", (int(a + 16), int(h + 16)), (0, 0, 0, 0)); df = ImageDraw.Draw(ficha)
+    df.rounded_rectangle((8, 8, ficha.width - 8, ficha.height - 8), radius=int(18 * escala), fill=AMARILLO,
+                         outline=NEGRO, width=max(4, round(6 * escala)))
+    x = 8 + pad
+    for (texto, _), w in zip(palabras, anchos):
+        df.text((x + w / 2, ficha.height / 2), texto, font=f, fill=NEGRO, anchor="mm"); x += w + esp
+    if centro is None: centro = sum(c for _, c in palabras) / len(palabras)
+    ficha = ficha.rotate(-3, resample=Image.BICUBIC, expand=True)
+    im.alpha_composite(ficha, (int(centro - ficha.width / 2), int(cy - ficha.height / 2)))
+
+
+def nota_viral(im, texto, escala, y=1190):
+    """Etiqueta amarilla en mayúsculas, ligeramente inclinada, que entra con un golpe."""
+    d = ImageDraw.Draw(im)
+    tam = 66
+    while d.textlength(texto.upper(), font=fuente(tam, 900)) > 880 and tam > 34: tam -= 2
+    _tramo_resaltado(im, [(texto.upper(), W / 2)], y, tam, escala)
+
+
 def subtitulo(im, palabras, actual, escala):
     """palabras: lista de str del grupo. actual: índice de la que suena. escala: «salto» de la palabra actual."""
     d = ImageDraw.Draw(im)
@@ -117,7 +266,13 @@ def crear(salida, total, palabras, textos, correcciones=None, desfase=0.0, modo=
     correcciones = correcciones or {}
     grupos = grupos_de(palabras, correcciones, desfase)
     cortes = {0.0, total}
-    for t, a, b, e in textos: cortes |= {a, min(b, total)}
+    for t, a, b, e in textos:
+        cortes |= {a, min(b, total)}
+        if modo == "viral":  # momentos en que aparece cada palabra y los 3 fotogramas del «golpe»
+            n = len([w for w in t.split() if w != "|"]) if e == "gancho" else 1
+            for i in range(n):
+                ta = a + i * ENTRE_PALABRAS
+                cortes |= {ta, ta + 1 / FPS, ta + 2 / FPS, ta + 3 / FPS}
     for a, b, g in grupos:
         cortes |= {a, min(b, total)}
         for _, ws, _ in g: cortes |= {ws, ws + 1 / FPS, ws + 2 / FPS}
@@ -129,7 +284,13 @@ def crear(salida, total, palabras, textos, correcciones=None, desfase=0.0, modo=
         t = (t0 + t1) / 2
         clave = []
         for txt, a, b, e in textos:
-            if a <= t < b: clave.append((txt, e))
+            if a <= t < b:
+                if modo == "viral":
+                    n = len([w for w in txt.split() if w != "|"]) if e == "gancho" else 1
+                    visibles = min(n, int((t - a) / ENTRE_PALABRAS) + 1)
+                    clave.append((txt, e, visibles, _escala_pop(t - a - (visibles - 1) * ENTRE_PALABRAS)))
+                else:
+                    clave.append((txt, e))
         sub = None
         for a, b, g in grupos:
             if a <= t < b:
@@ -140,8 +301,11 @@ def crear(salida, total, palabras, textos, correcciones=None, desfase=0.0, modo=
         clave = (tuple(clave), sub)
         if clave not in estados:
             im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-            for txt, e in clave[0]:
-                if modo == "cine": titulo_cine(im, txt, "gancho" if e == "gancho" else "nota")
+            for txt, e, *anim in clave[0]:
+                if modo == "viral":
+                    if e == "gancho": gancho_viral(im, txt, anim[0], anim[1])
+                    else: nota_viral(im, txt, anim[1])
+                elif modo == "cine": titulo_cine(im, txt, "gancho" if e == "gancho" else "nota")
                 else: caja_texto(im, txt, Y_GANCHO, "gancho" if e == "gancho" else "nota")
             if sub: subtitulo(im, list(sub[0]), sub[1], sub[2])
             ruta = f"{tmp}/e{len(estados)}.png"; im.save(ruta); estados[clave] = ruta

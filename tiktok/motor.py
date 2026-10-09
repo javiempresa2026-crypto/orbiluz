@@ -56,7 +56,7 @@ def duracion_natural(seg):
 
 def segmento(seg, out, d, cola=0.0, punch=False, mov="in"):
     """Renderiza un plano de d segundos + «cola» (lo que se solapa con la transición siguiente).
-    seg: dict(src, t0, t1 | dur, zoom/mov, velocidad, rev, ajustar, filtro)"""
+    seg: dict(src, t0, t1 | dur, zoom/mov, velocidad, rev, ajustar, filtro, brillo=0.2-0.4 para resplandor de cine)"""
     src = seg["src"]; es_img = src.lower().endswith((".jpg", ".png", ".jpeg"))
     largo = d + cola
     if es_img and seg.get("ajustar"):  # producto entero sobre fondo difuminado de la misma foto
@@ -89,7 +89,9 @@ def segmento(seg, out, d, cola=0.0, punch=False, mov="in"):
     if punch:  # zoom de impacto: arranca al 112 % y vuelve al 100 % en 0,25 s
         f.append(f"scale={W*2}:{H*2},zoompan=z='if(lt(in_time,0.25),1.12-0.48*in_time,1)':d=1:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H}:fps={FPS}")
     if seg.get("filtro"): f.append(seg["filtro"])
-    f.append("setsar=1,format=yuv420p")
+    if seg.get("brillo"):  # resplandor de cine (bloom): las zonas de luz «sangran» un poco hacia fuera
+        f.append(f"format=gbrp,split[a][b];[b]gblur=sigma=26[bb];[a][bb]blend=all_mode=screen:all_opacity={seg['brillo']}")
+    f.append("setsar=1,format=yuv420p,setpts=PTS-STARTPTS")  # todos los planos empiezan en 0 (si no, xfade se descuadra)
     run([FF, "-y", "-loglevel", "error", *ins, "-vf", ",".join(f), "-t", f"{largo:.3f}", "-an",
          "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", out])
 
@@ -250,7 +252,7 @@ def montar(nombre, segmentos, salida_dir, voz=None, textos=(), correcciones=None
             partes.append(p)
         palabras = palabras_whisper(voz) if voz else []
         ass = f"{tmp}/s.ass"
-        if estilo_texto not in ("ugc", "cine"): crear_ass(ass, palabras, textos, total, desfase_voz, correcciones, estilo_texto)
+        if estilo_texto not in ("ugc", "cine", "viral"): crear_ass(ass, palabras, textos, total, desfase_voz, correcciones, estilo_texto)
         sfx(tmp)
         from PIL import Image
         lg = Image.open(LOGO).convert("RGBA"); lg = lg.resize((200, round(200 * lg.height / lg.width)))
@@ -259,11 +261,11 @@ def montar(nombre, segmentos, salida_dir, voz=None, textos=(), correcciones=None
         for p in partes: ins += ["-i", p]
         n = len(partes)
         ins += ["-loop", "1", "-framerate", str(FPS), "-t", f"{total:.3f}", "-i", f"{tmp}/logo.png"]
-        ugc = estilo_texto in ("ugc", "cine")
+        ugc = estilo_texto in ("ugc", "cine", "viral")
         if ugc:
             import textos_ugc
             ins += ["-i", textos_ugc.crear(f"{tmp}/textos.mov", total, palabras, textos, correcciones, desfase_voz,
-                                           modo="cine" if estilo_texto == "cine" else "ugc")]
+                                           modo=estilo_texto)]
         # vídeo: cadena de transiciones + logo + barra de progreso + subtítulos
         fc, ult = [], "0:v"
         for i, tp in enumerate(tipos):
@@ -271,7 +273,9 @@ def montar(nombre, segmentos, salida_dir, voz=None, textos=(), correcciones=None
             fc.append(f"[{ult}][{i+1}:v]xfade=transition={efecto}:duration={td}:offset={cortes[i+1]:.3f}[x{i+1}]"); ult = f"x{i+1}"
         fc.append(f"[{ult}][{n}:v]overlay=(W-w)/2:150[v1]" if logo else f"[{ult}]null[v1]")
         fc.append(f"[v1]drawbox=x=0:y=0:w='iw*t/{total:.3f}':h=12:color=0xFFB547@0.95:t=fill[v2]" if barra else "[v1]null[v2]")
-        if real:  # cámara en mano (desplazamiento suave de pocos píxeles) y grano de móvil
+        if real == "grano":  # solo grano fino de película, sin movimiento (para planos cinemáticos)
+            fc.append("[v2]noise=alls=5:allf=t+u,eq=contrast=1.04:saturation=1.04[v3]")
+        elif real:  # cámara en mano (desplazamiento suave de pocos píxeles) y grano de móvil
             fc.append("[v2]scale=1112:1978,crop=1080:1920:x='16+8*sin(t*1.9)+4*sin(t*4.3)':y='29+10*sin(t*1.4)+5*sin(t*3.7)',"
                       "noise=alls=7:allf=t+u,eq=contrast=1.03:saturation=0.96[v3]")
         else:
