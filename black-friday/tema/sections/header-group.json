@@ -8,7 +8,7 @@
         "announcement_0": {
           "type": "_announcement",
           "settings": {
-            "text": "🖤 BLACK FRIDAY · −15 % en todo",
+            "text": "🖤 BLACK FRIDAY del 23 al 30 de noviembre",
             "font": "var(--font-subheading--family)",
             "font_size": "0.8125rem",
             "letter_spacing": "normal",
@@ -19,7 +19,7 @@
         "announcement_1": {
           "type": "_announcement",
           "settings": {
-            "text": "✨ −25 % llevando 2 o más · sin códigos",
+            "text": "✨ −15 % en todo y −25 % llevando 2 · sin códigos",
             "font": "var(--font-subheading--family)",
             "font_size": "0.8125rem",
             "letter_spacing": "normal",

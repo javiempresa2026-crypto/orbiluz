@@ -8,9 +8,23 @@
   assign pct2 = section.settings.descuento_dos
   assign factor = 100 | minus: pct
   assign productos = 'lampara-bola-cristal-3d,proyector-ondas-de-agua,reloj-led-3d,globo-terraqueo-que-levita' | split: ','
+  comment
+    Estado según la fecha: «antes» (aún no hay descuento en el carrito), «activo» o «fin».
+    Los precios rebajados solo se muestran cuando el descuento automático ya funciona en Shopify.
+    El script de abajo recalcula el estado en el navegador por si la página está en caché.
+  endcomment
+  assign ahora = 'now' | date: '%s' | plus: 0
+  assign t_ini = section.settings.inicio | date: '%s' | plus: 0
+  assign t_fin = section.settings.fin | date: '%s' | plus: 0
+  assign estado = 'activo'
+  if ahora < t_ini
+    assign estado = 'antes'
+  elsif ahora >= t_fin
+    assign estado = 'fin'
+  endif
 -%}
 
-<section id="bf" class="bf" aria-label="Black Friday">
+<section id="bf" class="bf" data-estado="{{ estado }}" aria-label="Black Friday">
   <div class="bf__estrellas" aria-hidden="true"></div>
   <div class="bf__inner page-width">
     <p class="bf__eyebrow">Black Friday · {{ section.settings.fechas }}</p>
@@ -26,7 +40,8 @@
         <span class="bf__txt">llevando 2 o más</span>
       </div>
     </div>
-    <p class="bf__nota">Sin códigos: el descuento se aplica solo en el carrito. Envío gratis llevando 2 o desde 39 €.</p>
+    <p class="bf__nota bf-si-activo">Sin códigos: el descuento se aplica solo en el carrito. Envío gratis llevando 2 o desde 39 €.</p>
+    <p class="bf__nota bf-si-antes">Del {{ section.settings.fechas }} el descuento se aplicará solo en el carrito, sin códigos. Hasta entonces, los precios son los de siempre.</p>
 
     <div class="bf__cuenta" data-bf-inicio="{{ section.settings.inicio }}" data-bf-fin="{{ section.settings.fin }}" hidden>
       <span class="bf__cuenta-txt" data-bf-txt>Termina en</span>
@@ -43,14 +58,19 @@
           {%- assign rebajado = p.price | times: factor | divided_by: 100 -%}
           <li class="bf__card">
             <a href="{{ p.url }}" class="bf__card-link">
-              <span class="bf__chapa">−{{ pct }} %</span>
+              <span class="bf__chapa bf-si-activo">−{{ pct }} %</span>
+              <span class="bf__chapa bf__chapa--pronto bf-si-antes">Desde el 23/11</span>
               {%- if p.featured_image -%}
                 {{ p.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300,450,600', sizes: '(max-width: 749px) 50vw, 25vw', class: 'bf__img', alt: p.title }}
               {%- endif -%}
               <span class="bf__nombre">{{ p.title }}</span>
-              <span class="bf__precios">
+              <span class="bf__precios bf-si-activo">
                 <s>{{ p.price | money }}</s>
                 <strong>{{ rebajado | money }}</strong>
+              </span>
+              <span class="bf__precios bf-si-antes">
+                <strong>{{ p.price | money }}</strong>
+                <small>−{{ pct }} % del 23 al 30/11</small>
               </span>
             </a>
           </li>
@@ -66,15 +86,16 @@
 <script>
   (function () {
     var el = document.querySelector('[data-bf-inicio]');
-    if (!el) return;
+    var bf = document.getElementById('bf');
+    if (!el || !bf) return;
     var ini = Date.parse(el.dataset.bfInicio), fin = Date.parse(el.dataset.bfFin);
     var q = function (s) { return el.querySelector(s); };
     var dos = function (n) { return (n < 10 ? '0' : '') + n; };
     function tic() {
       var ahora = Date.now(), objetivo;
-      if (ahora < ini) { objetivo = ini; q('[data-bf-txt]').textContent = 'Empieza en'; }
-      else if (ahora < fin) { objetivo = fin; q('[data-bf-txt]').textContent = 'Termina en'; }
-      else { el.hidden = true; return; }
+      if (ahora < ini) { objetivo = ini; bf.dataset.estado = 'antes'; q('[data-bf-txt]').textContent = 'Empieza en'; }
+      else if (ahora < fin) { objetivo = fin; bf.dataset.estado = 'activo'; q('[data-bf-txt]').textContent = 'Termina en'; }
+      else { bf.dataset.estado = 'fin'; el.hidden = true; return; }
       var t = Math.floor((objetivo - ahora) / 1000);
       q('[data-bf-d]').textContent = Math.floor(t / 86400);
       q('[data-bf-h]').textContent = dos(Math.floor(t % 86400 / 3600));
@@ -116,6 +137,10 @@
   .bf__precios s{color:#9a98b5;font-size:.85rem}
   .bf__precios strong{color:var(--bf-oro);font-size:1.1rem}
   .bf__btn{display:inline-block;padding:15px 30px;border-radius:99px;background:var(--bf-oro);color:#12123A;font-weight:800;text-decoration:none;box-shadow:0 0 30px #FFB54766}
+  .bf[data-estado="antes"] .bf-si-activo,.bf[data-estado="activo"] .bf-si-antes{display:none!important}
+  .bf[data-estado="fin"]{display:none}
+  .bf__chapa--pronto{background:#000;color:var(--bf-amarillo);border:1px solid var(--bf-amarillo)}
+  .bf__precios small{flex-basis:100%;color:var(--bf-oro);font-size:.78rem}
   .bf__legal{margin:18px auto 0;max-width:60ch;font-size:.72rem;line-height:1.5;color:#8f8daa}
 </style>
 

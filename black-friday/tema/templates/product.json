@@ -295,7 +295,7 @@
               "type": "text",
               "name": "Aviso Black Friday",
               "settings": {
-                "text": "<p><strong>BLACK FRIDAY</strong> · −15 % en todo · <strong>−25 % llevando 2 o más</strong>. Sin códigos: se aplica solo en el carrito.</p>",
+                "text": "<p><strong>BLACK FRIDAY · del 23 al 30 de noviembre</strong><br>−15 % en todo · <strong>−25 % llevando 2 o más</strong> · envío gratis llevando 2. Esos días se aplica solo en el carrito, sin códigos.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",

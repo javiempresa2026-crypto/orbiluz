@@ -10,7 +10,8 @@ Del **lunes 23 al lunes 30 de noviembre** (Cyber Monday), a las 23:59 hora de Ma
 | **−25 %** | Llevando 2 o más unidades (se pueden combinar productos) | Automático en el carrito |
 | **Envío gratis** | Llevando 2 o más, o desde 39 € como siempre | Automático en el carrito |
 
-- **No se acumulan:** Shopify aplica siempre el descuento mejor, sea uno de estos, el «2 lámparas por 39,90 €» o el código HOLA10. El de 2 o más (−25 %) sale más barato que el «2 por 39,90 €», así que ese deja de aplicarse en estas fechas sin tocarlo.
+- **HOLA10 está pausado** del 23 al 30 de noviembre: caduca el 22 a las 23:59. El 1 de diciembre hay que reactivarlo (Descuentos → HOLA10 → quitar la fecha de fin).
+- **No se acumulan:** Shopify aplica siempre el descuento mejor, sea uno de estos o el «2 lámparas por 39,90 €». El de 2 o más (−25 %) sale más barato que el «2 por 39,90 €», así que ese deja de aplicarse en estas fechas sin tocarlo.
 - **Envío gratis llevando 2:** sin él, 2 lámparas con el −25 % se quedan en 37,35 €, por debajo de los 39 € del envío gratis, y el cliente pagaría más que con la oferta normal.
 
 ### Margen por pedido
@@ -61,7 +62,9 @@ Es una copia del tema publicado («Orbiluz 1.9»), **sin publicar**. La tienda a
 Shopify no deja publicar temas desde aquí.
 
 1. **El 23 de noviembre a primera hora:** Tienda online → Temas → «Orbiluz Black Friday» → **Publicar**. No antes: el precio tachado solo es cierto cuando el descuento ya funciona.
-2. **El 1 de diciembre:** volver a publicar «Orbiluz 1.9».
+2. **El 1 de diciembre:** volver a publicar «Orbiluz 1.9» y reactivar HOLA10.
+
+**Antes del 23 de noviembre** el tema no enseña precios rebajados: las tarjetas muestran el precio de siempre con «−15 % del 23 al 30/11», porque el descuento todavía no funciona en el carrito. A las 00:00 del 23 cambia solo a precio tachado y rebajado.
 
 ### Legal
 

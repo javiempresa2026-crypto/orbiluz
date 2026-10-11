@@ -53,7 +53,7 @@
       {%- for prod in coleccion.products limit: 8 -%}
         {%- case prod.handle -%}
           {%- when 'proyector-ondas-de-agua' -%}{%- assign tag = 'Viral' -%}{%- assign linea = 'Olas de luz en techo y paredes. 16 colores y mando.' -%}
-          {%- when 'lampara-bola-cristal-3d' -%}{%- assign tag = '−25 % llevando 2' -%}{%- assign linea = 'Saturno, Luna, Galaxia o Sistema solar grabados en cristal.' -%}
+          {%- when 'lampara-bola-cristal-3d' -%}{%- assign tag = 'Black Friday 23-30/11' -%}{%- assign linea = 'Saturno, Luna, Galaxia o Sistema solar grabados en cristal.' -%}
           {%- when 'reloj-led-3d' -%}{%- assign tag = 'De pared o de mesa' -%}{%- assign linea = 'Dígitos LED 3D con hora, fecha, temperatura y alarmas.' -%}
           {%- when 'globo-terraqueo-que-levita' -%}{%- assign tag = 'Levita' -%}{%- assign linea = 'Un globo dorado que flota y gira sobre su base.' -%}
           {%- else -%}{%- assign tag = '' -%}{%- assign linea = prod.description | strip_html | truncatewords: 12 -%}
