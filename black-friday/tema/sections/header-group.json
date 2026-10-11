@@ -30,7 +30,7 @@
         "announcement_2": {
           "type": "_announcement",
           "settings": {
-            "text": "🚚 Envío gratis desde 39 €",
+            "text": "🚚 Envío gratis llevando 2 o desde 39 €",
             "font": "var(--font-subheading--family)",
             "font_size": "0.8125rem",
             "letter_spacing": "normal",
