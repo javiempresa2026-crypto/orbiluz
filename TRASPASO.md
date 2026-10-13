@@ -193,7 +193,7 @@
 - Todo en español de España, pensado para móvil y atractivo.
 
 ## 13-10-2026 · Carrito, pagos y DSers
-- **Tema «Orbiluz 2.0 (carrito nuevo)»** (190738956616), sin publicar. Es una copia de «Orbiluz 1.9» con el carrito mejorado:
+- **Tema «Orbiluz 2.0 (carrito nuevo)»** (190738956616), **publicado el 13-10**. Es una copia de «Orbiluz 1.9» con el carrito mejorado:
   - barra «Te faltan X € para el envío gratis»;
   - pago seguro, plazos de envío (6-17 días laborables), 14 días para devolver y dónde poner el código de descuento;
   - iconos de las formas de pago activas.
