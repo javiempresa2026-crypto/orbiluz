@@ -82,3 +82,24 @@ main .shopify-section:has(.main-collection-grid):after{content:"";position:absol
 /* ===== Black Friday ===== */
 [id$="__header_announcements_9jGBFp"],[id$="__header_announcements_9jGBFp"] *{color:#FFB547!important}
 [id$="__header_announcements_9jGBFp"]{border-bottom:1px solid #FFB54733}
+
+/* ===== Carrito de noche con estrellas (2.0) ===== */
+#cart-drawer .theme-drawer__dialog.color-custom-drawer,
+main[data-template="cart"]{
+  --color-background:#12123A;--color-background-rgb:18 18 58;
+  --color-foreground:#FFF6E9;--color-foreground-rgb:255 246 233;--color-foreground-heading:#FFF6E9;--color-foreground-heading-rgb:255 246 233;
+  --color-border:rgb(255 246 233 / .18);--color-border-rgb:255 246 233;
+  --color-primary-button-background:#FFB547;--color-primary-button-text:#12123A;--color-primary-button-border:#FFB547;
+  --color-primary-button-hover-background:#FFC56E;--color-primary-button-hover-text:#12123A;
+  --color-input-background:rgb(255 255 255 / .06);--color-input-text:#FFF6E9;--color-input-border:rgb(255 246 233 / .25);
+  color:#FFF6E9;
+  background:url("orbiluz-fondo-noche.svg") 0 0/420px 420px repeat,radial-gradient(130% 70% at 100% 0%,#2a2470 0%,#12123A 55%,#0b0b26 100%)!important;
+}
+#cart-drawer .cart-drawer__content,#cart-drawer .theme-drawer__header,#cart-drawer .cart-drawer__inner{background:transparent!important}
+#cart-drawer .cart-drawer__summary{background:rgb(11 11 38 / .92)!important;backdrop-filter:blur(6px);border-top:1px solid rgb(255 181 71 / .25)}
+main[data-template="cart"] .section-background,main[data-template="cart"] .cart-summary{background:transparent!important}
+main[data-template="cart"] .cart-page__summary{background:rgb(11 11 38 / .7)!important;border-radius:16px}
+.orb-carrito-confianza{background:rgb(255 255 255 / .07)!important;border:1px solid rgb(255 246 233 / .12);color:#FFF6E9}
+.orb-carrito-confianza svg{color:#FFB547!important}
+.orb-carrito-envio{box-shadow:0 0 24px rgb(255 181 71 / .25)}
+#cart-drawer img,main[data-template="cart"] .cart-items img{border-radius:10px}
