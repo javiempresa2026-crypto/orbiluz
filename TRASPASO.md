@@ -191,3 +191,13 @@
 - No inventar datos, ni reseñas falsas, ni personas generadas por IA presentadas como clientes.
 - Nunca guardar tokens en el repositorio.
 - Todo en español de España, pensado para móvil y atractivo.
+
+## 13-10-2026 · Carrito, pagos y DSers
+- **Tema «Orbiluz 2.0 (carrito nuevo)»** (190738956616), sin publicar. Es una copia de «Orbiluz 1.9» con el carrito mejorado:
+  - barra «Te faltan X € para el envío gratis»;
+  - pago seguro, plazos de envío (6-17 días laborables), 14 días para devolver y dónde poner el código de descuento;
+  - iconos de las formas de pago activas.
+  - Archivos: `tema/snippets/orbiluz-carrito-info.liquid`, `tema/snippets/cart-drawer.liquid`, `tema/blocks/orbiluz-carrito.liquid` y `tema/templates/cart.json`.
+  - El mismo carrito está también en «Orbiluz Black Friday».
+- **Pagos:** Shopify Payments, con Apple Pay, Google Pay y Shop Pay. En España Shopify Payments funciona con Stripe por debajo, así que Stripe no se puede añadir aparte.
+- **DSers:** desde el 13-10 está en el plan gratuito, y la conexión de DSers con Claude exige el plan Advance. Hay que revisar a mano en DSers que los 4 productos sigan vinculados y que el globo (catálogo «1688 Dropshipping» de DSers) se pueda pedir con el plan gratuito.
