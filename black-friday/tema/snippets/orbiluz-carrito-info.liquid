@@ -1,0 +1,69 @@
+{%- comment -%}
+  Información del carrito de Orbiluz (cajón y página del carrito).
+  parte: 'envio'     → barra de progreso hasta el envío gratis (39 €, sobre el total ya con descuentos).
+         'confianza' → pago seguro, plazos de envío, devoluciones y aviso del código de descuento.
+         'pagos'     → iconos de las formas de pago activas en la tienda.
+{%- endcomment -%}
+{%- liquid
+  assign umbral = 3900
+  assign falta = umbral | minus: cart.total_price
+  assign pct = cart.total_price | times: 100 | divided_by: umbral
+  if pct > 100
+    assign pct = 100
+  endif
+-%}
+
+{%- case parte -%}
+  {%- when 'envio' -%}
+    <div class="orb-carrito-envio">
+      {%- if falta > 0 -%}
+        <p>Te faltan <strong>{{ falta | money }}</strong> para el <strong>envío gratis</strong></p>
+      {%- else -%}
+        <p><strong>¡Tienes envío gratis!</strong> Con seguimiento a toda la península y Baleares.</p>
+      {%- endif -%}
+      <div class="orb-carrito-envio__barra" role="progressbar" aria-label="Progreso hasta el envío gratis" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ pct }}">
+        <span style="width: {{ pct }}%"></span>
+      </div>
+    </div>
+
+  {%- when 'confianza' -%}
+    <ul class="orb-carrito-confianza">
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span><strong>Pago seguro y cifrado.</strong> El pago lo procesa Shopify y no guardamos los datos de tu tarjeta.</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7" cy="17" r="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="17" r="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span><strong>Envío con seguimiento.</strong> Gratis desde 39 €; si no, 3,95 €. Llega en 6-17 días laborables según el producto.</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>14 días para devolver</strong> desde que lo recibes.</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7.5" cy="8.5" r="1.4" fill="currentColor"/></svg>
+        <span>¿Tienes un código de descuento? Lo puedes poner en el siguiente paso, al pagar.</span>
+      </li>
+    </ul>
+
+  {%- when 'pagos' -%}
+    {%- if shop.enabled_payment_types.size > 0 -%}
+      <div class="orb-carrito-pagos" aria-label="Formas de pago aceptadas">
+        {%- for tipo in shop.enabled_payment_types -%}
+          {{ tipo | payment_type_svg_tag: class: 'orb-carrito-pagos__icono' }}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+{%- endcase -%}
+
+<style>
+  .orb-carrito-envio{margin:0 0 14px;padding:12px 14px;border-radius:12px;background:#FFF6E9;color:#12123A;font-size:.9rem;line-height:1.35}
+  .orb-carrito-envio p{margin:0 0 8px}
+  .orb-carrito-envio__barra{height:8px;border-radius:99px;background:#12123A1f;overflow:hidden}
+  .orb-carrito-envio__barra span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#FFB547,#FF7A59);transition:width .4s ease}
+  .orb-carrito-confianza{list-style:none;margin:8px 0 0;padding:14px;border-radius:12px;background:#12123A0a;display:grid;gap:10px;font-size:.82rem;line-height:1.4;text-align:left}
+  .orb-carrito-confianza li{display:flex;gap:10px;align-items:flex-start}
+  .orb-carrito-confianza svg{flex:0 0 20px;width:20px;height:20px;color:#7C6CF6;margin-top:1px}
+  .orb-carrito-pagos{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;width:100%}
+  .orb-carrito-pagos__icono{width:38px;height:24px}
+</style>

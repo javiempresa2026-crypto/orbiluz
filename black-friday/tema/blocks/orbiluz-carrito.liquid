@@ -1,0 +1,16 @@
+{%- comment -%} Bloque para la página del carrito: envío gratis, confianza y formas de pago. {%- endcomment -%}
+{%- unless cart.empty? -%}
+  <div class="orb-carrito-bloque" {{ block.shopify_attributes }}>
+    {% render 'orbiluz-carrito-info', parte: 'envio' %}
+    {% render 'orbiluz-carrito-info', parte: 'confianza' %}
+    <div style="margin-top:12px">{% render 'orbiluz-carrito-info', parte: 'pagos' %}</div>
+  </div>
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "Información del carrito",
+  "settings": [],
+  "presets": [{ "name": "Información del carrito" }]
+}
+{% endschema %}
