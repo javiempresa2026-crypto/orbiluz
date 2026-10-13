@@ -103,3 +103,12 @@ main[data-template="cart"] .cart-page__summary{background:rgb(11 11 38 / .7)!imp
 .orb-carrito-confianza svg{color:#FFB547!important}
 .orb-carrito-envio{box-shadow:0 0 24px rgb(255 181 71 / .25)}
 #cart-drawer img,main[data-template="cart"] .cart-items img{border-radius:10px}
+/* textos claros también dentro de los bloques que traen su propio esquema de color */
+#cart-drawer .theme-drawer__dialog *,main[data-template="cart"] *{
+  --color-foreground:#FFF6E9;--color-foreground-rgb:255 246 233;--color-foreground-heading:#FFF6E9;--color-foreground-heading-rgb:255 246 233;
+  --color-input-background:rgb(255 255 255 / .06);--color-input-text:#FFF6E9;--color-input-border:rgb(255 246 233 / .25);
+  --color-primary-button-background:#FFB547;--color-primary-button-text:#12123A;--color-primary-button-border:#FFB547;
+  --color-secondary-button-text:#FFF6E9;--color-secondary-button-border:rgb(255 246 233 / .4)
+}
+#cart-drawer .theme-drawer__title,#cart-drawer .theme-drawer__close-button,#cart-drawer .cart-drawer__summary,main[data-template="cart"] h1,main[data-template="cart"] h2,main[data-template="cart"] h3{color:#FFF6E9!important}
+main[data-template="cart"] .shopify-section,main[data-template="cart"] .section-background{background:transparent!important}
