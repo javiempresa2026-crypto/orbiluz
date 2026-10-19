@@ -27,13 +27,15 @@ El orgánico sirve para dar a conocer la marca y para probar ganchos gratis ante
   - `tiktokData.title`, `privacyOption` PUBLIC_TO_EVERYONE y `commercialContentOwnBrand: true`.
 - **Si hay IA en el vídeo, márcalo:** `instagramData.isAiGenerated: true` y `tiktokData.isAigc: true`.
 - **No uses el primer comentario en Instagram:** falla siempre. Pon la pregunta para comentar en el propio texto.
-- **Horas:** los vídeos a las **18:00** (el pico en TikTok) y los carruseles a las 12:00. Comprueba antes con `getBestTimeToPostByNetwork`.
+- **Horas:** los vídeos a las **18:00** (el pico en TikTok) y los carruseles a las 12:00. Comprueba antes con `getBestTimeToPostByNetwork`. En octubre de 2026 los mejores momentos en TikTok fueron el miércoles y el jueves a las 18:00 y a las 10:00; el fin de semana rinde la mitad.
+- **Hora de verano:** hasta el último domingo de octubre, Madrid va en +02:00 y después en +01:00. Pon el desfase correcto en `date`.
 - **Texto:**
   - gancho en la primera línea;
   - una pregunta que invite a comentar;
   - «🔗 Enlace en la bio»;
   - 4-5 hashtags del nicho (#decoracionhabitacion, #habitacionaesthetic, #roommakeover, #luzambiente, #fyp).
 - **No dupliques:** mira el calendario con `getScheduledPosts` antes de añadir nada. Así evitas dos vídeos el mismo día o repetir uno.
+- **Repasa el texto antes de programar:** las erratas en los hashtags (#deskssetup en vez de #desksetup) los dejan inútiles. Si ya está programado, corrígelo con `updateScheduledPost`: manda el contenido completo, usa como `media` la URL de static.metricool.com que devolvió la creación, y ten en cuenta que el `id` cambia.
 
 ## Qué publicar (aprendido con datos)
 

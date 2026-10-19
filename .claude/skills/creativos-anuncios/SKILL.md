@@ -36,9 +36,13 @@ Lee el README de la carpeta que vayas a usar: explica qué funcionó y qué se d
 - **Textos sobre la imagen:** `tiktok/textos_ugc.py`.
   - `gancho_viral(im, "Texto | *palabra clave*", 99, 1.0, y_centro=...)`: `|` fuerza el salto de línea y `*…*` pone el recuadro amarillo.
   - `nota_viral(im, texto, 1.0, y=...)` hace una etiqueta amarilla.
+  - **En `montar()`, la etiqueta va por defecto a y=1190.** Si ahí tapa el producto, usa `"nota@560"` (o la altura que haga falta) en lugar de `"nota"`.
 - **Imágenes estáticas:** usa como plantilla `anuncios/meta/variantes/imagenes_virales.py` o `black-friday/imagenes/generar_black_friday.py`. Tienen fondo oscurecido, sello, gancho, pegatina, etiqueta y botón.
 - **Generar con IA, solo si falta material:**
-  - **Higgsfield:** `nano_banana_2` para imágenes (2 créditos) con la foto real del producto como referencia; `kling3_0` de 5 s sin sonido (`sound:"off"`) para vídeo.
+  - **Higgsfield:**
+    - `nano_banana_2` para imágenes: **1,5 créditos**. Las fotos reales del producto van como referencia con el rol `image_references`; los ID están en `TRASPASO.md` y en `anuncios/meta/cine/README.md`. Pregunta antes el coste con `get_cost: true` y mira el saldo con `balance`.
+    - `kling3_0` de 5 s sin sonido (`sound:"off"`) para vídeo: unos 7,5 créditos.
+  - **Revisa las imágenes de IA por si salen marcas** (una manzana en un portátil, logos en tazas…). Si salen, difumínalas con una máscara suave (desenfoque gaussiano y bordes difuminados), no con un parche cuadrado.
   - **Kling:** acepta imagen inicial y final, lo que permite hacer bucles perfectos con la misma imagen al principio y al final.
   - Revisa siempre el resultado fotograma a fotograma: Kling deforma los dígitos de los relojes y a veces se inventa humo o luces.
 
@@ -73,8 +77,12 @@ Meta y TikTok penalizan las promesas falsas, y un cliente engañado devuelve el 
 
 ## 6. Comprobar antes de entregar
 
-1. **Hoja de contactos de los vídeos:** extrae un fotograma cada 0,5-1 s con ffmpeg, júntalos y míralos. Busca textos cortados, recuadros fuera de sitio, fotogramas negros, saltos y efectos raros.
-2. **Imágenes:** únelas en una hoja con PIL y míralas antes de dar nada por bueno.
+1. **Hoja de contactos:** `python3 .claude/skills/creativos-anuncios/scripts/hoja_contactos.py video.mp4 hoja.jpg` saca un fotograma cada 0,7 s con su segundo. Con varias imágenes: `… img1.jpg img2.jpg --salida hoja.jpg`. En este entorno `ffmpeg` no está en el PATH: el script usa el de `imageio_ffmpeg`.
+2. **Qué buscar:**
+   - textos cortados o recuadros fuera de sitio;
+   - **etiquetas que tapan el producto**;
+   - **etiquetas que hablan de algo que todavía no sale en pantalla**: el texto tiene que coincidir con el plano;
+   - fotogramas negros, saltos y efectos raros.
 3. **Sincronía:** que el cierre no aparezca antes de tiempo y que el gancho se lea completo antes del primer corte.
 4. **Entrega:**
    - Sube al repositorio, en la carpeta de la campaña, el script, los archivos y un README con la tabla de gancho, etiquetas, destino y textos para Meta.
