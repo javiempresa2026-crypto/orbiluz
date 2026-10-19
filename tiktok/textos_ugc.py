@@ -304,6 +304,7 @@ def crear(salida, total, palabras, textos, correcciones=None, desfase=0.0, modo=
             for txt, e, *anim in clave[0]:
                 if modo == "viral":
                     if e == "gancho": gancho_viral(im, txt, anim[0], anim[1])
+                    elif e.startswith("nota@"): nota_viral(im, txt, anim[1], y=int(e[5:]))  # «nota@560»: etiqueta a otra altura
                     else: nota_viral(im, txt, anim[1])
                 elif modo == "cine": titulo_cine(im, txt, "gancho" if e == "gancho" else "nota")
                 else: caja_texto(im, txt, Y_GANCHO, "gancho" if e == "gancho" else "nota")
