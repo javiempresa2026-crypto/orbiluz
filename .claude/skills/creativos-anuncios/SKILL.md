@@ -36,6 +36,9 @@ Lee el README de la carpeta que vayas a usar: explica qué funcionó y qué se d
 - **Textos sobre la imagen:** `tiktok/textos_ugc.py`.
   - `gancho_viral(im, "Texto | *palabra clave*", 99, 1.0, y_centro=...)`: `|` fuerza el salto de línea y `*…*` pone el recuadro amarillo.
   - `nota_viral(im, texto, 1.0, y=...)` hace una etiqueta amarilla.
+  - **Signos con la palabra resaltada:** van dentro de los asteriscos (`*esto?*`, `*luz de techo.*`). Si van fuera (`*esto*?`), el asterisco sale escrito.
+  - **Ganchos largos:** pártelos con `|` en 2-3 líneas. Una sola línea larga se sale por los bordes mientras van apareciendo las palabras.
+  - **Tiempos de las etiquetas:** las transiciones solapan los planos, así que un plano no empieza en la suma de las duraciones. Mira en la hoja de fotogramas cuándo empieza de verdad cada uno y ajusta las etiquetas a esos cortes.
   - **En `montar()`, la etiqueta va por defecto a y=1190.** Si ahí tapa el producto, usa `"nota@560"` (o la altura que haga falta) en lugar de `"nota"`.
 - **Imágenes estáticas:** usa como plantilla `anuncios/meta/variantes/imagenes_virales.py` o `black-friday/imagenes/generar_black_friday.py`. Tienen fondo oscurecido, sello, gancho, pegatina, etiqueta y botón.
 - **Generar con IA, solo si falta material:**
